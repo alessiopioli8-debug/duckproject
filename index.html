@@ -3,1487 +3,1373 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Duck Vanilla Store 🎃 Halloween Edition</title>
+<title>OrbysMC</title>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800;900&family=Creepster&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap" rel="stylesheet">
 <style>
 :root{
-  --pumpkin:#ff7518; --pumpkin-dark:#cc5500; --pumpkin-glow:rgba(255,117,24,0.4);
-  --purple:#8b00ff; --purple-dark:#5a0099; --purple-glow:rgba(139,0,255,0.45);
-  --blood:#8b0000; --blood-bright:#c41e3a;
-  --slime:#7fff00; --ghost:#e8e8e8;
-  --dark-bg:#0a0508; --card-bg:#15080f; --card-hover:#1f0d18;
-  --text-grey:#a89aa8; --border-color:#2d1520;
-  --yellow:#ff7518; --yellow-glow:rgba(255,117,24,0.3);
-  --vip-color:#ffb347; --nabbo-color:#b84dff; --duck-color:#ff7518;
-  --discord:#5865F2; --revolut:#0666EB;
+  --blue:#3b82f6;
+  --blue-dark:#1e40af;
+  --blue-light:#60a5fa;
+  --blue-soft:#1e3a5f;
+  --bg:#0a1628;
+  --bg-2:#0f1f35;
+  --surface:#132a45;
+  --surface-2:#1a3352;
+  --text:#f1f5f9;
+  --text-muted:#94a3b8;
+  --border:#1e3a5f;
+  --border-strong:#2d4a6f;
+  --success:#10b981;
+  --warning:#f59e0b;
+  --danger:#ef4444;
 }
-*{margin:0;padding:0;box-sizing:border-box;font-family:'Montserrat',sans-serif;}
-body{background:var(--dark-bg);color:#fff;overflow-x:hidden;line-height:1.6;
+*{margin:0;padding:0;box-sizing:border-box;image-rendering:pixelated;}
+body{
+  font-family:'VT323','Courier New',monospace;
+  font-size:18px;
+  background:var(--bg);
+  color:var(--text);
+  line-height:1.5;
+  overflow-x:hidden;
   background-image:
-    radial-gradient(circle at 20% 30%, rgba(139,0,255,0.08) 0%, transparent 40%),
-    radial-gradient(circle at 80% 70%, rgba(255,117,24,0.06) 0%, transparent 40%),
-    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='60' viewBox='0 0 60 60'%3E%3Cg fill='%23ff7518' fill-opacity='0.03'%3E%3Cpath d='M30 5l3 8h8l-6 5 2 8-7-5-7 5 2-8-6-5h8z'/%3E%3C/g%3E%3C/svg%3E");
+    linear-gradient(rgba(10,22,40,0.5), rgba(10,22,40,0.5)),
+    url('https://i.imgur.com/iEtgMaA.jpeg');
+  background-size:auto, cover;
+  background-position:0 0, center;
+  background-attachment:fixed, fixed;
+  background-repeat:repeat, no-repeat;
 }
 
-/* DECORAZIONI HALLOWEEN FISSE */
-.halloween-deco{position:fixed;pointer-events:none;z-index:1;font-size:42px;opacity:0.5;animation:floatDeco 6s ease-in-out infinite;filter:drop-shadow(0 0 12px rgba(255,117,24,0.6));}
-.halloween-deco.bat1{top:12%;left:3%;}
-.halloween-deco.bat2{top:55%;right:4%;animation-delay:1.5s;font-size:36px;}
-.halloween-deco.pumpkin1{bottom:15%;left:5%;font-size:52px;animation-delay:0.8s;}
-.halloween-deco.ghost1{top:25%;right:8%;font-size:46px;animation-delay:2s;}
-.halloween-deco.spider1{bottom:25%;right:12%;font-size:38px;animation-delay:1s;}
-@keyframes floatDeco{0%,100%{transform:translateY(0) rotate(0deg);}50%{transform:translateY(-20px) rotate(8deg);}}
-.flying-bat{position:fixed;z-index:2;pointer-events:none;font-size:28px;filter:drop-shadow(0 0 8px rgba(255,117,24,0.7));}
-@keyframes flyBat{0%{transform:translate(-100px,0) rotate(-10deg);opacity:0;}10%{opacity:0.9;}50%{transform:translate(50vw,-100px) rotate(10deg);}90%{opacity:0.9;}100%{transform:translate(110vw,50px) rotate(-10deg);opacity:0;}}
+.top-bar{
+  background:rgba(15,31,53,0.92);
+  border-bottom:3px solid var(--border-strong);
+  padding:14px 32px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  position:sticky;
+  top:0;
+  z-index:50;
+  flex-wrap:wrap;
+  gap:12px;
+  box-shadow:0 4px 0 rgba(0,0,0,0.4);
+}
+.top-left{display:flex;align-items:center;gap:12px;}
+.brand-logo-img{
+  height:48px;
+  width:auto;
+  display:block;
+  object-fit:contain;
+}
+.brand-name{
+  font-family:'Press Start 2P',monospace;
+  font-size:12px;
+  font-weight:700;
+  letter-spacing:0.5px;
+  color:var(--text);
+  text-shadow:2px 2px 0 #000;
+}
+.brand-name span{color:var(--blue-light);}
+.top-right{display:flex;align-items:center;gap:8px;flex-wrap:wrap;}
+.top-chip{
+  display:flex;align-items:center;gap:8px;
+  padding:8px 14px;
+  background:var(--surface);
+  border:3px solid var(--border-strong);
+  font-size:14px;
+  font-weight:600;
+  color:var(--text-muted);
+  cursor:pointer;
+  transition:all .1s;
+  position:relative;
+  box-shadow:3px 3px 0 rgba(0,0,0,0.4);
+}
+.top-chip:hover{
+  border-color:var(--blue);
+  color:var(--blue-light);
+  transform:translate(-1px,-1px);
+  box-shadow:4px 4px 0 rgba(0,0,0,0.4);
+}
+.top-chip strong{color:var(--text);font-weight:700;}
+.top-chip .cart-count{
+  background:var(--blue);
+  color:#fff;
+  font-size:11px;
+  font-weight:800;
+  padding:1px 6px;
+  min-width:18px;
+  text-align:center;
+  display:none;
+  border:2px solid #000;
+}
+.top-chip .dot{
+  width:8px;height:8px;
+  background:var(--success);
+  border:2px solid #000;
+}
 
-/* TOP BAR */
-.top-bar{display:flex;justify-content:center;align-items:center;padding:18px 40px;background:linear-gradient(180deg,#0a0508,#15080f);font-size:12px;font-weight:700;border-bottom:2px solid var(--purple);position:relative;z-index:50;box-shadow:0 4px 20px rgba(139,0,255,0.2);}
-.top-pill{display:flex;align-items:center;background:#1a0a14;border:1px solid #2d1520;border-radius:12px;padding:10px 6px;box-shadow:0 4px 20px rgba(0,0,0,.6);}
-.top-item{display:flex;align-items:center;gap:8px;padding:6px 20px;color:var(--text-grey);font-size:12px;font-weight:700;letter-spacing:.5px;cursor:pointer;transition:.25s;border-right:1px solid #2d1520;position:relative;}
-.top-item:last-child{border-right:none;}
-.top-item:hover{color:var(--pumpkin);}
-.top-item strong{color:#fff;font-weight:800;}
-.top-item .flag{font-size:16px;line-height:1;}
-.top-item .avatar{width:22px;height:22px;border-radius:5px;image-rendering:pixelated;border:1px solid #333;}
-.top-item .discord-ico{color:#fff;font-size:14px;}
-.top-item .status-dot{width:6px;height:6px;border-radius:50%;background:var(--blood-bright);box-shadow:0 0 8px var(--blood-bright);animation:pulseBlood 2s infinite;}
-@keyframes pulseBlood{0%,100%{opacity:1;}50%{opacity:0.4;}}
-.cart-badge{background:var(--pumpkin);color:#000;font-size:10px;font-weight:900;padding:2px 7px;border-radius:10px;margin-left:4px;min-width:18px;text-align:center;display:none;}
-
-.dropdown{position:absolute;top:100%;left:0;margin-top:8px;background:#1a0a14;border:1px solid var(--purple);border-radius:10px;padding:6px;min-width:170px;box-shadow:0 10px 30px rgba(139,0,255,.4);display:none;z-index:100;}
+.dropdown{
+  position:absolute;
+  top:calc(100% + 8px);
+  left:0;
+  background:var(--surface-2);
+  border:3px solid var(--border-strong);
+  padding:6px;
+  min-width:170px;
+  box-shadow:4px 4px 0 rgba(0,0,0,0.5);
+  display:none;
+  z-index:100;
+}
 .dropdown.open{display:block;}
-.dropdown-item{display:flex;align-items:center;gap:10px;padding:10px 14px;border-radius:6px;cursor:pointer;font-size:12px;font-weight:700;color:#ccc;transition:.2s;}
-.dropdown-item:hover{background:#2d1520;color:var(--pumpkin);}
-.dropdown-item.active{background:var(--pumpkin);color:#000;}
-.dropdown-item .flag{font-size:15px;}
+.dropdown-item{
+  display:flex;align-items:center;gap:10px;
+  padding:8px 12px;
+  cursor:pointer;
+  font-size:14px;
+  font-weight:600;
+  color:var(--text-muted);
+  transition:all .1s;
+  border:2px solid transparent;
+}
+.dropdown-item:hover{background:var(--blue-soft);color:var(--blue-light);}
+.dropdown-item.active{background:var(--blue);color:#fff;border-color:#000;}
 
-/* HERO */
-.hero{height:480px;background:linear-gradient(180deg,rgba(10,5,8,.7) 0%,rgba(10,5,8,.9) 100%),url('https://i.pinimg.com/736x/6d/63/b8/6d63b8abbb6b01977f9213d9b8845093.jpg') center/cover no-repeat;display:flex;justify-content:center;align-items:center;border-bottom:3px solid var(--pumpkin);position:relative;overflow:hidden;}
-.hero::before{content:'';position:absolute;inset:0;background:radial-gradient(circle at 15% 25%, rgba(139,0,255,0.25) 0%, transparent 35%),radial-gradient(circle at 85% 75%, rgba(255,117,24,0.2) 0%, transparent 35%);pointer-events:none;}
-.hero::after{content:'';position:absolute;inset:0;background:radial-gradient(circle at center,transparent 25%,rgba(10,5,8,.75) 100%);pointer-events:none;}
-.hero-content{display:flex;justify-content:space-between;align-items:center;width:90%;max-width:1400px;position:relative;z-index:2;}
+.hero{
+  background:rgba(15,31,53,0.6);
+  padding:70px 32px 60px;
+  border-bottom:3px solid var(--border-strong);
+  position:relative;
+  overflow:hidden;
+}
+.hero-inner{max-width:1200px;margin:0 auto;text-align:center;position:relative;z-index:1;}
+.hero-logo{
+  height:180px;
+  width:auto;
+  max-width:100%;
+  display:block;
+  margin:0 auto 24px;
+  object-fit:contain;
+  filter:drop-shadow(0 6px 0 rgba(0,0,0,0.5));
+}
+.hero-status{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  padding:8px 16px;
+  background:var(--surface);
+  border:3px solid var(--border-strong);
+  font-size:14px;
+  font-weight:600;
+  color:var(--text-muted);
+  margin-bottom:20px;
+  box-shadow:3px 3px 0 rgba(0,0,0,0.4);
+}
+.hero-status .dot{
+  width:10px;height:10px;
+  background:var(--success);
+  border:2px solid #000;
+}
+.hero h1{
+  font-family:'Press Start 2P',monospace;
+  font-size:28px;
+  font-weight:700;
+  line-height:1.4;
+  letter-spacing:1px;
+  margin-bottom:20px;
+  text-shadow:3px 3px 0 #000;
+}
+.hero h1 em{font-style:normal;color:var(--blue-light);}
+.hero p{
+  font-size:18px;
+  color:var(--text-muted);
+  max-width:600px;
+  margin:0 auto 26px;
+  line-height:1.5;
+}
+.hero-ip{
+  display:inline-flex;
+  align-items:center;
+  gap:12px;
+  padding:14px 22px;
+  background:var(--surface);
+  border:3px solid var(--border-strong);
+  font-family:'Press Start 2P',monospace;
+  font-size:12px;
+  font-weight:600;
+  cursor:pointer;
+  transition:all .1s;
+  color:var(--text);
+  box-shadow:4px 4px 0 rgba(0,0,0,0.4);
+}
+.hero-ip:hover{
+  border-color:var(--blue);
+  color:var(--blue-light);
+  transform:translate(-2px,-2px);
+  box-shadow:6px 6px 0 rgba(0,0,0,0.4);
+}
+.hero-ip i{color:var(--blue-light);}
 
-.icon-circle.play-btn{width:58px;height:58px;background:linear-gradient(135deg,var(--pumpkin),var(--pumpkin-dark));border-radius:14px;display:flex;justify-content:center;align-items:center;color:#000;font-size:22px;cursor:pointer;box-shadow:0 0 25px var(--pumpkin-glow),0 4px 12px rgba(0,0,0,.5);transition:.3s cubic-bezier(.4,0,.2,1);border:none;}
-.icon-circle.play-btn:hover{transform:scale(1.1) translateY(-2px);box-shadow:0 0 40px var(--pumpkin),0 8px 20px rgba(0,0,0,.6);}
-.icon-circle.discord-btn{width:58px;height:58px;background:linear-gradient(135deg,#5865F2,#4752c4);border-radius:14px;display:flex;justify-content:center;align-items:center;color:#fff;font-size:22px;cursor:pointer;box-shadow:0 0 25px rgba(88,101,242,.5),0 4px 12px rgba(0,0,0,.5);transition:.3s cubic-bezier(.4,0,.2,1);border:none;}
-.icon-circle.discord-btn:hover{transform:scale(1.1) translateY(-2px);box-shadow:0 0 40px var(--discord),0 8px 20px rgba(0,0,0,.6);}
+.container{max-width:1200px;margin:0 auto;padding:40px 32px;}
+.layout{display:flex;gap:28px;align-items:flex-start;}
 
-.hero-left,.hero-right{display:flex;align-items:center;gap:20px;}
-.text h3,.text-right h3{font-size:20px;font-weight:900;text-shadow:0 2px 12px rgba(0,0,0,.9);letter-spacing:.3px;}
-.text p,.text-right p{font-size:13px;color:#d0d0d0;text-shadow:0 2px 8px rgba(0,0,0,.9);}
-.text-right{text-align:right;}
-.hero-center{position:relative;display:flex;align-items:center;justify-content:center;}
-.logo-dv{width:300px;height:300px;background:transparent!important;border:none!important;display:flex;justify-content:center;align-items:center;box-shadow:none!important;position:relative;overflow:visible;animation:logoPulse 3s ease-in-out infinite;transition:width .5s cubic-bezier(.4,0,.2,1),height .5s cubic-bezier(.4,0,.2,1);}
-.logo-dv img{width:100%;height:100%;object-fit:contain;display:block;background:transparent!important;filter:drop-shadow(0 0 35px rgba(255,117,24,.9)) drop-shadow(0 0 70px rgba(139,0,255,.6));}
-@keyframes logoPulse{0%,100%{transform:scale(1);filter:drop-shadow(0 0 35px rgba(255,117,24,.9)) drop-shadow(0 0 70px rgba(139,0,255,.6));}50%{transform:scale(1.05);filter:drop-shadow(0 0 55px rgba(255,117,24,1)) drop-shadow(0 0 110px rgba(139,0,255,.8));}}
-.crown{position:absolute;top:-30px;font-size:30px;color:var(--pumpkin);filter:drop-shadow(0 0 10px var(--pumpkin-glow));z-index:2;}
-.hero-center.user-logged .logo-dv{width:180px;height:180px;animation:none;}
-.user-hero{display:none;flex-direction:column;align-items:center;gap:14px;margin-left:35px;animation:userFadeIn .5s ease;}
-.user-hero.visible{display:flex;}
-@keyframes userFadeIn{from{opacity:0;transform:translateX(-20px);}to{opacity:1;transform:translateX(0);}}
-.user-avatar-big{width:110px;height:110px;border-radius:50%;image-rendering:pixelated;border:4px solid var(--pumpkin);box-shadow:0 0 30px var(--pumpkin-glow),0 0 60px rgba(139,0,255,.5),inset 0 0 15px rgba(0,0,0,.5);background:#000;transition:.3s;}
-.user-avatar-big:hover{transform:scale(1.08) rotate(-3deg);box-shadow:0 0 50px var(--pumpkin),0 0 90px rgba(139,0,255,.7);}
-.user-name-big{font-size:18px;font-weight:900;color:var(--pumpkin);text-shadow:0 0 15px var(--pumpkin-glow);letter-spacing:.5px;background:rgba(0,0,0,.6);padding:6px 18px;border-radius:20px;border:1px solid rgba(255,117,24,.5);}
-.user-name-big .at{color:#fff;font-weight:900;}
+.sidebar{width:220px;flex-shrink:0;display:flex;flex-direction:column;gap:8px;position:sticky;top:110px;}
+.nav-btn{
+  background:var(--surface);
+  border:3px solid var(--border-strong);
+  color:var(--text-muted);
+  padding:14px 16px;
+  text-align:left;
+  font-family:'Press Start 2P',monospace;
+  font-size:9px;
+  font-weight:600;
+  cursor:pointer;
+  display:flex;
+  align-items:center;
+  gap:12px;
+  transition:all .1s;
+  box-shadow:4px 4px 0 rgba(0,0,0,0.4);
+}
+.nav-btn i{
+  width:28px;height:28px;
+  display:grid;place-items:center;
+  background:var(--blue-soft);
+  color:var(--blue-light);
+  font-size:14px;
+  flex-shrink:0;
+  border:2px solid var(--border-strong);
+}
+.nav-btn:hover{
+  color:var(--text);
+  transform:translate(-2px,-2px);
+  box-shadow:6px 6px 0 rgba(0,0,0,0.4);
+}
+.nav-btn.active{
+  border-color:var(--blue);
+  color:var(--blue-light);
+  background:var(--surface-2);
+}
+.nav-btn.active i{background:var(--blue);color:#fff;}
 
-/* Banner Halloween */
-.yellow-banner{background:linear-gradient(90deg,var(--blood) 0%,var(--pumpkin) 50%,var(--blood) 100%);color:#000;text-align:center;padding:18px;font-weight:900;text-transform:uppercase;letter-spacing:3px;font-size:15px;box-shadow:inset 0 2px 5px rgba(0,0,0,.3),0 5px 25px rgba(255,117,24,0.4);position:relative;font-family:'Creepster',cursive;}
+.content{
+  flex:1;
+  min-width:0;
+  background:rgba(19,42,69,0.9);
+  border:3px solid var(--border-strong);
+  padding:36px;
+  box-shadow:6px 6px 0 rgba(0,0,0,0.4);
+}
 
-.main-container{display:flex;max-width:1400px;margin:60px auto 50px;gap:40px;padding:0 30px;position:relative;z-index:5;}
-.sidebar{width:260px;display:flex;flex-direction:column;gap:15px;}
-.nav-btn{background:var(--card-bg);border:1px solid var(--border-color);color:#fff;padding:16px 20px;text-align:left;border-radius:12px;font-weight:700;cursor:pointer;display:flex;align-items:center;gap:15px;transition:all .25s ease;font-size:14px;font-family:'Montserrat',sans-serif;position:relative;overflow:hidden;}
-.nav-btn::before{content:'';position:absolute;inset:0;background:linear-gradient(90deg,transparent 0%,rgba(255,117,24,0.05) 50%,transparent 100%);transform:translateX(-100%);transition:transform .5s;}
-.nav-btn:hover::before{transform:translateX(100%);}
-.nav-btn:hover{background:var(--card-hover);transform:translateX(4px);}
-.nav-btn .icon-box{width:34px;height:34px;border-radius:8px;display:flex;justify-content:center;align-items:center;color:#000;font-size:15px;transition:.25s;}
-.nav-btn[data-color="home"] .icon-box{background:var(--pumpkin);}
-.nav-btn[data-color="home"]:hover{border-color:var(--pumpkin);box-shadow:0 0 15px var(--pumpkin-glow);}
-.nav-btn[data-color="home"].active{border-color:var(--pumpkin);background:#1f0d18;box-shadow:0 0 18px var(--pumpkin-glow);}
-.nav-btn[data-color="ranks"] .icon-box{background:#ffb347;}
-.nav-btn[data-color="ranks"]:hover{border-color:#ffb347;box-shadow:0 0 15px rgba(255,179,71,.2);}
-.nav-btn[data-color="ranks"].active{border-color:#ffb347;background:#1f0d18;box-shadow:0 0 18px rgba(255,179,71,.3);}
-.nav-btn[data-color="shards"] .icon-box{background:#b84dff;}
-.nav-btn[data-color="shards"]:hover{border-color:#b84dff;box-shadow:0 0 15px rgba(184,77,255,.2);}
-.nav-btn[data-color="shards"].active{border-color:#b84dff;background:#1f0d18;box-shadow:0 0 18px rgba(184,77,255,.3);}
-.nav-btn[data-color="unban"] .icon-box{background:var(--blood-bright);color:#fff;}
-.nav-btn[data-color="unban"]:hover{border-color:var(--blood-bright);box-shadow:0 0 15px rgba(196,30,58,.2);}
-.nav-btn[data-color="unban"].active{border-color:var(--blood-bright);background:#1f0d18;box-shadow:0 0 18px rgba(196,30,58,.3);}
-.nav-btn[data-color="rules"] .icon-box{background:var(--slime);color:#000;}
-.nav-btn[data-color="rules"]:hover{border-color:var(--slime);box-shadow:0 0 15px rgba(127,255,0,.2);}
-.nav-btn[data-color="rules"].active{border-color:var(--slime);background:#1f0d18;box-shadow:0 0 18px rgba(127,255,0,.3);}
+.section{display:none;}
+.section.active{display:block;}
 
-.content-area{flex:1;background:var(--card-bg);border-radius:16px;padding:50px;min-height:550px;display:flex;flex-direction:column;align-items:center;border:1px solid var(--border-color);box-shadow:0 10px 30px rgba(0,0,0,.5),0 0 40px rgba(139,0,255,0.08);position:relative;overflow:hidden;}
-.content-area::before{content:'🦇';position:absolute;top:15px;right:25px;font-size:32px;opacity:0.15;transform:rotate(15deg);}
-.content-area::after{content:'🕷️';position:absolute;bottom:15px;left:25px;font-size:32px;opacity:0.15;transform:rotate(-15deg);}
-.section{width:100%;display:flex;flex-direction:column;align-items:center;animation:fadeIn .4s ease-in-out;}
-@keyframes fadeIn{from{opacity:0;transform:translateY(10px);}to{opacity:1;transform:translateY(0);}}
-.section-title{font-size:32px;font-weight:900;margin-bottom:8px;text-transform:uppercase;font-style:italic;letter-spacing:1px;font-family:'Creepster',cursive;color:var(--pumpkin);text-shadow:0 0 15px var(--pumpkin-glow),3px 3px 0 rgba(139,0,255,0.3);}
-.section-sub{color:var(--text-grey);margin-bottom:25px;font-size:14px;text-align:center;}
+.section-header{margin-bottom:28px;}
+.section-label{
+  font-family:'Press Start 2P',monospace;
+  font-size:9px;
+  font-weight:700;
+  letter-spacing:1px;
+  text-transform:uppercase;
+  color:var(--blue-light);
+  margin-bottom:12px;
+  text-shadow:2px 2px 0 #000;
+}
+.section-title{
+  font-family:'Press Start 2P',monospace;
+  font-size:16px;
+  font-weight:700;
+  line-height:1.4;
+  margin-bottom:12px;
+  color:var(--text);
+  text-shadow:3px 3px 0 #000;
+}
+.section-sub{font-size:18px;color:var(--text-muted);}
 
-.input-group{width:100%;max-width:420px;margin-bottom:12px;position:relative;}
-.input-group input{width:100%;padding:16px 20px 16px 60px;background:var(--dark-bg);border:1px solid #3a1f2d;border-radius:10px;color:#fff;outline:none;font-size:14px;transition:.3s;}
-.input-group input:focus{border-color:var(--pumpkin);box-shadow:0 0 15px var(--pumpkin-glow);}
-.input-group .face-preview{position:absolute;left:12px;top:50%;transform:translateY(-50%);width:36px;height:36px;border-radius:6px;background:#1a0a14;border:1px solid #3a1f2d;image-rendering:pixelated;transition:.3s;}
-.input-group.focused .face-preview{border-color:var(--pumpkin);}
-.help-text{font-size:12px;color:#7a6a7a;margin-bottom:30px;text-align:center;}
-.cta-button{width:100%;max-width:420px;padding:16px;background:linear-gradient(135deg,var(--pumpkin),var(--blood));border:none;border-radius:10px;font-weight:900;font-size:16px;cursor:pointer;transition:.25s;color:#fff;box-shadow:0 0 20px var(--pumpkin-glow);font-family:'Montserrat',sans-serif;text-transform:uppercase;letter-spacing:1px;}
-.cta-button:hover{transform:translateY(-2px);box-shadow:0 0 35px var(--pumpkin);}
+.welcome-box{
+  background:rgba(15,31,53,0.9);
+  border:3px solid var(--border-strong);
+  padding:28px;
+  margin-bottom:24px;
+  box-shadow:4px 4px 0 rgba(0,0,0,0.4);
+}
+.welcome-box h3{
+  font-family:'Press Start 2P',monospace;
+  font-size:12px;
+  font-weight:700;
+  margin-bottom:16px;
+  color:var(--text);
+  text-shadow:2px 2px 0 #000;
+}
+.welcome-box p{color:var(--text-muted);font-size:18px;margin-bottom:16px;}
+.input-row{display:flex;gap:10px;flex-wrap:wrap;}
+.input-field{
+  flex:1;
+  min-width:200px;
+  padding:14px 16px;
+  border:3px solid var(--border-strong);
+  font-family:'VT323',monospace;
+  font-size:18px;
+  outline:none;
+  transition:all .1s;
+  background:var(--surface-2);
+  color:var(--text);
+  box-shadow:inset 3px 3px 0 rgba(0,0,0,0.3);
+}
+.input-field:focus{border-color:var(--blue);}
+.input-field::placeholder{color:var(--text-muted);}
+.btn{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:10px;
+  padding:14px 22px;
+  font-family:'Press Start 2P',monospace;
+  font-size:10px;
+  font-weight:600;
+  cursor:pointer;
+  border:3px solid #000;
+  transition:all .1s;
+  text-decoration:none;
+  white-space:nowrap;
+  box-shadow:4px 4px 0 rgba(0,0,0,0.5);
+}
+.btn-primary{
+  background:var(--blue);
+  color:#fff;
+  text-shadow:2px 2px 0 rgba(0,0,0,0.4);
+}
+.btn-primary:hover{
+  background:var(--blue-dark);
+  transform:translate(-2px,-2px);
+  box-shadow:6px 6px 0 rgba(0,0,0,0.5);
+}
+.btn-block{width:100%;}
 
-.product-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:22px;width:100%;margin-top:20px;}
-.product-card{background:var(--dark-bg);padding:30px 25px;border-radius:14px;border:1px solid var(--border-color);text-align:center;transition:.3s cubic-bezier(.4,0,.2,1);position:relative;overflow:hidden;}
-.product-card::before{content:'';position:absolute;top:-50%;left:-50%;width:200%;height:200%;background:radial-gradient(circle,rgba(255,117,24,0.08) 0%,transparent 60%);opacity:0;transition:.5s;pointer-events:none;}
-.product-card:hover::before{opacity:1;}
-.product-card:hover{border-color:var(--pumpkin);transform:translateY(-5px);box-shadow:0 10px 25px rgba(0,0,0,.4),0 0 30px rgba(255,117,24,0.2);}
-.product-card h3{margin-bottom:15px;font-size:22px;font-weight:800;}
-.product-card .price{font-size:28px;font-weight:900;margin-bottom:25px;color:#fff;}
-.product-card .price .old{font-size:16px;color:#888;text-decoration:line-through;display:block;margin-bottom:2px;font-weight:600;}
-.product-card .price .new{color:var(--pumpkin);}
-.product-card .rank-image{width:90px;height:90px;margin:0 auto 18px;display:block;border-radius:50%;object-fit:cover;border:3px solid currentColor;box-shadow:0 0 20px currentColor,inset 0 0 15px rgba(0,0,0,.5);transition:.3s cubic-bezier(.4,0,.2,1);background:#000;}
-.product-card:hover .rank-image{transform:scale(1.08) rotate(-3deg);box-shadow:0 0 35px currentColor,inset 0 0 15px rgba(0,0,0,.5);}
-.rank-vip h3{color:var(--vip-color);} .rank-vip .rank-image{border-color:var(--vip-color);color:var(--vip-color);}
-.rank-nabbo h3{color:var(--nabbo-color);} .rank-nabbo .rank-image{border-color:var(--nabbo-color);color:var(--nabbo-color);}
-.rank-duck h3{color:var(--duck-color);} .rank-duck .rank-image{border-color:var(--duck-color);color:var(--duck-color);}
-.rank-unban h3{color:var(--blood-bright);} .rank-unban .rank-image{border-color:var(--blood-bright);color:var(--blood-bright);}
-.shard-sky h3{color:#7dd3fc;} .shard-sky .rank-image{border-color:#7dd3fc;color:#7dd3fc;}
-.shard-blue h3{color:#60a5fa;} .shard-blue .rank-image{border-color:#60a5fa;color:#60a5fa;}
-.shard-purple h3{color:#b84dff;} .shard-purple .rank-image{border-color:#b84dff;color:#b84dff;}
-.shard-orange h3{color:var(--pumpkin);} .shard-orange .rank-image{border-color:var(--pumpkin);color:var(--pumpkin);}
-.shard-red h3{color:var(--blood-bright);} .shard-red .rank-image{border-color:var(--blood-bright);color:var(--blood-bright);}
-.shard-gold h3{color:#fbbf24;} .shard-gold .rank-image{border-color:#fbbf24;color:#fbbf24;}
+.home-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;}
+.home-card{
+  background:rgba(15,31,53,0.9);
+  border:3px solid var(--border-strong);
+  padding:24px;
+  transition:all .1s;
+  box-shadow:4px 4px 0 rgba(0,0,0,0.4);
+}
+.home-card:hover{
+  border-color:var(--blue);
+  transform:translate(-2px,-2px);
+  box-shadow:6px 6px 0 rgba(0,0,0,0.4);
+}
+.home-card i{
+  width:48px;height:48px;
+  background:var(--blue-soft);
+  color:var(--blue-light);
+  display:grid;place-items:center;
+  font-size:22px;
+  margin-bottom:16px;
+  border:3px solid var(--border-strong);
+}
+.home-card h4{
+  font-family:'Press Start 2P',monospace;
+  font-size:11px;
+  font-weight:700;
+  margin-bottom:10px;
+  color:var(--text);
+  text-shadow:2px 2px 0 #000;
+}
+.home-card p{font-size:17px;color:var(--text-muted);}
 
-.badge{position:absolute;top:12px;right:12px;background:linear-gradient(135deg,var(--pumpkin),var(--blood));color:#fff;font-size:10px;font-weight:900;padding:4px 10px;border-radius:20px;text-transform:uppercase;z-index:2;box-shadow:0 0 15px var(--pumpkin-glow);}
-.perk-list{list-style:none;margin:0 0 22px 0;padding:14px 16px;background:rgba(0,0,0,.35);border-radius:10px;border:1px solid #2d1520;text-align:left;}
-.perk-list li{font-size:13px;color:#ddd;padding:6px 0;font-weight:600;display:flex;align-items:center;gap:10px;}
-.perk-list li i{color:var(--pumpkin);font-size:12px;}
-.rank-vip .perk-list li i{color:var(--vip-color);}
-.rank-nabbo .perk-list li i{color:var(--nabbo-color);}
-.rank-duck .perk-list li i{color:var(--duck-color);}
-.rank-unban .perk-list li i{color:var(--blood-bright);}
+.product-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:20px;}
+.product-card{
+  background:rgba(15,31,53,0.9);
+  border:3px solid var(--border-strong);
+  padding:24px 20px;
+  text-align:center;
+  position:relative;
+  transition:all .1s;
+  box-shadow:5px 5px 0 rgba(0,0,0,0.4);
+}
+.product-card:hover{
+  border-color:var(--blue);
+  transform:translate(-2px,-2px);
+  box-shadow:7px 7px 0 rgba(0,0,0,0.4);
+}
+.product-card .badge{
+  position:absolute;
+  top:10px;
+  right:10px;
+  font-family:'Press Start 2P',monospace;
+  font-size:8px;
+  font-weight:700;
+  text-transform:uppercase;
+  padding:6px 10px;
+  background:var(--blue);
+  color:#fff;
+  border:2px solid #000;
+  text-shadow:1px 1px 0 rgba(0,0,0,0.4);
+}
+.product-card .badge.popular{background:var(--warning);}
+.product-card .badge.best{background:var(--success);}
+.product-icon{
+  width:96px;
+  height:96px;
+  margin:0 auto 16px;
+  background:var(--blue-soft);
+  display:grid;
+  place-items:center;
+  overflow:hidden;
+  border:3px solid var(--border-strong);
+  box-shadow:3px 3px 0 rgba(0,0,0,0.4);
+}
+.product-icon img{width:100%;height:100%;object-fit:cover;}
+.product-card h3{
+  font-family:'Press Start 2P',monospace;
+  font-size:11px;
+  font-weight:700;
+  margin-bottom:10px;
+  color:var(--text);
+  text-shadow:2px 2px 0 #000;
+}
+.product-card .price{
+  font-family:'Press Start 2P',monospace;
+  font-size:16px;
+  font-weight:700;
+  color:var(--blue-light);
+  margin:12px 0 18px;
+  text-shadow:2px 2px 0 #000;
+}
+.product-card .price small{font-size:11px;color:var(--text-muted);font-weight:500;}
+.perk-list{
+  list-style:none;
+  text-align:left;
+  padding:14px 0;
+  margin-bottom:18px;
+  border-top:2px solid var(--border);
+  border-bottom:2px solid var(--border);
+}
+.perk-list li{
+  font-size:16px;
+  color:var(--text-muted);
+  padding:6px 0;
+  display:flex;
+  align-items:center;
+  gap:10px;
+}
+.perk-list li i{color:var(--blue-light);font-size:12px;}
+.product-btn{
+  width:100%;
+  padding:14px;
+  background:var(--blue);
+  color:#fff;
+  border:3px solid #000;
+  font-family:'Press Start 2P',monospace;
+  font-size:9px;
+  font-weight:700;
+  cursor:pointer;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:10px;
+  transition:all .1s;
+  box-shadow:4px 4px 0 rgba(0,0,0,0.5);
+  text-shadow:2px 2px 0 rgba(0,0,0,0.4);
+}
+.product-btn:hover{
+  background:var(--blue-dark);
+  transform:translate(-2px,-2px);
+  box-shadow:6px 6px 0 rgba(0,0,0,0.5);
+}
 
-.buy-btn{width:100%;padding:14px;background:linear-gradient(135deg,var(--pumpkin),var(--blood));color:#fff;border:none;border-radius:8px;font-weight:900;cursor:pointer;margin-bottom:10px;transition:.2s;font-size:14px;display:flex;align-items:center;justify-content:center;gap:8px;font-family:'Montserrat',sans-serif;box-shadow:0 0 15px var(--pumpkin-glow);}
-.buy-btn:hover{transform:scale(1.03);box-shadow:0 0 30px var(--pumpkin);}
-.revolut-btn{width:100%;padding:14px;background:var(--revolut);color:#fff;border:none;border-radius:8px;font-weight:900;cursor:pointer;margin-bottom:10px;transition:.2s;font-size:14px;display:flex;align-items:center;justify-content:center;gap:8px;font-family:'Montserrat',sans-serif;box-shadow:0 0 15px rgba(6,102,235,.35);}
-.revolut-btn:hover{background:#0552BE;transform:scale(1.03);box-shadow:0 0 25px rgba(6,102,235,.65);}
-.cart-btn{width:100%;padding:12px;background:transparent;border:2px solid var(--pumpkin);color:var(--pumpkin);border-radius:8px;font-weight:800;cursor:pointer;margin-bottom:10px;transition:.2s;font-size:13px;display:flex;align-items:center;justify-content:center;gap:8px;font-family:'Montserrat',sans-serif;text-transform:uppercase;letter-spacing:.5px;}
-.cart-btn:hover{background:var(--pumpkin);color:#000;transform:scale(1.02);box-shadow:0 0 20px var(--pumpkin-glow);}
+.maintenance{
+  text-align:center;
+  padding:60px 20px;
+  background:rgba(15,31,53,0.9);
+  border:3px dashed var(--border-strong);
+  box-shadow:5px 5px 0 rgba(0,0,0,0.4);
+}
+.maintenance i{
+  font-size:56px;
+  color:var(--blue-light);
+  margin-bottom:20px;
+  display:block;
+  text-shadow:3px 3px 0 #000;
+}
+.maintenance h3{
+  font-family:'Press Start 2P',monospace;
+  font-size:14px;
+  font-weight:700;
+  margin-bottom:14px;
+  color:var(--text);
+  text-shadow:2px 2px 0 #000;
+}
+.maintenance p{color:var(--text-muted);font-size:18px;}
 
-.revtag-box{margin-top:12px;padding:12px;background:rgba(6,102,235,.08);border:1px dashed rgba(6,102,235,.4);border-radius:8px;font-size:12px;color:#b8d4ff;text-align:center;}
-.revtag-box a{color:#4a9eff;font-weight:900;text-decoration:none;transition:.2s;}
-.revtag-box a:hover{color:#0666EB;text-decoration:underline;}
+.staff-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:20px;}
+.staff-card{
+  background:rgba(15,31,53,0.9);
+  border:3px solid var(--border-strong);
+  padding:28px 22px;
+  text-align:center;
+  transition:all .1s;
+  box-shadow:5px 5px 0 rgba(0,0,0,0.4);
+}
+.staff-card:hover{
+  border-color:var(--blue);
+  transform:translate(-2px,-2px);
+  box-shadow:7px 7px 0 rgba(0,0,0,0.4);
+}
+.staff-avatar{
+  width:96px;
+  height:96px;
+  background:var(--blue-soft);
+  display:grid;
+  place-items:center;
+  margin:0 auto 18px;
+  font-size:40px;
+  color:var(--blue-light);
+  border:4px solid var(--border-strong);
+  overflow:hidden;
+  box-shadow:4px 4px 0 rgba(0,0,0,0.4);
+}
+.staff-avatar img{width:100%;height:100%;object-fit:cover;image-rendering:pixelated;}
+.staff-role{
+  display:inline-block;
+  padding:6px 14px;
+  font-family:'Press Start 2P',monospace;
+  font-size:9px;
+  font-weight:700;
+  text-transform:uppercase;
+  letter-spacing:0.5px;
+  margin-bottom:12px;
+  border:2px solid #000;
+  text-shadow:1px 1px 0 rgba(0,0,0,0.4);
+}
+.staff-role.owner{background:var(--blue);color:#fff;}
+.staff-role.co-owner{background:var(--blue-soft);color:var(--blue-light);}
+.staff-name{
+  font-family:'Press Start 2P',monospace;
+  font-size:12px;
+  font-weight:700;
+  margin-bottom:10px;
+  color:var(--text);
+  text-shadow:2px 2px 0 #000;
+}
+.staff-desc{font-size:17px;color:var(--text-muted);margin-bottom:14px;}
+.staff-link{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  padding:8px 16px;
+  background:var(--surface);
+  border:3px solid var(--border-strong);
+  color:var(--blue-light);
+  text-decoration:none;
+  font-family:'Press Start 2P',monospace;
+  font-size:9px;
+  font-weight:600;
+  transition:all .1s;
+  box-shadow:3px 3px 0 rgba(0,0,0,0.4);
+}
+.staff-link:hover{
+  background:var(--blue);
+  color:#fff;
+  border-color:#000;
+  transform:translate(-2px,-2px);
+  box-shadow:5px 5px 0 rgba(0,0,0,0.4);
+}
 
-.modal{display:none;position:fixed;z-index:100;left:0;top:0;width:100%;height:100%;background:rgba(10,5,8,.9);backdrop-filter:blur(5px);justify-content:center;align-items:center;}
-.modal-content{background:var(--card-bg);padding:40px;border:2px solid var(--pumpkin);border-radius:16px;width:90%;max-width:500px;text-align:center;position:relative;box-shadow:0 0 40px var(--pumpkin-glow),0 0 80px rgba(139,0,255,0.2);animation:popIn .3s ease;max-height:85vh;overflow-y:auto;}
-@keyframes popIn{from{transform:scale(.9);opacity:0;}to{transform:scale(1);opacity:1;}}
-.close{position:absolute;top:15px;right:20px;color:#aaa;font-size:28px;font-weight:bold;cursor:pointer;transition:.2s;background:none;border:none;}
-.close:hover{color:var(--pumpkin);}
-.iban-box{background:var(--dark-bg);padding:18px;margin:22px 0;font-family:monospace;font-size:18px;color:var(--pumpkin);border:1px dashed #555;border-radius:8px;letter-spacing:1.5px;}
-.note{font-size:12px;color:#888;margin-bottom:25px;}
-.paypal-summary{background:var(--dark-bg);border-radius:10px;padding:20px;margin:20px 0;border:1px solid #333;}
-.paypal-summary .row{display:flex;justify-content:space-between;padding:8px 0;font-size:14px;color:#ccc;}
-.paypal-summary .row.total{border-top:1px solid #333;margin-top:10px;padding-top:14px;font-size:20px;font-weight:900;color:var(--pumpkin);}
-.paypal-summary .row.discount{color:#4ade80;font-weight:700;}
-.paypal-btn{width:100%;padding:16px;background:linear-gradient(135deg,var(--pumpkin),var(--blood));color:#fff;border:none;border-radius:10px;font-weight:900;font-size:16px;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:10px;transition:.2s;font-family:'Montserrat',sans-serif;box-shadow:0 0 20px var(--pumpkin-glow);}
-.paypal-btn:hover{transform:scale(1.02);box-shadow:0 0 35px var(--pumpkin);}
+.cart-list{list-style:none;margin:20px 0;}
+.cart-item{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:14px;
+  background:var(--bg-2);
+  border:2px solid var(--border);
+  margin-bottom:8px;
+}
+.cart-item-info{flex:1;}
+.cart-item-name{font-weight:600;font-size:17px;color:var(--text);}
+.cart-item-price{font-size:16px;color:var(--blue-light);font-weight:700;margin-top:2px;}
+.remove-btn{
+  width:32px;height:32px;
+  background:var(--surface-2);
+  border:3px solid var(--border-strong);
+  color:var(--danger);
+  cursor:pointer;
+  display:grid;
+  place-items:center;
+  transition:all .1s;
+  font-size:16px;
+  box-shadow:2px 2px 0 rgba(0,0,0,0.4);
+}
+.remove-btn:hover{
+  background:var(--danger);
+  color:#fff;
+  border-color:#000;
+}
+.cart-empty{text-align:center;color:var(--text-muted);font-style:italic;padding:30px;}
 
-.discount-float{position:fixed;bottom:25px;right:25px;z-index:99;background:linear-gradient(135deg,var(--pumpkin),var(--blood));color:#fff;border:none;border-radius:50px;padding:16px 26px;font-weight:900;font-size:14px;cursor:pointer;display:flex;align-items:center;gap:10px;box-shadow:0 8px 30px var(--pumpkin-glow);transition:.3s;font-family:'Montserrat',sans-serif;text-transform:uppercase;letter-spacing:.5px;animation:floatPulse 2s infinite;}
-.discount-float:hover{transform:scale(1.08) translateY(-4px);}
-.discount-float.applied{background:linear-gradient(135deg,#4ade80,#22c55e);color:#000;animation:none;}
-@keyframes floatPulse{0%,100%{box-shadow:0 8px 30px var(--pumpkin-glow),0 0 0 0 rgba(255,117,24,.7);}50%{box-shadow:0 8px 30px var(--pumpkin-glow),0 0 0 15px rgba(255,117,24,0);}}
+.modal{
+  display:none;
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,0.8);
+  z-index:200;
+  justify-content:center;
+  align-items:center;
+  padding:20px;
+}
+.modal.open{display:flex;}
+.modal-content{
+  background:var(--surface);
+  border:4px solid var(--blue);
+  padding:32px;
+  max-width:520px;
+  width:100%;
+  max-height:85vh;
+  overflow-y:auto;
+  box-shadow:8px 8px 0 rgba(0,0,0,0.6);
+}
+.modal-header{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-bottom:22px;
+}
+.modal-header h3{
+  font-family:'Press Start 2P',monospace;
+  font-size:12px;
+  font-weight:700;
+  color:var(--text);
+  text-shadow:2px 2px 0 #000;
+}
+.modal-close{
+  width:36px;height:36px;
+  background:var(--bg-2);
+  border:3px solid var(--border-strong);
+  cursor:pointer;
+  font-size:18px;
+  color:var(--text-muted);
+  transition:all .1s;
+  font-family:'Press Start 2P',monospace;
+}
+.modal-close:hover{background:var(--danger);color:#fff;border-color:#000;}
+.summary-box{
+  background:var(--bg-2);
+  border:2px solid var(--border);
+  padding:16px;
+  margin:16px 0;
+}
+.summary-row{
+  display:flex;
+  justify-content:space-between;
+  padding:8px 0;
+  font-size:16px;
+  color:var(--text);
+}
+.summary-row.total{
+  border-top:2px solid var(--border);
+  margin-top:8px;
+  padding-top:14px;
+  font-family:'Press Start 2P',monospace;
+  font-size:11px;
+  font-weight:700;
+  color:var(--blue-light);
+  text-shadow:2px 2px 0 #000;
+}
 
-.cart-list{list-style:none;margin:20px 0;padding:0;text-align:left;max-height:300px;overflow-y:auto;}
-.cart-list li{display:flex;justify-content:space-between;align-items:center;padding:12px;background:var(--dark-bg);border-radius:8px;margin-bottom:8px;border:1px solid #2d1520;}
-.cart-list li .cart-item-name{font-weight:700;font-size:13px;color:#fff;}
-.cart-list li .cart-item-price{font-weight:900;color:var(--pumpkin);font-size:13px;}
-.cart-list li .remove-item{background:var(--blood-bright);color:#fff;border:none;border-radius:6px;width:26px;height:26px;cursor:pointer;font-size:14px;font-weight:bold;margin-left:10px;transition:.2s;}
-.cart-list li .remove-item:hover{background:var(--blood);transform:scale(1.1);}
-.cart-empty{color:#666;font-style:italic;padding:20px;text-align:center;}
+footer{
+  border-top:3px solid var(--border-strong);
+  background:rgba(15,31,53,0.95);
+  padding:32px;
+  margin-top:40px;
+  box-shadow:0 -4px 0 rgba(0,0,0,0.4);
+}
+.footer-inner{
+  max-width:1200px;
+  margin:0 auto;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  flex-wrap:wrap;
+  gap:16px;
+  font-size:16px;
+  color:var(--text-muted);
+}
+.footer-credit{
+  font-size:14px;
+  color:var(--text-muted);
+  opacity:0.85;
+}
+.footer-credit a{
+  color:var(--blue-light);
+  text-decoration:none;
+  transition:color .15s;
+}
+.footer-credit a:hover{
+  color:#fff;
+  text-decoration:underline;
+}
+.footer-social{display:flex;gap:10px;}
+.footer-social a{
+  width:44px;height:44px;
+  background:var(--surface);
+  border:3px solid var(--border-strong);
+  display:grid;
+  place-items:center;
+  color:var(--text-muted);
+  text-decoration:none;
+  transition:all .1s;
+  font-size:18px;
+  box-shadow:3px 3px 0 rgba(0,0,0,0.4);
+}
+.footer-social a:hover{
+  color:var(--blue-light);
+  border-color:var(--blue);
+  transform:translate(-2px,-2px);
+  box-shadow:5px 5px 0 rgba(0,0,0,0.4);
+}
 
-.admin-panel{display:none;position:fixed;inset:0;z-index:1000;background:rgba(10,5,8,.95);backdrop-filter:blur(10px);overflow-y:auto;padding:40px;}
-.admin-panel.open{display:block;}
-.admin-container{max-width:1100px;margin:0 auto;}
-.admin-header{display:flex;justify-content:space-between;align-items:center;padding-bottom:20px;margin-bottom:30px;border-bottom:2px solid var(--pumpkin);}
-.admin-header h1{font-size:32px;font-weight:900;color:var(--pumpkin);text-transform:uppercase;font-style:italic;letter-spacing:2px;text-shadow:0 0 20px var(--pumpkin-glow);font-family:'Creepster',cursive;}
-.admin-header .close-admin{background:var(--blood-bright);color:#fff;border:none;border-radius:8px;padding:10px 20px;font-weight:800;cursor:pointer;font-family:'Montserrat',sans-serif;transition:.2s;font-size:13px;}
-.admin-header .close-admin:hover{background:var(--blood);transform:scale(1.05);}
-.admin-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:20px;margin-bottom:20px;}
-.admin-card{background:#15080f;border:1px solid #2d1520;border-radius:14px;padding:25px;position:relative;overflow:hidden;transition:.3s;}
-.admin-card:hover{border-color:var(--pumpkin);box-shadow:0 0 25px var(--pumpkin-glow);}
-.admin-card h2{font-size:16px;font-weight:900;color:var(--pumpkin);margin-bottom:6px;text-transform:uppercase;letter-spacing:1px;display:flex;align-items:center;gap:10px;}
-.admin-card .sub{font-size:12px;color:#888;margin-bottom:18px;}
-.admin-input{width:100%;padding:12px 16px;background:#0a0508;border:1px solid #3a1f2d;border-radius:8px;color:#fff;outline:none;font-size:13px;font-family:'Montserrat',sans-serif;margin-bottom:12px;transition:.2s;}
-.admin-input:focus{border-color:var(--pumpkin);box-shadow:0 0 12px var(--pumpkin-glow);}
-.admin-btn{width:100%;padding:12px;border:none;border-radius:8px;font-weight:900;cursor:pointer;font-family:'Montserrat',sans-serif;font-size:13px;transition:.2s;text-transform:uppercase;letter-spacing:.5px;display:flex;align-items:center;justify-content:center;gap:8px;}
-.admin-btn.yellow{background:linear-gradient(135deg,var(--pumpkin),var(--blood));color:#fff;box-shadow:0 0 15px var(--pumpkin-glow);}
-.admin-btn.yellow:hover{transform:scale(1.02);box-shadow:0 0 25px var(--pumpkin);}
-.admin-btn.red{background:var(--blood-bright);color:#fff;}
-.admin-btn.red:hover{background:var(--blood);transform:scale(1.02);}
-.admin-btn.blue{background:var(--discord);color:#fff;}
-.admin-btn.blue:hover{background:#4752c4;transform:scale(1.02);}
-.admin-btn.green{background:var(--slime);color:#000;}
-.admin-btn.green:hover{background:#5fcf00;transform:scale(1.02);}
-.admin-btn.purple{background:var(--purple);color:#fff;}
-.admin-btn.purple:hover{background:var(--purple-dark);transform:scale(1.02);}
-.admin-log{background:#0a0508;border:1px solid #3a1f2d;border-radius:10px;padding:20px;font-family:monospace;font-size:12px;max-height:250px;overflow-y:auto;color:#a89aa8;line-height:1.8;}
-.admin-log .log-time{color:#666;margin-right:10px;}
-.admin-log .log-info{color:#7dd3fc;}
-.admin-log .log-ok{color:var(--slime);}
-.admin-log .log-warn{color:#fbbf24;}
-.admin-log .log-error{color:var(--blood-bright);}
-.admin-log .log-event{color:var(--pumpkin);font-weight:bold;}
-
-.duck-event-overlay{position:fixed;inset:0;z-index:9999;background:radial-gradient(circle at center,rgba(255,117,24,.4) 0%,rgba(10,5,8,.97) 70%);display:none;justify-content:center;align-items:center;flex-direction:column;gap:30px;pointer-events:none;}
-.duck-event-overlay.active{display:flex;animation:eventFade .5s ease;}
-@keyframes eventFade{from{opacity:0;}to{opacity:1;}}
-.duck-event-overlay h1{font-size:80px;font-weight:900;color:var(--pumpkin);text-transform:uppercase;font-style:italic;letter-spacing:6px;text-shadow:0 0 30px var(--pumpkin),0 0 60px var(--pumpkin-glow),0 0 100px rgba(139,0,255,.5);animation:eventText 1s ease-in-out infinite;text-align:center;font-family:'Creepster',cursive;}
-@keyframes eventText{0%,100%{transform:scale(1) rotate(-2deg);}50%{transform:scale(1.08) rotate(2deg);}}
-.duck-event-overlay p{font-size:22px;font-weight:800;color:#fff;text-shadow:0 0 15px var(--pumpkin-glow);letter-spacing:2px;}
-.duck-flyer{position:fixed;font-size:80px;z-index:9999;pointer-events:none;animation:duckFly 4s linear forwards;}
-@keyframes duckFly{0%{transform:translate(-100px,0) rotate(-15deg);opacity:0;}10%{opacity:1;}90%{opacity:1;}100%{transform:translate(110vw,-30vh) rotate(15deg);opacity:0;}}
-
-.admin-toggle{position:fixed;bottom:25px;left:25px;z-index:98;background:linear-gradient(135deg,#15080f,#0a0508);color:var(--pumpkin);border:2px solid var(--pumpkin);border-radius:50px;padding:12px 20px;font-weight:900;font-size:12px;cursor:pointer;display:none;align-items:center;gap:10px;box-shadow:0 8px 30px var(--pumpkin-glow);transition:.3s;font-family:'Montserrat',sans-serif;text-transform:uppercase;letter-spacing:.5px;}
-.admin-toggle.visible{display:flex;}
-.admin-toggle:hover{background:var(--pumpkin);color:#000;transform:scale(1.05);}
-.toast{position:fixed;bottom:100px;right:25px;padding:14px 22px;border-radius:10px;font-weight:800;font-size:13px;z-index:200;box-shadow:0 8px 25px rgba(0,0,0,.5);animation:popIn .3s;}
-.hidden{display:none !important;}
-.active-section{display:flex !important;}
-
-.rules-wrapper{width:100%;max-width:900px;margin:0 auto;display:flex;flex-direction:column;gap:18px;}
-.rule-card{background:var(--dark-bg);border:1px solid var(--border-color);border-radius:14px;padding:26px 30px;transition:.3s;position:relative;overflow:hidden;}
-.rule-card:hover{border-color:var(--slime);box-shadow:0 0 25px rgba(127,255,0,.15);transform:translateY(-2px);}
-.rule-card-header{display:flex;align-items:center;gap:14px;margin-bottom:16px;padding-bottom:14px;border-bottom:1px solid #2d1520;}
-.rule-number{width:42px;height:42px;border-radius:10px;background:linear-gradient(135deg,var(--slime),#5fcf00);color:#000;font-weight:900;font-size:18px;display:flex;align-items:center;justify-content:center;flex-shrink:0;box-shadow:0 0 15px rgba(127,255,0,.4);}
-.rule-card-header h4{font-size:16px;font-weight:900;color:#fff;text-transform:uppercase;letter-spacing:.5px;margin:0;}
-.rule-card p{color:#b0b0b0;font-size:14px;line-height:1.7;margin:0;}
-.rule-card p strong{color:var(--pumpkin);font-weight:800;}
-.rule-card .rule-penalty{margin-top:14px;padding:10px 14px;background:rgba(196,30,58,.08);border-left:3px solid var(--blood-bright);border-radius:6px;font-size:12px;color:#fca5a5;font-weight:700;display:flex;align-items:center;gap:10px;}
-.rule-card .rule-penalty i{color:var(--blood-bright);font-size:14px;}
-.rule-warning{background:rgba(196,30,58,.06);border:1px solid rgba(196,30,58,.3);border-radius:12px;padding:20px 24px;display:flex;align-items:flex-start;gap:14px;margin-top:10px;}
-.rule-warning i{color:var(--blood-bright);font-size:22px;flex-shrink:0;margin-top:2px;}
-.rule-warning div{font-size:13px;color:#fca5a5;line-height:1.6;}
-.rule-warning div strong{color:var(--blood-bright);font-weight:900;display:block;margin-bottom:4px;font-size:14px;}
+.toast{
+  position:fixed;
+  bottom:30px;
+  right:30px;
+  background:var(--surface-2);
+  color:var(--text);
+  border:3px solid var(--blue);
+  padding:14px 22px;
+  font-family:'Press Start 2P',monospace;
+  font-size:9px;
+  font-weight:600;
+  z-index:300;
+  box-shadow:4px 4px 0 rgba(0,0,0,0.5);
+}
 
 @media (max-width:900px){
-  .main-container{flex-direction:column;padding:0 15px;}
-  .sidebar{width:100%;flex-direction:row;flex-wrap:wrap;}
-  .nav-btn{flex:1;min-width:130px;justify-content:center;}
-  .hero-content{flex-direction:column;gap:30px;text-align:center;}
-  .hero-left,.hero-right{flex-direction:column;text-align:center;}
-  .text-right{text-align:center;}
-  .top-bar{padding:10px 15px;}
-  .top-pill{flex-wrap:wrap;justify-content:center;}
-  .top-item{padding:6px 12px;font-size:11px;}
-  .logo-dv{width:200px;height:200px;}
-  .hero-center.user-logged{flex-direction:column;gap:20px;}
-  .hero-center.user-logged .logo-dv{width:140px;height:140px;}
-  .user-hero{margin-left:0;}
-  .user-avatar-big{width:80px;height:80px;}
-  .user-name-big{font-size:15px;padding:5px 14px;}
-  .discount-float{bottom:15px;right:15px;padding:12px 18px;font-size:12px;}
-  .admin-panel{padding:20px;}
-  .duck-event-overlay h1{font-size:40px;letter-spacing:3px;}
-  .duck-event-overlay p{font-size:16px;}
-  .rule-card{padding:20px;}
-  .rule-card-header h4{font-size:14px;}
+  .layout{flex-direction:column;}
+  .sidebar{
+    width:100%;
+    position:static;
+    flex-direction:row;
+    flex-wrap:wrap;
+  }
+  .nav-btn{flex:1;min-width:130px;justify-content:center;font-size:8px;}
+  .nav-btn i{display:none;}
+  .hero h1{font-size:18px;}
+  .hero-logo{height:120px;}
+  .brand-logo-img{height:36px;}
+  .content{padding:24px;}
+  .top-bar{padding:12px 16px;}
+  .container{padding:24px 16px;}
+  .hero{padding:50px 16px;}
+  .brand-name{font-size:10px;}
 }
-    /* ============ CURSORE HALLOWEEN ============ */
-body, button, a, input, .nav-btn, .product-card, .buy-btn, .revolut-btn, .cart-btn, .cta-button {
-  cursor: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 32 32'><text y='24' font-size='24'>🎃</text></svg>") 16 16, auto;
+@media (max-width:600px){
+  .section-title{font-size:12px;}
+  .top-chip{padding:6px 10px;font-size:12px;}
+  .top-chip strong{display:none;}
+  .hero-ip{font-size:9px;padding:10px 14px;}
 }
-button:hover, a:hover, .nav-btn:hover, .buy-btn:hover, .revolut-btn:hover, .cart-btn:hover, .cta-button:hover {
-  cursor: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='36' height='36' viewBox='0 0 36 36'><text y='28' font-size='28'>👻</text></svg>") 18 18, pointer;
-}
-
-/* ============ MINIGAME ============ */
-.minigame-btn {
-  position: fixed;
-  bottom: 25px;
-  left: 25px;
-  z-index: 99;
-  background: linear-gradient(135deg, var(--purple), var(--purple-dark));
-  color: #fff;
-  border: 2px solid var(--pumpkin);
-  border-radius: 50px;
-  padding: 14px 24px;
-  font-weight: 900;
-  font-size: 13px;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  box-shadow: 0 8px 30px var(--purple-glow), 0 0 0 0 rgba(255,117,24,.7);
-  transition: .3s;
-  font-family: 'Montserrat', sans-serif;
-  text-transform: uppercase;
-  letter-spacing: .5px;
-  animation: minigamePulse 2s infinite;
-}
-.minigame-btn:hover {
-  transform: scale(1.08) translateY(-4px);
-  box-shadow: 0 12px 40px var(--purple-glow);
-}
-@keyframes minigamePulse {
-  0%,100% { box-shadow: 0 8px 30px var(--purple-glow), 0 0 0 0 rgba(255,117,24,.7); }
-  50% { box-shadow: 0 8px 30px var(--purple-glow), 0 0 0 15px rgba(255,117,24,0); }
-}
-
-.minigame-overlay {
-  display: none;
-  position: fixed;
-  inset: 0;
-  z-index: 1001;
-  background: radial-gradient(circle at center, rgba(139,0,255,.35) 0%, rgba(10,5,8,.97) 70%);
-  backdrop-filter: blur(8px);
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  overflow: hidden;
-}
-.minigame-overlay.active { display: flex; }
-
-.minigame-header {
-  text-align: center;
-  margin-bottom: 20px;
-  z-index: 5;
-}
-.minigame-header h2 {
-  font-family: 'Creepster', cursive;
-  font-size: 48px;
-  color: var(--pumpkin);
-  text-shadow: 0 0 30px var(--pumpkin), 3px 3px 0 var(--purple-dark);
-  letter-spacing: 4px;
-  margin-bottom: 8px;
-}
-.minigame-header p {
-  color: #ccc;
-  font-size: 14px;
-  letter-spacing: 1px;
-}
-
-.minigame-stats {
-  display: flex;
-  gap: 30px;
-  margin-bottom: 25px;
-  z-index: 5;
-}
-.minigame-stats .stat {
-  background: rgba(0,0,0,.5);
-  border: 1px solid var(--pumpkin);
-  border-radius: 12px;
-  padding: 10px 22px;
-  text-align: center;
-  min-width: 110px;
-}
-.minigame-stats .stat .label {
-  font-size: 11px;
-  color: #999;
-  text-transform: uppercase;
-  letter-spacing: 1.5px;
-}
-.minigame-stats .stat .value {
-  font-size: 26px;
-  font-weight: 900;
-  color: var(--pumpkin);
-  text-shadow: 0 0 15px var(--pumpkin-glow);
-}
-
-#minigameField {
-  position: relative;
-  width: 80vw;
-  height: 55vh;
-  background: rgba(0,0,0,.35);
-  border: 2px dashed var(--purple);
-  border-radius: 16px;
-  overflow: hidden;
-  z-index: 5;
-}
-
-.pumpkin-target {
-  position: absolute;
-  font-size: 56px;
-  cursor: pointer;
-  user-select: none;
-  filter: drop-shadow(0 0 15px var(--pumpkin));
-  animation: pumpkinSpawn .3s ease-out;
-  transition: transform .15s;
-}
-.pumpkin-target:hover { transform: scale(1.2); }
-.pumpkin-target:active { transform: scale(.85); }
-@keyframes pumpkinSpawn {
-  from { transform: scale(0) rotate(-180deg); opacity: 0; }
-  to { transform: scale(1) rotate(0deg); opacity: 1; }
-}
-
-.minigame-close {
-  margin-top: 25px;
-  background: var(--blood-bright);
-  color: #fff;
-  border: none;
-  border-radius: 10px;
-  padding: 14px 32px;
-  font-weight: 900;
-  cursor: pointer;
-  font-family: 'Montserrat', sans-serif;
-  font-size: 14px;
-  letter-spacing: 1px;
-  text-transform: uppercase;
-  z-index: 5;
-  transition: .2s;
-}
-.minigame-close:hover { background: var(--blood); transform: scale(1.05); }
-
-.minigame-gameover {
-  display: none;
-  position: absolute;
-  inset: 0;
-  background: rgba(10,5,8,.95);
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  gap: 20px;
-  z-index: 10;
-  border-radius: 16px;
-}
-.minigame-gameover.active { display: flex; }
-.minigame-gameover h3 {
-  font-family: 'Creepster', cursive;
-  font-size: 52px;
-  color: var(--blood-bright);
-  text-shadow: 0 0 30px var(--blood-bright);
-  letter-spacing: 4px;
-}
-.minigame-gameover .final-score {
-  font-size: 32px;
-  font-weight: 900;
-  color: var(--pumpkin);
-}
-.minigame-gameover .record {
-  font-size: 14px;
-  color: #ccc;
-}
-.minigame-gameover button {
-  background: linear-gradient(135deg, var(--pumpkin), var(--blood));
-  color: #fff;
-  border: none;
-  border-radius: 10px;
-  padding: 14px 32px;
-  font-weight: 900;
-  cursor: pointer;
-  font-family: 'Montserrat', sans-serif;
-  font-size: 14px;
-  letter-spacing: 1px;
-  text-transform: uppercase;
-  transition: .2s;
-}
-.minigame-gameover button:hover { transform: scale(1.05); box-shadow: 0 0 25px var(--pumpkin); }
 </style>
 </head>
 <body>
-    
-<!-- ============ MINIGAME ============ -->
-<button class="minigame-btn" onclick="openMinigame()">🎃 <span>Minigame</span></button>
-
-<div class="minigame-overlay" id="minigameOverlay">
-  <div class="minigame-header">
-    <h2>🎃 ACCHIAPPA LA ZUCCA 🎃</h2>
-    <p>Clicca le zucche prima che scompaiano!</p>
-  </div>
-  <div class="minigame-stats">
-    <div class="stat"><div class="label">Punti</div><div class="value" id="mgScore">0</div></div>
-    <div class="stat"><div class="label">Vite</div><div class="value" id="mgLives">3</div></div>
-    <div class="stat"><div class="label">Record</div><div class="value" id="mgRecord">0</div></div>
-  </div>
-  <div id="minigameField">
-    <div class="minigame-gameover" id="mgGameOver">
-      <h3>GAME OVER</h3>
-      <div class="final-score" id="mgFinalScore">Punti: 0</div>
-      <div class="record" id="mgFinalRecord">Record: 0</div>
-      <button onclick="startMinigame()">🔁 RIPROVA</button>
-    </div>
-  </div>
-  <button class="minigame-close" onclick="closeMinigame()">❌ CHIUDI</button>
-</div>
-<!-- Decorazioni Halloween -->
-<div class="halloween-deco bat1">🦇</div>
-<div class="halloween-deco bat2">🦇</div>
-<div class="halloween-deco pumpkin1">🎃</div>
-<div class="halloween-deco ghost1">👻</div>
-<div class="halloween-deco spider1">🕷️</div>
 
 <header class="top-bar">
-  <div class="top-pill">
-    <div class="top-item" id="currencyBtn">
-      <span data-i18n="currency">VALUTA</span> <strong id="currencyLabel">EUR €</strong>
-      <div class="dropdown" id="currencyDropdown">
-        <div class="dropdown-item active" data-currency="EUR" data-symbol="€" data-rate="1"><span class="flag">🇪🇺</span> EUR €</div>
-        <div class="dropdown-item" data-currency="USD" data-symbol="$" data-rate="1.08"><span class="flag">🇺🇸</span> USD $</div>
-        <div class="dropdown-item" data-currency="GBP" data-symbol="£" data-rate="0.85"><span class="flag">🇬🇧</span> GBP £</div>
-        <div class="dropdown-item" data-currency="CHF" data-symbol="CHF" data-rate="0.95"><span class="flag">🇨🇭</span> CHF</div>
-        <div class="dropdown-item" data-currency="PLN" data-symbol="zł" data-rate="4.30"><span class="flag">🇵🇱</span> PLN zł</div>
-      </div>
-    </div>
-    <div class="top-item" id="langBtn">
-      <span data-i18n="language">LINGUA</span> <span class="flag" id="langFlag">🇮🇹</span> <strong id="langLabel">ITALIAN</strong>
+  <div class="top-left">
+    <img src="https://i.imgur.com/cclMcy5.png" alt="OrbysMC" class="brand-logo-img">
+    <div class="brand-name">Orbys<span>MC</span></div>
+  </div>
+  <div class="top-right">
+    <div class="top-chip" id="langBtn">
+      <i class="fa-solid fa-globe"></i>
+      <span id="langLabel">IT</span>
       <div class="dropdown" id="langDropdown">
-        <div class="dropdown-item active" data-lang="it"><span class="flag">🇮🇹</span> Italiano</div>
-        <div class="dropdown-item" data-lang="en"><span class="flag">🇬🇧</span> English</div>
-        <div class="dropdown-item" data-lang="es"><span class="flag">🇪🇸</span> Español</div>
-        <div class="dropdown-item" data-lang="fr"><span class="flag">🇫🇷</span> Français</div>
-        <div class="dropdown-item" data-lang="de"><span class="flag">🇩🇪</span> Deutsch</div>
+        <div class="dropdown-item active" data-lang="it"><i class="fa-solid fa-flag"></i> Italiano</div>
+        <div class="dropdown-item" data-lang="en"><i class="fa-solid fa-flag-usa"></i> English</div>
       </div>
     </div>
-    <div class="top-item" onclick="openCart()" style="cursor:pointer;">
-      <i class="fa fa-shopping-cart discord-ico"></i>
-      <span class="status-dot"></span>
-      <strong data-i18n="cart">CARRELLO</strong>
-      <span class="cart-badge" id="cartBadge">0</span>
+    <div class="top-chip" onclick="openCart()">
+      <i class="fa-solid fa-cart-shopping"></i>
+      <strong>Carrello</strong>
+      <span class="cart-count" id="cartCount">0</span>
     </div>
-    <div class="top-item"><img id="topFace" class="avatar" src="https://minotar.net/helm/Steve/22.png" alt="User"><strong id="topName">OSPITE</strong></div>
+    <div class="top-chip">
+      <span class="dot"></span>
+      <strong id="topUser">Ospite</strong>
+    </div>
   </div>
 </header>
 
 <section class="hero">
-  <div class="hero-content">
-    <div class="hero-left">
-      <div class="icon-circle play-btn"><i class="fa fa-play"></i></div>
-      <div class="text">
-        <h3>🎃 duckvanilla.minecraft.best 👻</h3>
-        <p data-i18n="playersOnline">45 Giocatori Online</p>
-      </div>
+  <div class="hero-inner">
+    <img src="https://i.imgur.com/cclMcy5.png" alt="OrbysMC" class="hero-logo">
+    <div class="hero-status">
+      <span class="dot"></span>
+      <span>Server online</span>
     </div>
-    <div class="hero-center" id="heroCenter">
-      <div class="logo-dv">
-        <div class="crown"><i class="fa fa-crown"></i></div>
-        <img src="https://i.imgur.com/NdgIEK4.png" alt="Duck Vanilla Logo">
-      </div>
-      <div class="user-hero" id="userHero">
-        <img class="user-avatar-big" id="userAvatarBig" src="https://minotar.net/helm/Steve/110.png" alt="User Skin">
-        <div class="user-name-big"><span class="at">@</span><span id="userNameBig">Steve</span></div>
-      </div>
-    </div>
-    <div class="hero-right">
-      <div class="text-right">
-        <h3 data-i18n="discordServer">Server Discord</h3>
-        <p data-i18n="membersOnline">163 Membri</p>
-      </div>
-      <div class="icon-circle discord-btn"><i class="fa-brands fa-discord"></i></div>
+    <h1>Lo store ufficiale di <em>OrbysMC</em>.</h1>
+    <p>Acquista rank, key e gemme per il server. Pagamenti sicuri tramite PayPal e Revolut, consegna immediata in-game.</p>
+    <div class="hero-ip" onclick="copyIP()">
+      <i class="fa-solid fa-server"></i>
+      <span>play.orbysmc.it</span>
+      <i class="fa-solid fa-copy"></i>
     </div>
   </div>
 </section>
 
-<div class="yellow-banner">
-  🕸️ <span data-i18n="banner">DUCK VANILLA STORE — HALLOWEEN EDITION</span> 🕸️
-</div>
+<div class="container">
+  <div class="layout">
 
-<div class="main-container">
-  <aside class="sidebar">
-    <button class="nav-btn active" data-color="home" onclick="showSection('home', this)"><div class="icon-box"><i class="fa fa-home"></i></div> <span data-i18n="navHome">Home</span></button>
-    <button class="nav-btn" data-color="ranks" onclick="showSection('ranks', this)"><div class="icon-box"><i class="fa fa-crown"></i></div> <span data-i18n="navRanks">Ranks</span></button>
-    <button class="nav-btn" data-color="shards" onclick="showSection('shards', this)"><div class="icon-box"><i class="fa fa-gem"></i></div> <span data-i18n="navShards">Shards</span></button>
-    <button class="nav-btn" data-color="unban" onclick="showSection('unban', this)"><div class="icon-box"><i class="fa fa-shield-halved"></i></div> <span data-i18n="navUnban">UNBAN</span></button>
-    <button class="nav-btn" data-color="rules" onclick="showSection('rules', this)"><div class="icon-box"><i class="fa fa-scale-balanced"></i></div> <span data-i18n="navRules">Regole</span></button>
-  </aside>
-
-  <main class="content-area">
-    <div id="home" class="section active-section">
-      <h2 class="section-title" data-i18n="welcome">Benvenuto</h2>
-      <p class="section-sub" data-i18n="welcomeSub">Inserisci il tuo nome utente Minecraft per iniziare</p>
-      <div class="input-group" id="userInputGroup">
-        <img id="facePreview" class="face-preview" src="https://minotar.net/helm/Steve/36.png" alt="face">
-        <input type="text" id="username" placeholder="Nome utente Minecraft" maxlength="16" oninput="updateFace()" data-i18n-ph="usernamePlaceholder">
-      </div>
-      <p class="help-text" data-i18n="welcomeHelp">La tua skin apparirà automaticamente.</p>
-      <button class="cta-button" onclick="login()" data-i18n="continue">Continua</button>
-    </div>
-
-    <div id="ranks" class="section hidden">
-      <h2 class="section-title" data-i18n="ranksTitle">🎃 Acquista un Rank 👻</h2>
-      <p class="section-sub" data-i18n="ranksSub">Scegli il grado perfetto per dominare sul server</p>
-      <div class="product-grid">
-        <div class="product-card rank-vip">
-          <img class="rank-image" src="https://i.pinimg.com/1200x/88/13/aa/8813aad768dda1be3018b1ea4873608b.jpg" alt="Rank VIP" onerror="this.src='https://placehold.co/90x90/ffe680/000?text=VIP'">
-          <h3>RANK VIP</h3>
-          <p class="price" data-price="5"><span class="new" data-base="5"></span></p>
-          <ul class="perk-list">
-            <li><i class="fa-solid fa-check"></i> <span data-i18n="perk5Home">5 Home</span></li>
-            <li><i class="fa-solid fa-check"></i> <span data-i18n="perkKitVip">Kit VIP</span></li>
-            <li><i class="fa-solid fa-check"></i> <span data-i18n="perkCustomRank">Custom Rank</span></li>
-          </ul>
-          <button class="buy-btn" onclick="openPaypal('Rank VIP', 5.00)"><i class="fa-brands fa-paypal"></i> <span data-i18n="payPaypal">Paga con PayPal</span></button>
-          <button class="revolut-btn" onclick="openRevolut('Rank VIP', 5.00)"><i class="fa-solid fa-r"></i> Paga con Revolut</button>
-          <button class="cart-btn" onclick="addToCart('Rank VIP', 5.00)"><i class="fa-solid fa-cart-plus"></i> <span data-i18n="addCart">Aggiungi al Carrello</span></button>
-          <div class="revtag-box">oppure paga tramite il mio Revtag! <a href="https://revolut.me/mrducky" target="_blank">@mrducky</a></div>
-        </div>
-
-        <div class="product-card rank-nabbo">
-          <span class="badge" data-i18n="badgePopular">POPOLARE</span>
-          <img class="rank-image" src="https://i.pinimg.com/736x/c2/cf/50/c2cf505a4dec4a58791b6373c55c285c.jpg" alt="Rank Nabbo" onerror="this.src='https://placehold.co/90x90/a855f7/fff?text=NABBO'">
-          <h3>RANK NABBO</h3>
-          <p class="price" data-price="10"><span class="new" data-base="10"></span></p>
-          <ul class="perk-list">
-            <li><i class="fa-solid fa-check"></i> <span data-i18n="perk7Home">7 Home</span></li>
-            <li><i class="fa-solid fa-check"></i> <span data-i18n="perkKitNabboVip">Kit Nabbo + VIP</span></li>
-            <li><i class="fa-solid fa-check"></i> <span data-i18n="perkCustomRank">Custom Rank</span></li>
-          </ul>
-          <button class="buy-btn" onclick="openPaypal('Rank Nabbo', 10.00)"><i class="fa-brands fa-paypal"></i> <span data-i18n="payPaypal">Paga con PayPal</span></button>
-          <button class="revolut-btn" onclick="openRevolut('Rank Nabbo', 10.00)"><i class="fa-solid fa-r"></i> Paga con Revolut</button>
-          <button class="cart-btn" onclick="addToCart('Rank Nabbo', 10.00)"><i class="fa-solid fa-cart-plus"></i> <span data-i18n="addCart">Aggiungi al Carrello</span></button>
-          <div class="revtag-box">oppure paga tramite il mio Revtag! <a href="https://revolut.me/mrducky" target="_blank">@mrducky</a></div>
-        </div>
-
-        <div class="product-card rank-duck">
-          <span class="badge" data-i18n="badgeTop">TOP</span>
-          <img class="rank-image" src="https://i.pinimg.com/736x/5c/81/cf/5c81cffb6e2817c7f5d8efad64d69a49.jpg" alt="Rank Duck" onerror="this.src='https://placehold.co/90x90/ffcc00/000?text=DUCK'">
-          <h3>RANK DUCK</h3>
-          <p class="price" data-price="15"><span class="new" data-base="15"></span></p>
-          <ul class="perk-list">
-            <li><i class="fa-solid fa-check"></i> <span data-i18n="perk10Home">10 Home</span></li>
-            <li><i class="fa-solid fa-check"></i> <span data-i18n="perkKitAll">Kit Nabbo + VIP + Duck</span></li>
-            <li><i class="fa-solid fa-check"></i> <span data-i18n="perkCustomRank">Custom Rank</span></li>
-          </ul>
-          <button class="buy-btn" onclick="openPaypal('Rank Duck', 15.00)"><i class="fa-brands fa-paypal"></i> <span data-i18n="payPaypal">Paga con PayPal</span></button>
-          <button class="revolut-btn" onclick="openRevolut('Rank Duck', 15.00)"><i class="fa-solid fa-r"></i> Paga con Revolut</button>
-          <button class="cart-btn" onclick="addToCart('Rank Duck', 15.00)"><i class="fa-solid fa-cart-plus"></i> <span data-i18n="addCart">Aggiungi al Carrello</span></button>
-          <div class="revtag-box">oppure paga tramite il mio Revtag! <a href="https://revolut.me/mrducky" target="_blank">@mrducky</a></div>
-        </div>
-      </div>
-    </div>
-
-    <div id="shards" class="section hidden">
-      <h2 class="section-title" data-i18n="shardsTitle">💎 Acquista Shards 💎</h2>
-      <p class="section-sub" data-i18n="shardsSub">Ottieni valuta in-game istantaneamente</p>
-      <div class="product-grid" id="shardsGrid"></div>
-    </div>
-
-    <div id="unban" class="section hidden">
-      <h2 class="section-title" data-i18n="unbanTitle">🛡️ Richiedi Unban 🛡️</h2>
-      <p class="section-sub" data-i18n="unbanSub">Torna a giocare subito sul network</p>
-      <div class="product-grid" style="max-width:400px;margin:0 auto;">
-        <div class="product-card rank-unban">
-          <img class="rank-image" src="https://i.pinimg.com/1200x/91/1c/e5/911ce599e2a13b2f75017bf01551b502.jpg" alt="Unban" onerror="this.src='https://placehold.co/90x90/ef4444/fff?text=BAN'">
-          <h3 data-i18n="unbanProduct">UNBAN COMPLETO</h3>
-          <p class="price" data-price="8"><span class="new" data-base="8"></span></p>
-          <ul class="perk-list">
-            <li><i class="fa-solid fa-check"></i> <span data-i18n="perkUnban1">Rimozione ban permanente</span></li>
-            <li><i class="fa-solid fa-check"></i> <span data-i18n="perkUnban2">Accesso immediato al server</span></li>
-            <li><i class="fa-solid fa-check"></i> <span data-i18n="perkUnban3">Supporto via Discord</span></li>
-          </ul>
-          <button class="buy-btn" onclick="openPaypal('Unban', 8.00)"><i class="fa-brands fa-paypal"></i> <span data-i18n="payPaypal">Paga con PayPal</span></button>
-          <button class="revolut-btn" onclick="openRevolut('Unban', 8.00)"><i class="fa-solid fa-r"></i> Paga con Revolut</button>
-          <button class="cart-btn" onclick="addToCart('Unban', 8.00)"><i class="fa-solid fa-cart-plus"></i> <span data-i18n="addCart">Aggiungi al Carrello</span></button>
-          <div class="revtag-box">oppure paga tramite il mio Revtag! <a href="https://revolut.me/apioli" target="_blank">@mrducky</a></div>
-        </div>
-      </div>
-    </div>
-
-    <div id="rules" class="section hidden">
-      <h2 class="section-title" data-i18n="rulesTitle">📜 Regolamento 📜</h2>
-      <p class="section-sub" data-i18n="rulesSub">Leggi attentamente per non ricevere sanzioni</p>
-      <div class="rules-wrapper">
-        <div class="rule-card"><div class="rule-card-header"><div class="rule-number">1</div><h4 data-i18n="rule1Title">No Alt Account</h4></div><p data-i18n="rule1Desc">È severamente vietato utilizzare account alternativi per eludere ban, mute, limitazioni o per ottenere vantaggi illeciti.</p><div class="rule-penalty"><i class="fa-solid fa-gavel"></i> <span data-i18n="rule1Penalty">Ban permanente su tutti gli account collegati</span></div></div>
-        <div class="rule-card"><div class="rule-card-header"><div class="rule-number">2</div><h4 data-i18n="rule2Title">No Flooding (Acqua/Lava)</h4></div><p data-i18n="rule2Desc">È vietato allagare le zone con secchi d'acqua o lava, sia per griefing che per rallentare il server.</p><div class="rule-penalty"><i class="fa-solid fa-gavel"></i> <span data-i18n="rule2Penalty">Ban temporaneo 7 giorni + rollback delle modifiche</span></div></div>
-        <div class="rule-card"><div class="rule-card-header"><div class="rule-number">3</div><h4 data-i18n="rule3Title">No Lag Machine</h4></div><p data-i18n="rule3Desc">È vietato costruire lag machine, redstone clock infinite, chunk loader abusivi, farm massive non autorizzate.</p><div class="rule-penalty"><i class="fa-solid fa-gavel"></i> <span data-i18n="rule3Penalty">Ban permanente + rimozione immediata della struttura</span></div></div>
-        <div class="rule-card"><div class="rule-card-header"><div class="rule-number">4</div><h4 data-i18n="rule4Title">No Cheat / Hack / Mod</h4></div><p data-i18n="rule4Desc">È vietato utilizzare X-Ray, KillAura, Fly, Speed, AutoClicker, Reach, ESP o qualsiasi modifica client non autorizzata.</p><div class="rule-penalty"><i class="fa-solid fa-gavel"></i> <span data-i18n="rule4Penalty">Ban permanente senza appello</span></div></div>
-        <div class="rule-card"><div class="rule-card-header"><div class="rule-number">5</div><h4 data-i18n="rule5Title">Rispetto e Buona Educazione</h4></div><p data-i18n="rule5Desc">È vietato insultare, minacciare, molestare o discriminare altri giocatori in chat, in voice o in privato.</p><div class="rule-penalty"><i class="fa-solid fa-gavel"></i> <span data-i18n="rule5Penalty">Mute 24h → Ban progressivo</span></div></div>
-        <div class="rule-card"><div class="rule-card-header"><div class="rule-number">6</div><h4 data-i18n="rule6Title">No Spam / Pubblicità</h4></div><p data-i18n="rule6Desc">È vietato fare spam in chat, ripetere lo stesso messaggio, o pubblicizzare altri server senza autorizzazione.</p><div class="rule-penalty"><i class="fa-solid fa-gavel"></i> <span data-i18n="rule6Penalty">Mute 24h → Ban 7 giorni</span></div></div>
-        <div class="rule-card"><div class="rule-card-header"><div class="rule-number">7</div><h4 data-i18n="rule7Title">No Griefing</h4></div><p data-i18n="rule7Desc">È vietato distruggere, rubare o modificare le build altrui, anche fuori dalle zone protette.</p><div class="rule-penalty"><i class="fa-solid fa-gavel"></i> <span data-i18n="rule7Penalty">Ban 7 giorni + rollback obbligatorio</span></div></div>
-        <div class="rule-card"><div class="rule-card-header"><div class="rule-number">8</div><h4 data-i18n="rule8Title">No Dupe / Bug Abuse</h4></div><p data-i18n="rule8Desc">È vietato duplicare item (dupe) o sfruttare bug del gioco/server per ottenere vantaggi.</p><div class="rule-penalty"><i class="fa-solid fa-gavel"></i> <span data-i18n="rule8Penalty">Ban permanente + rimozione item duplicati</span></div></div>
-        <div class="rule-card"><div class="rule-card-header"><div class="rule-number">9</div><h4 data-i18n="rule9Title">No Scam</h4></div><p data-i18n="rule9Desc">È vietato truffare altri giocatori durante scambi, aste o accordi.</p><div class="rule-penalty"><i class="fa-solid fa-gavel"></i> <span data-i18n="rule9Penalty">Ban 30 giorni + restituzione forzata</span></div></div>
-        <div class="rule-card"><div class="rule-card-header"><div class="rule-number">10</div><h4 data-i18n="rule10Title">Rispetto dello Staff</h4></div><p data-i18n="rule10Desc">Le decisioni dello staff sono definitive. È vietato contestare pubblicamente, impersonare membri dello staff.</p><div class="rule-penalty"><i class="fa-solid fa-gavel"></i> <span data-i18n="rule10Penalty">Valutazione caso per caso — fino a ban permanente</span></div></div>
-        <div class="rule-warning"><i class="fa-solid fa-triangle-exclamation"></i><div><strong data-i18n="rulesWarningTitle">⚠️ ATTENZIONE</strong><span data-i18n="rulesWarningDesc">L'ignoranza del regolamento non giustifica la violazione. Lo staff si riserva il diritto di applicare sanzioni a propria discrezione.</span></div></div>
-      </div>
-    </div>
-  </main>
-</div>
-    <button class="discount-float" id="discountBtn" onclick="openDiscount()">
-  <i class="fa-solid fa-tag"></i>
-  <span id="discountLabel" data-i18n="discountBtn">Codice Sconto</span>
-</button>
-
-<button class="admin-toggle" id="adminToggle" onclick="openAdmin()">
-  <i class="fa-solid fa-shield-halved"></i> ADMIN PANEL
-</button>
-
-<div class="admin-panel" id="adminPanel">
-  <div class="admin-container">
-    <div class="admin-header">
-      <h1><i class="fa-solid fa-shield-halved"></i> DUCK ADMIN 🎃</h1>
-      <button class="close-admin" onclick="closeAdmin()"><i class="fa-solid fa-times"></i> Chiudi</button>
-    </div>
-
-    <div id="adminLogin" style="max-width:400px;margin:60px auto;text-align:center;">
-      <i class="fa-solid fa-lock" style="font-size:60px;color:var(--pumpkin);margin-bottom:20px;"></i>
-      <h2 style="font-size:22px;font-weight:900;margin-bottom:10px;">ACCESSO ADMIN</h2>
-      <p style="color:#888;font-size:13px;margin-bottom:25px;">Inserisci la password di amministrazione</p>
-      <input type="password" class="admin-input" id="adminPassword" placeholder="Password admin" onkeydown="if(event.key==='Enter')doAdminLogin()">
-      <button class="admin-btn yellow" onclick="doAdminLogin()">
-        <i class="fa-solid fa-unlock"></i> ENTRA
+    <aside class="sidebar">
+      <button class="nav-btn active" data-section="home" onclick="showSection('home', this)">
+        <i class="fa-solid fa-house"></i>
+        <span>Home</span>
       </button>
-      <p id="adminLoginError" style="color:var(--blood-bright);font-size:12px;margin-top:15px;display:none;"></p>
-    </div>
+      <button class="nav-btn" data-section="ranks" onclick="showSection('ranks', this)">
+        <i class="fa-solid fa-crown"></i>
+        <span>Rank</span>
+      </button>
+      <button class="nav-btn" data-section="keys" onclick="showSection('keys', this)">
+        <i class="fa-solid fa-key"></i>
+        <span>Key</span>
+      </button>
+      <button class="nav-btn" data-section="gems" onclick="showSection('gems', this)">
+        <i class="fa-solid fa-gem"></i>
+        <span>Gemme</span>
+      </button>
+      <button class="nav-btn" data-section="money" onclick="showSection('money', this)">
+        <i class="fa-solid fa-coins"></i>
+        <span>Soldi</span>
+      </button>
+      <button class="nav-btn" data-section="staff" onclick="showSection('staff', this)">
+        <i class="fa-solid fa-users-gear"></i>
+        <span>Staff</span>
+      </button>
+    </aside>
 
-    <div id="adminContent" style="display:none;">
-      <div class="admin-grid">
-        <div class="admin-card">
-          <h2><i class="fa-solid fa-bullhorn"></i> Broadcast</h2>
-          <p class="sub">Invia un messaggio a tutti i giocatori online</p>
-          <input type="text" class="admin-input" id="broadcastMsg" placeholder="Messaggio da inviare...">
-          <button class="admin-btn yellow" onclick="sendBroadcast()"><i class="fa-solid fa-paper-plane"></i> INVIA</button>
+    <main class="content">
+
+      <section class="section active" id="section-home">
+        <div class="section-header">
+          <div class="section-label">Benvenuto</div>
+          <h2 class="section-title">Inserisci il tuo nome</h2>
+          <p class="section-sub">Il tuo avatar apparirà automaticamente. Nessuna registrazione richiesta.</p>
         </div>
-        <div class="admin-card">
-          <h2><i class="fa-solid fa-users"></i> Giocatori Online</h2>
-          <p class="sub">Lista giocatori attualmente connessi</p>
-          <button class="admin-btn blue" onclick="loadPlayers()"><i class="fa-solid fa-refresh"></i> AGGIORNA LISTA</button>
-          <div id="playersList" style="margin-top:15px;color:#ccc;font-size:13px;"></div>
-        </div>
-        <div class="admin-card">
-          <h2><i class="fa-solid fa-gift"></i> Giveaway Shards</h2>
-          <p class="sub">Regala shards a tutti i giocatori online</p>
-          <input type="number" class="admin-input" id="giveawayAmount" placeholder="Quantità shards" value="100">
-          <button class="admin-btn green" onclick="giveawayShards()"><i class="fa-solid fa-gem"></i> REGALA A TUTTI</button>
-        </div>
-        <div class="admin-card">
-          <h2><i class="fa-solid fa-user-slash"></i> Azioni Giocatore</h2>
-          <p class="sub">Kick / Ban / Unban veloce</p>
-          <input type="text" class="admin-input" id="actionPlayer" placeholder="Nome giocatore">
-          <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;">
-            <button class="admin-btn yellow" onclick="playerAction('kick')"><i class="fa-solid fa-boot"></i> KICK</button>
-            <button class="admin-btn red" onclick="playerAction('ban')"><i class="fa-solid fa-ban"></i> BAN</button>
-            <button class="admin-btn green" onclick="playerAction('unban')"><i class="fa-solid fa-check"></i> UNBAN</button>
-            <button class="admin-btn blue" onclick="playerAction('gamemode')"><i class="fa-solid fa-wand-magic-sparkles"></i> GAMEMODE</button>
+
+        <div class="welcome-box">
+          <h3>Inizia lo shopping</h3>
+          <p>Inserisci il tuo username Minecraft per associare gli acquisti al tuo account.</p>
+          <div class="input-row">
+            <input type="text" class="input-field" id="usernameInput" placeholder="Il tuo username Minecraft" maxlength="16">
+            <button class="btn btn-primary" onclick="saveUsername()">
+              <i class="fa-solid fa-check"></i> Conferma
+            </button>
           </div>
         </div>
-        <div class="admin-card" style="grid-column:span 2;">
-          <h2><i class="fa-solid fa-kiwi-bird"></i> EVENTI SPECIALI HALLOWEEN</h2>
-          <p class="sub">Attiva un evento globale — tutti i giocatori lo vedranno</p>
-          <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px;">
-            <button class="admin-btn yellow" onclick="triggerEvent('duck_rain')"><i class="fa-solid fa-kiwi-bird"></i> PIOGGIA DI PAPERE</button>
-            <button class="admin-btn green" onclick="triggerEvent('shard_bonus')"><i class="fa-solid fa-gem"></i> SHARD BONUS</button>
-            <button class="admin-btn purple" onclick="triggerEvent('double_xp')"><i class="fa-solid fa-bolt"></i> DOUBLE XP</button>
-            <button class="admin-btn blue" onclick="triggerEvent('treasure_hunt')"><i class="fa-solid fa-treasure-chest"></i> CACCIA AL TESORO</button>
+
+        <div class="home-grid">
+          <div class="home-card">
+            <i class="fa-solid fa-crown"></i>
+            <h4>Rank</h4>
+            <p>Potenzia la tua esperienza con privilegi esclusivi e comandi speciali.</p>
+          </div>
+          <div class="home-card">
+            <i class="fa-solid fa-key"></i>
+            <h4>Key</h4>
+            <p>Casse misteriose con premi rari, armi e oggetti esclusivi.</p>
+          </div>
+          <div class="home-card">
+            <i class="fa-solid fa-gem"></i>
+            <h4>Gemme</h4>
+            <p>Valuta premium per acquistare oggetti esclusivi in-game.</p>
+          </div>
+          <div class="home-card">
+            <i class="fa-solid fa-coins"></i>
+            <h4>Soldi</h4>
+            <p>Valuta in-game per il mercato e gli scambi tra giocatori.</p>
           </div>
         </div>
-        <div class="admin-card" style="grid-column:span 2;">
-          <h2><i class="fa-solid fa-terminal"></i> Comando Personalizzato</h2>
-          <p class="sub">Esegui un comando direttamente sul server (RCON)</p>
-          <input type="text" class="admin-input" id="customCmd" placeholder="es: time set day">
-          <button class="admin-btn yellow" onclick="executeCustomCmd()"><i class="fa-solid fa-play"></i> ESEGUI COMANDO</button>
+      </section>
+
+      <section class="section" id="section-ranks">
+        <div class="section-header">
+          <div class="section-label">Store</div>
+          <h2 class="section-title">Rank disponibili</h2>
+          <p class="section-sub">Scegli il rank perfetto per il tuo stile di gioco.</p>
         </div>
-        <div class="admin-card" style="grid-column:span 2;">
-          <h2><i class="fa-solid fa-list"></i> Log Eventi</h2>
-          <p class="sub">Cronologia delle azioni admin</p>
-          <div class="admin-log" id="adminLog">
-            <div><span class="log-time">[--:--:--]</span><span class="log-info">Pannello admin pronto. 🎃</span></div>
+
+        <div class="product-grid">
+          <div class="product-card">
+            <div class="product-icon">
+              <img src="https://i.imgur.com/f32oyML.jpeg" alt="Rank BRONZE">
+            </div>
+            <h3>BRONZE</h3>
+            <div class="price">3<small>€</small></div>
+            <ul class="perk-list">
+              <li><i class="fa-solid fa-check"></i> 3 home</li>
+              <li><i class="fa-solid fa-check"></i> Kit Bronze</li>
+              <li><i class="fa-solid fa-check"></i> Prefisso [BRONZE]</li>
+            </ul>
+            <button class="product-btn" onclick="addToCart('Rank BRONZE', 3)">
+              <i class="fa-solid fa-cart-plus"></i> Aggiungi
+            </button>
+          </div>
+
+          <div class="product-card">
+            <div class="product-icon">
+              <img src="https://i.imgur.com/f32oyML.jpeg" alt="Rank IRON">
+            </div>
+            <h3>IRON</h3>
+            <div class="price">5<small>€</small></div>
+            <ul class="perk-list">
+              <li><i class="fa-solid fa-check"></i> 5 home</li>
+              <li><i class="fa-solid fa-check"></i> Kit Iron + Bronze</li>
+              <li><i class="fa-solid fa-check"></i> Prefisso [IRON]</li>
+            </ul>
+            <button class="product-btn" onclick="addToCart('Rank IRON', 5)">
+              <i class="fa-solid fa-cart-plus"></i> Aggiungi
+            </button>
+          </div>
+
+          <div class="product-card">
+            <div class="badge popular">Popolare</div>
+            <div class="product-icon">
+              <img src="https://i.imgur.com/f32oyML.jpeg" alt="Rank VIP">
+            </div>
+            <h3>VIP</h3>
+            <div class="price">10<small>€</small></div>
+            <ul class="perk-list">
+              <li><i class="fa-solid fa-check"></i> 7 home</li>
+              <li><i class="fa-solid fa-check"></i> Kit VIP + precedenti</li>
+              <li><i class="fa-solid fa-check"></i> Volo in lobby</li>
+            </ul>
+            <button class="product-btn" onclick="addToCart('Rank VIP', 10)">
+              <i class="fa-solid fa-cart-plus"></i> Aggiungi
+            </button>
+          </div>
+
+          <div class="product-card">
+            <div class="badge">Best seller</div>
+            <div class="product-icon">
+              <img src="https://i.imgur.com/f32oyML.jpeg" alt="Rank MVP">
+            </div>
+            <h3>MVP</h3>
+            <div class="price">15<small>€</small></div>
+            <ul class="perk-list">
+              <li><i class="fa-solid fa-check"></i> 10 home</li>
+              <li><i class="fa-solid fa-check"></i> Kit MVP + precedenti</li>
+              <li><i class="fa-solid fa-check"></i> Comandi premium</li>
+            </ul>
+            <button class="product-btn" onclick="addToCart('Rank MVP', 15)">
+              <i class="fa-solid fa-cart-plus"></i> Aggiungi
+            </button>
+          </div>
+
+          <div class="product-card">
+            <div class="badge best">Top</div>
+            <div class="product-icon">
+              <img src="https://i.imgur.com/f32oyML.jpeg" alt="Rank ORBYS">
+            </div>
+            <h3>ORBYS</h3>
+            <div class="price">25<small>€</small></div>
+            <ul class="perk-list">
+              <li><i class="fa-solid fa-check"></i> 20 home</li>
+              <li><i class="fa-solid fa-check"></i> Tutti i kit precedenti</li>
+              <li><i class="fa-solid fa-check"></i> Prefisso [ORBYS] animato</li>
+              <li><i class="fa-solid fa-check"></i> Accesso a tutti i comandi</li>
+            </ul>
+            <button class="product-btn" onclick="addToCart('Rank ORBYS', 25)">
+              <i class="fa-solid fa-cart-plus"></i> Aggiungi
+            </button>
           </div>
         </div>
+      </section>
+
+      <section class="section" id="section-keys">
+        <div class="section-header">
+          <div class="section-label">Store</div>
+          <h2 class="section-title">Key disponibili</h2>
+          <p class="section-sub">Apri casse misteriose per ottenere premi esclusivi.</p>
+        </div>
+
+        <div class="product-grid">
+          <div class="product-card">
+            <div class="product-icon">
+              <img src="https://i.imgur.com/uoignzf.jpeg" alt="Vote Crate">
+            </div>
+            <h3>Vote Crate</h3>
+            <div class="price">1<small>€</small></div>
+            <ul class="perk-list">
+              <li><i class="fa-solid fa-check"></i> 1 Vote Crate</li>
+              <li><i class="fa-solid fa-check"></i> Premi base</li>
+            </ul>
+            <button class="product-btn" onclick="addToCart('Vote Crate', 1)">
+              <i class="fa-solid fa-cart-plus"></i> Aggiungi
+            </button>
+          </div>
+
+          <div class="product-card">
+            <div class="product-icon">
+              <img src="https://i.imgur.com/uoignzf.jpeg" alt="Common Crate">
+            </div>
+            <h3>Common Crate</h3>
+            <div class="price">2<small>€</small></div>
+            <ul class="perk-list">
+              <li><i class="fa-solid fa-check"></i> 1 Common Crate</li>
+              <li><i class="fa-solid fa-check"></i> Premi comuni</li>
+            </ul>
+            <button class="product-btn" onclick="addToCart('Common Crate', 2)">
+              <i class="fa-solid fa-cart-plus"></i> Aggiungi
+            </button>
+          </div>
+
+          <div class="product-card">
+            <div class="badge popular">Popolare</div>
+            <div class="product-icon">
+              <img src="https://i.imgur.com/uoignzf.jpeg" alt="Rare Crate">
+            </div>
+            <h3>Rare Crate</h3>
+            <div class="price">5<small>€</small></div>
+            <ul class="perk-list">
+              <li><i class="fa-solid fa-check"></i> 1 Rare Crate</li>
+              <li><i class="fa-solid fa-check"></i> Premi rari</li>
+            </ul>
+            <button class="product-btn" onclick="addToCart('Rare Crate', 5)">
+              <i class="fa-solid fa-cart-plus"></i> Aggiungi
+            </button>
+          </div>
+
+          <div class="product-card">
+            <div class="badge best">Top</div>
+            <div class="product-icon">
+              <img src="https://i.imgur.com/uoignzf.jpeg" alt="Epic Crate">
+            </div>
+            <h3>Epic Crate</h3>
+            <div class="price">10<small>€</small></div>
+            <ul class="perk-list">
+              <li><i class="fa-solid fa-check"></i> 1 Epic Crate</li>
+              <li><i class="fa-solid fa-check"></i> Premi epici</li>
+            </ul>
+            <button class="product-btn" onclick="addToCart('Epic Crate', 10)">
+              <i class="fa-solid fa-cart-plus"></i> Aggiungi
+            </button>
+          </div>
+
+          <div class="product-card">
+            <div class="badge best">Esclusiva</div>
+            <div class="product-icon">
+              <img src="https://i.imgur.com/uoignzf.jpeg" alt="Orbys Crate">
+            </div>
+            <h3>Orbys Crate</h3>
+            <div class="price">20<small>€</small></div>
+            <ul class="perk-list">
+              <li><i class="fa-solid fa-check"></i> 1 Orbys Crate</li>
+              <li><i class="fa-solid fa-check"></i> Premi esclusivi Orbys</li>
+            </ul>
+            <button class="product-btn" onclick="addToCart('Orbys Crate', 20)">
+              <i class="fa-solid fa-cart-plus"></i> Aggiungi
+            </button>
+          </div>
+
+          <div class="product-card">
+            <div class="badge best">Esclusiva</div>
+            <div class="product-icon">
+              <img src="https://i.imgur.com/uoignzf.jpeg" alt="Spawner Crate">
+            </div>
+            <h3>Spawner Crate</h3>
+            <div class="price">15<small>€</small></div>
+            <ul class="perk-list">
+              <li><i class="fa-solid fa-check"></i> 1 Spawner Crate</li>
+              <li><i class="fa-solid fa-check"></i> Spawner casuale</li>
+            </ul>
+            <button class="product-btn" onclick="addToCart('Spawner Crate', 15)">
+              <i class="fa-solid fa-cart-plus"></i> Aggiungi
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="section-gems">
+        <div class="section-header">
+          <div class="section-label">Store</div>
+          <h2 class="section-title">Gemme</h2>
+          <p class="section-sub">Valuta premium per oggetti esclusivi in-game.</p>
+        </div>
+
+        <div class="product-grid">
+          <div class="product-card">
+            <div class="product-icon">
+              <img src="https://i.imgur.com/MZUGSRJ.jpeg" alt="1.000 Gemme">
+            </div>
+            <h3>1.000 Gemme</h3>
+            <div class="price">3<small>€</small></div>
+            <ul class="perk-list">
+              <li><i class="fa-solid fa-check"></i> 1.000 gemme</li>
+              <li><i class="fa-solid fa-check"></i> Consegna immediata</li>
+            </ul>
+            <button class="product-btn" onclick="addToCart('1.000 Gemme', 3)">
+              <i class="fa-solid fa-cart-plus"></i> Aggiungi
+            </button>
+          </div>
+
+          <div class="product-card">
+            <div class="badge popular">Popolare</div>
+            <div class="product-icon">
+              <img src="https://i.imgur.com/MZUGSRJ.jpeg" alt="5.000 Gemme">
+            </div>
+            <h3>5.000 Gemme</h3>
+            <div class="price">12<small>€</small></div>
+            <ul class="perk-list">
+              <li><i class="fa-solid fa-check"></i> 5.000 gemme</li>
+              <li><i class="fa-solid fa-check"></i> Bonus +5%</li>
+            </ul>
+            <button class="product-btn" onclick="addToCart('5.000 Gemme', 12)">
+              <i class="fa-solid fa-cart-plus"></i> Aggiungi
+            </button>
+          </div>
+
+          <div class="product-card">
+            <div class="badge best">Top</div>
+            <div class="product-icon">
+              <img src="https://i.imgur.com/MZUGSRJ.jpeg" alt="10.000 Gemme">
+            </div>
+            <h3>10.000 Gemme</h3>
+            <div class="price">22<small>€</small></div>
+            <ul class="perk-list">
+              <li><i class="fa-solid fa-check"></i> 10.000 gemme</li>
+              <li><i class="fa-solid fa-check"></i> Bonus +10%</li>
+            </ul>
+            <button class="product-btn" onclick="addToCart('10.000 Gemme', 22)">
+              <i class="fa-solid fa-cart-plus"></i> Aggiungi
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="section-money">
+        <div class="section-header">
+          <div class="section-label">Store</div>
+          <h2 class="section-title">Soldi</h2>
+          <p class="section-sub">Questa categoria è temporaneamente chiusa.</p>
+        </div>
+
+        <div class="maintenance">
+          <i class="fa-solid fa-screwdriver-wrench"></i>
+          <h3>In manutenzione</h3>
+          <p>La categoria Soldi sarà disponibile a breve. Torna a trovarci tra qualche giorno.</p>
+        </div>
+      </section>
+
+      <section class="section" id="section-staff">
+        <div class="section-header">
+          <div class="section-label">Team</div>
+          <h2 class="section-title">Staff di OrbysMC</h2>
+          <p class="section-sub">Le persone che gestiscono il server.</p>
+        </div>
+
+        <div class="staff-grid">
+          <div class="staff-card">
+            <div class="staff-avatar">
+              <img src="https://minotar.net/helm/Nyoxmc_/96.png" alt="Nyoxmc_">
+            </div>
+            <div class="staff-role owner">Owner</div>
+            <div class="staff-name">Nyoxmc_</div>
+            <p class="staff-desc">Fondatore e amministratore del server.</p>
+            <a href="https://www.instagram.com/nyoxmc_" target="_blank" class="staff-link">
+              <i class="fa-brands fa-instagram"></i> @nyoxmc_
+            </a>
+          </div>
+          <div class="staff-card">
+            <div class="staff-avatar">
+              <img src="https://minotar.net/helm/Steve/96.png" alt="Steve">
+            </div>
+            <div class="staff-role co-owner">Co-Owner</div>
+            <div class="staff-name">Steve</div>
+            <p class="staff-desc">Co-amministratore, gestisce lo staff e lo sviluppo.</p>
+          </div>
+        </div>
+      </section>
+
+    </main>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-inner">
+    <span>© 2026 OrbysMC — Tutti i diritti riservati</span>
+    <div class="footer-social">
+      <a href="https://www.tiktok.com/@saskymc.it" target="_blank" title="TikTok"><i class="fa-brands fa-tiktok"></i></a>
+      <a href="https://discord.gg/YJs82xaTa" target="_blank" title="Discord"><i class="fa-brands fa-discord"></i></a>
+    </div>
+  </div>
+  <div class="footer-inner" style="margin-top:16px;justify-content:center;">
+    <span class="footer-credit">
+      Creato da <strong style="color:var(--blue-light);">duckstudio</strong> —
+      <a href="https://portfolio.duckvanilla.store/" target="_blank">portfolio.duckvanilla.store</a>
+    </span>
+  </div>
+</footer>
+
+<div class="modal" id="cartModal">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h3>Il tuo carrello</h3>
+      <button class="modal-close" onclick="closeCart()">×</button>
+    </div>
+    <ul class="cart-list" id="cartList"></ul>
+    <div class="summary-box" id="cartSummary" style="display:none;">
+      <div class="summary-row total">
+        <span>Totale</span>
+        <span id="cartTotal">0,00 €</span>
       </div>
     </div>
+    <button class="btn btn-primary btn-block" onclick="checkout()" id="checkoutBtn" style="display:none;">
+      <i class="fa-solid fa-credit-card"></i> Vai al pagamento
+    </button>
   </div>
 </div>
 
-<div class="duck-event-overlay" id="duckEventOverlay">
-  <h1 id="duckEventTitle">🦆 EVENTO PAPERA 🦆</h1>
-  <p id="duckEventSubtitle">Preparati... sta per succedere qualcosa di epico!</p>
-</div>
-
-<div id="discountModal" class="modal">
-  <div class="modal-content">
-    <button class="close" onclick="closeModal('discountModal')">&times;</button>
-    <h3 style="color:var(--pumpkin);font-size:24px;margin-bottom:15px;"><i class="fa-solid fa-tag"></i> <span data-i18n="discountTitle">Codice Sconto</span></h3>
-    <p style="color:#ccc;margin-bottom:20px;" data-i18n="discountSub">Inserisci il tuo codice sconto.</p>
-    <div class="input-group" style="max-width:100%;">
-      <input type="text" id="discountInput" placeholder="DUCKSALE20%" style="padding:16px 20px;text-transform:uppercase;font-weight:800;letter-spacing:1px;">
-    </div>
-    <button class="cta-button" style="max-width:100%;margin-top:10px;" onclick="applyDiscount()" data-i18n="applyCode">Applica Codice</button>
-    <p id="discountMsg" style="margin-top:15px;font-size:13px;font-weight:700;"></p>
-  </div>
-</div>
-
-<div id="cartModal" class="modal">
-  <div class="modal-content">
-    <button class="close" onclick="closeModal('cartModal')">&times;</button>
-    <h3 style="color:var(--pumpkin);font-size:24px;margin-bottom:15px;"><i class="fa-solid fa-shopping-cart"></i> <span data-i18n="cartTitle">Il Tuo Carrello</span></h3>
-    <ul class="cart-list" id="cartList"></ul>
-    <div class="paypal-summary" id="cartSummary" style="display:none;">
-      <div class="row"><span data-i18n="subtotal">Subtotale:</span><span id="cartSubtotal"></span></div>
-      <div class="row discount" id="cartDiscountRow" style="display:none;"><span data-i18n="discount20">Sconto (20%):</span><span id="cartDiscount"></span></div>
-      <div class="row total"><span data-i18n="total">TOTALE:</span><span id="cartTotal"></span></div>
-    </div>
-    <button class="paypal-btn" onclick="checkoutCart()" id="checkoutBtn" style="display:none;"><i class="fa-brands fa-paypal"></i> <span data-i18n="payCart">Paga il Carrello</span></button>
-  </div>
-</div>
-
-<div id="bankModal" class="modal">
-  <div class="modal-content">
-    <button class="close" onclick="closeModal('bankModal')">&times;</button>
-    <h3 style="color:var(--pumpkin);font-size:24px;margin-bottom:10px;" data-i18n="bankTitle">Dettagli Bonifico</h3>
-    <p id="bankItemName" style="color:#ccc;margin-bottom:5px;">-</p>
-    <p id="bankItemPrice" style="color:var(--pumpkin);font-weight:900;font-size:22px;margin-bottom:15px;">-</p>
-    <p data-i18n="bankInstruction">Effettua il bonifico a questo IBAN:</p>
-    <div class="iban-box">LT75 3250 0486 9682 8306</div>
-    <p class="note" data-i18n="bankNote">Invia la ricevuta su Discord.</p>
-    <button class="cta-button" onclick="closeModal('bankModal')" data-i18n="close">Chiudi</button>
-  </div>
-</div>
-
-<div id="paypalModal" class="modal">
-  <div class="modal-content">
-    <button class="close" onclick="closeModal('paypalModal')">&times;</button>
-    <h3 style="color:var(--pumpkin);font-size:24px;margin-bottom:15px;"><i class="fa-brands fa-paypal"></i> <span data-i18n="paypalTitle">Conferma Acquisto</span></h3>
-    <p style="color:#ccc;margin-bottom:10px;" data-i18n="paypalSub">Stai per acquistare:</p>
-    <div class="paypal-summary">
-      <div class="row"><span data-i18n="product">Prodotto:</span><span id="ppName">-</span></div>
-      <div class="row"><span data-i18n="recipient">Destinatario:</span><span>mrducky99</span></div>
-      <div class="row discount" id="ppDiscountRow" style="display:none;"><span data-i18n="discountLabel">Sconto:</span><span id="ppDiscount">-</span></div>
-      <div class="row total"><span data-i18n="total">TOTALE:</span><span id="ppPrice">-</span></div>
-    </div>
-    <button class="paypal-btn" onclick="confirmPaypal()"><i class="fa-brands fa-paypal"></i> <span data-i18n="goPaypal">Vai a PayPal</span></button>
-    <p class="note" style="margin-top:15px;" data-i18n="paypalNote">Verrai reindirizzato a PayPal.</p>
-  </div>
-</div>
-    <script>
-        // ============ MINIGAME: ACCHIAPPA LA ZUCCA ============
-let mgScore = 0;
-let mgLives = 3;
-let mgActive = false;
-let mgSpawnInterval = null;
-let mgRecord = parseInt(localStorage.getItem('dv_mg_record') || '0');
-
-function openMinigame(){
-  document.getElementById('minigameOverlay').classList.add('active');
-  document.getElementById('mgRecord').textContent = mgRecord;
-  startMinigame();
-}
-
-function closeMinigame(){
-  mgActive = false;
-  clearInterval(mgSpawnInterval);
-  document.querySelectorAll('.pumpkin-target').forEach(function(p){ p.remove(); });
-  document.getElementById('minigameOverlay').classList.remove('active');
-  document.getElementById('mgGameOver').classList.remove('active');
-}
-
-function startMinigame(){
-  mgScore = 0;
-  mgLives = 3;
-  mgActive = true;
-  document.getElementById('mgScore').textContent = '0';
-  document.getElementById('mgLives').textContent = '3';
-  document.getElementById('mgGameOver').classList.remove('active');
-  document.querySelectorAll('.pumpkin-target').forEach(function(p){ p.remove(); });
-  clearInterval(mgSpawnInterval);
-
-  spawnPumpkin();
-  mgSpawnInterval = setInterval(function(){
-    if(mgActive) spawnPumpkin();
-  }, 900);
-}
-
-function spawnPumpkin(){
-  if(!mgActive) return;
-  const field = document.getElementById('minigameField');
-  const rect = field.getBoundingClientRect();
-  const size = 56;
-  const x = Math.random() * (rect.width - size);
-  const y = Math.random() * (rect.height - size);
-
-  const pumpkin = document.createElement('div');
-  pumpkin.className = 'pumpkin-target';
-  pumpkin.textContent = ['🎃','👻','🦇','💀','🕷️'][Math.floor(Math.random()*5)];
-  pumpkin.style.left = x + 'px';
-  pumpkin.style.top = y + 'px';
-  pumpkin.style.fontSize = (40 + Math.random() * 30) + 'px';
-
-  let caught = false;
-
-  const disappearTimer = setTimeout(function(){
-    if(pumpkin.parentNode && mgActive && !caught){
-      pumpkin.style.opacity = '0';
-      pumpkin.style.transition = 'opacity .3s';
-      setTimeout(function(){ pumpkin.remove(); }, 300);
-      loseLife();
-    }
-  }, 1500);
-
-  pumpkin.addEventListener('click', function(e){
-    e.stopPropagation();
-    if(!mgActive || caught) return;
-    caught = true;
-    clearTimeout(disappearTimer);
-    mgScore += 1;
-    document.getElementById('mgScore').textContent = mgScore;
-    pumpkin.style.transform = 'scale(1.8)';
-    pumpkin.style.opacity = '0';
-    pumpkin.style.transition = 'all .2s';
-    setTimeout(function(){ pumpkin.remove(); }, 200);
-  });
-
-  field.appendChild(pumpkin);
-}
-
-function loseLife(){
-  mgLives -= 1;
-  document.getElementById('mgLives').textContent = mgLives;
-  if(mgLives <= 0){
-    endMinigame();
-  }
-}
-
-function endMinigame(){
-  mgActive = false;
-  clearInterval(mgSpawnInterval);
-  document.querySelectorAll('.pumpkin-target').forEach(function(p){ p.remove(); });
-
-  if(mgScore > mgRecord){
-    mgRecord = mgScore;
-    try { localStorage.setItem('dv_mg_record', mgRecord); } catch(e) {}
-    document.getElementById('mgRecord').textContent = mgRecord;
-  }
-
-  document.getElementById('mgFinalScore').textContent = 'Punti: ' + mgScore;
-  document.getElementById('mgFinalRecord').textContent = '🏆 Record: ' + mgRecord;
-  document.getElementById('mgGameOver').classList.add('active');
-}
-const ADMIN_PASSWORD = "duck2026";
-const REVOLUT_LINK = "https://revolut.me/apioli";
-const REVTAG = "@apioli";
-
-let currentProduct = { name: '', price: 0 };
+<script>
 let cart = [];
-let discountApplied = false;
-let currentCurrency = { code: 'EUR', symbol: '€', rate: 1 };
-let currentLang = 'it';
-let adminLoggedIn = false;
-const DISCOUNT_CODE = "HALLOWEEN26";
-const DISCOUNT_PERCENT = 35;
+let username = '';
 
-const translations = {
-  it: {currency:"VALUTA",language:"LINGUA",cart:"CARRELLO",playersOnline:"45 Giocatori Online",discordServer:"Server Discord",membersOnline:"163 Membri Online",banner:"DUCK VANILLA STORE — HALLOWEEN EDITION",navHome:"Home",navRanks:"Ranks",navShards:"Shards",navUnban:"UNBAN",navRules:"Regole",welcome:"Benvenuto",welcomeSub:"Inserisci il tuo nome utente Minecraft per iniziare",usernamePlaceholder:"Nome utente Minecraft",welcomeHelp:"La tua skin apparirà automaticamente.",continue:"Continua",ranksTitle:"🎃 Acquista un Rank 👻",ranksSub:"Scegli il grado perfetto per dominare sul server",perk5Home:"5 Home",perkKitVip:"Kit VIP",perkCustomRank:"Custom Rank",perk7Home:"7 Home",perkKitNabboVip:"Kit Nabbo + VIP",perk10Home:"10 Home",perkKitAll:"Kit Nabbo + VIP + Duck",badgePopular:"POPOLARE",badgeTop:"TOP",badgeBestValue:"BEST VALUE",badgeBonus:"+10% BONUS",payPaypal:"Paga con PayPal",addCart:"Aggiungi al Carrello",bankTransfer:"Bonifico Bancario",shardsTitle:"💎 Acquista Shards 💎",shardsSub:"Ottieni valuta in-game istantaneamente",unbanTitle:"🛡️ Richiedi Unban 🛡️",unbanSub:"Torna a giocare subito",unbanProduct:"UNBAN COMPLETO",perkUnban1:"Rimozione ban permanente",perkUnban2:"Accesso immediato",perkUnban3:"Supporto Discord",discountBtn:"Codice Sconto",discountTitle:"Codice Sconto",discountSub:"Inserisci il tuo codice sconto.",applyCode:"Applica Codice",cartTitle:"Il Tuo Carrello",subtotal:"Subtotale:",discount20:"Sconto (20%):",total:"TOTALE:",payCart:"Paga il Carrello",cartEmpty:"Il tuo carrello è vuoto 🛒",bankTitle:"Dettagli Bonifico",bankInstruction:"Effettua il bonifico a questo IBAN:",bankNote:"Invia la ricevuta su Discord.",close:"Chiudi",paypalTitle:"Conferma Acquisto",paypalSub:"Stai per acquistare:",product:"Prodotto:",recipient:"Destinatario:",discountLabel:"Sconto:",goPaypal:"Vai a PayPal",paypalNote:"Verrai reindirizzato a PayPal.",addedToCart:"aggiunto al carrello!",loginRequired:"Devi prima effettuare il login!",welcomeBack:"Benvenuto",buyNow:"Ora puoi procedere.",invalidCode:"✗ Codice non valido.",validCode:"✓ Codice applicato! Sconto 20% attivo.",discountApplied:"Sconto -20% Attivo",shard1k:"1.000",shard5k:"5.000",shard10k:"10.000",shard25k:"25.000",shard50k:"50.000",shard100k:"100.000",
-  rulesTitle:"📜 Regolamento 📜",rulesSub:"Leggi attentamente per non ricevere sanzioni",rule1Title:"No Alt Account",rule1Desc:"È severamente vietato utilizzare account alternativi per eludere ban, mute, limitazioni o per ottenere vantaggi illeciti. Ogni account collegato allo stesso IP/device viene considerato un alt.",rule1Penalty:"Ban permanente su tutti gli account collegati",rule2Title:"No Flooding (Acqua/Lava)",rule2Desc:"È vietato allagare le zone con secchi d'acqua o lava, sia per griefing che per rallentare il server. Non piazzare acqua/lava in prossimità di build altrui, spawn, farm o aree pubbliche.",rule2Penalty:"Ban temporaneo 7 giorni + rollback delle modifiche",rule3Title:"No Lag Machine",rule3Desc:"È vietato costruire lag machine, redstone clock infinite, chunk loader abusivi, farm massive non autorizzate o qualsiasi meccanismo che causi lag al server. Le farm devono rispettare i limiti indicati dallo staff.",rule3Penalty:"Ban permanente + rimozione immediata della struttura",rule4Title:"No Cheat / Hack / Mod",rule4Desc:"È vietato utilizzare X-Ray, KillAura, Fly, Speed, AutoClicker, Reach, ESP o qualsiasi modifica client non autorizzata. Sono permessi solo mod di performance (OptiFine, Sodium) e cosmetici.",rule4Penalty:"Ban permanente senza appello",rule5Title:"Rispetto e Buona Educazione",rule5Desc:"È vietato insultare, minacciare, molestare o discriminare altri giocatori in chat, in voice o in privato. Razzismo, omofobia, sessismo e contenuti NSFW sono severamente proibiti.",rule5Penalty:"Mute 24h → Ban progressivo",rule6Title:"No Spam / Pubblicità",rule6Desc:"È vietato fare spam in chat, ripetere lo stesso messaggio, o pubblicizzare altri server, community, prodotti o link esterni senza autorizzazione dello staff.",rule6Penalty:"Mute 24h → Ban 7 giorni",rule7Title:"No Griefing",rule7Desc:"È vietato distruggere, rubare o modificare le build altrui, anche fuori dalle zone protette. Il rispetto delle costruzioni degli altri giocatori è fondamentale.",rule7Penalty:"Ban 7 giorni + rollback obbligatorio",rule8Title:"No Dupe / Bug Abuse",rule8Desc:"È vietato duplicare item (dupe) o sfruttare bug del gioco/server per ottenere vantaggi. Se trovi un bug, segnalalo allo staff: verrai ricompensato.",rule8Penalty:"Ban permanente + rimozione item duplicati",rule9Title:"No Scam",rule9Desc:"È vietato truffare altri giocatori durante scambi, aste o accordi. Ogni transazione deve essere chiara e concordata tra le parti. Lo staff non rimborsa scambi fatti fuori dai canali ufficiali.",rule9Penalty:"Ban 30 giorni + restituzione forzata",rule10Title:"Rispetto dello Staff",rule10Desc:"Le decisioni dello staff sono definitive. È vietato contestare pubblicamente, impersonare membri dello staff o abusare di bug di permessi. Per reclami usa i canali ufficiali Discord.",rule10Penalty:"Valutazione caso per caso — fino a ban permanente",rulesWarningTitle:"⚠️ ATTENZIONE",rulesWarningDesc:"L'ignoranza del regolamento non giustifica la violazione. Lo staff si riserva il diritto di applicare sanzioni a propria discrezione in base alla gravità del comportamento. Le regole possono essere aggiornate in qualsiasi momento: è tua responsabilità rimanere aggiornato."},
-  en: {currency:"CURRENCY",language:"LANGUAGE",cart:"CART",playersOnline:"45 Players Online",discordServer:"Discord Server",membersOnline:"163 Members Online",banner:"DUCK VANILLA STORE — HALLOWEEN EDITION",navHome:"Home",navRanks:"Ranks",navShards:"Shards",navUnban:"UNBAN",navRules:"Rules",welcome:"Welcome",welcomeSub:"Enter your Minecraft username",usernamePlaceholder:"Minecraft username",welcomeHelp:"Your skin will appear automatically.",continue:"Continue",ranksTitle:"🎃 Buy a Rank 👻",ranksSub:"Choose the perfect rank",perk5Home:"5 Homes",perkKitVip:"VIP Kit",perkCustomRank:"Custom Rank",perk7Home:"7 Homes",perkKitNabboVip:"Nabbo + VIP Kit",perk10Home:"10 Homes",perkKitAll:"Nabbo + VIP + Duck Kit",badgePopular:"POPULAR",badgeTop:"TOP",badgeBestValue:"BEST VALUE",badgeBonus:"+10% BONUS",payPaypal:"Pay with PayPal",addCart:"Add to Cart",bankTransfer:"Bank Transfer",shardsTitle:"💎 Buy Shards 💎",shardsSub:"Get in-game currency instantly",unbanTitle:"🛡️ Request Unban 🛡️",unbanSub:"Get back to playing",unbanProduct:"FULL UNBAN",perkUnban1:"Permanent ban removal",perkUnban2:"Instant server access",perkUnban3:"Discord support",discountBtn:"Discount Code",discountTitle:"Discount Code",discountSub:"Enter your discount code.",applyCode:"Apply Code",cartTitle:"Your Cart",subtotal:"Subtotal:",discount20:"Discount (20%):",total:"TOTAL:",payCart:"Pay Cart",cartEmpty:"Your cart is empty 🛒",bankTitle:"Bank Transfer Details",bankInstruction:"Make the transfer to this IBAN:",bankNote:"Send the receipt on Discord.",close:"Close",paypalTitle:"Confirm Purchase",paypalSub:"You are about to buy:",product:"Product:",recipient:"Recipient:",discountLabel:"Discount:",goPaypal:"Go to PayPal",paypalNote:"You will be redirected to PayPal.",addedToCart:"added to cart!",loginRequired:"You must first log in!",welcomeBack:"Welcome",buyNow:"You can now proceed.",invalidCode:"✗ Invalid code.",validCode:"✓ Code applied! 20% discount active.",discountApplied:"-20% Discount Active",shard1k:"1,000",shard5k:"5,000",shard10k:"10,000",shard25k:"25,000",shard50k:"50,000",shard100k:"100,000",
-  rulesTitle:"📜 Rules 📜",rulesSub:"Read carefully to avoid sanctions",rule1Title:"No Alt Account",rule1Desc:"Using alternative accounts to bypass bans, mutes, restrictions or to gain unfair advantages is strictly forbidden. Any account linked to the same IP/device is considered an alt.",rule1Penalty:"Permanent ban on all linked accounts",rule2Title:"No Flooding (Water/Lava)",rule2Desc:"Flooding areas with water or lava buckets is forbidden, both for griefing and to slow down the server.",rule2Penalty:"7-day temporary ban + rollback of changes",rule3Title:"No Lag Machine",rule3Desc:"Building lag machines, infinite redstone clocks, abusive chunk loaders, unauthorized massive farms is forbidden.",rule3Penalty:"Permanent ban + immediate removal of the structure",rule4Title:"No Cheat / Hack / Mod",rule4Desc:"Using X-Ray, KillAura, Fly, Speed, AutoClicker, Reach, ESP or any unauthorized client modification is forbidden.",rule4Penalty:"Permanent ban without appeal",rule5Title:"Respect and Good Manners",rule5Desc:"Insulting, threatening, harassing or discriminating against other players in chat, voice or private is forbidden.",rule5Penalty:"24h mute → Progressive ban",rule6Title:"No Spam / Advertising",rule6Desc:"Spamming in chat, repeating the same message, or advertising other servers without staff authorization is forbidden.",rule6Penalty:"24h mute → 7-day ban",rule7Title:"No Griefing",rule7Desc:"Destroying, stealing or modifying other players' builds is forbidden, even outside protected zones.",rule7Penalty:"7-day ban + mandatory rollback",rule8Title:"No Dupe / Bug Abuse",rule8Desc:"Duplicating items (dupe) or exploiting game/server bugs to gain advantages is forbidden.",rule8Penalty:"Permanent ban + removal of duplicated items",rule9Title:"No Scam",rule9Desc:"Scamming other players during trades, auctions or agreements is forbidden.",rule9Penalty:"30-day ban + forced return",rule10Title:"Respect for Staff",rule10Desc:"Staff decisions are final. Publicly contesting, impersonating staff members is forbidden.",rule10Penalty:"Case-by-case evaluation — up to permanent ban",rulesWarningTitle:"⚠️ WARNING",rulesWarningDesc:"Ignorance of the rules does not justify a violation. Staff reserves the right to apply sanctions at their discretion based on the severity of the behavior."},
-  es: {currency:"MONEDA",language:"IDIOMA",cart:"CARRITO",playersOnline:"45 Jugadores Online",discordServer:"Servidor Discord",membersOnline:"163 Miembros Online",banner:"DUCK VANILLA STORE — HALLOWEEN EDITION",navHome:"Inicio",navRanks:"Rangos",navShards:"Shards",navUnban:"UNBAN",navRules:"Reglas",welcome:"Bienvenido",welcomeSub:"Ingresa tu nombre de Minecraft",usernamePlaceholder:"Usuario de Minecraft",welcomeHelp:"Tu skin aparecerá automáticamente.",continue:"Continuar",ranksTitle:"🎃 Comprar un Rango 👻",ranksSub:"Elige el rango perfecto",perk5Home:"5 Homes",perkKitVip:"Kit VIP",perkCustomRank:"Rango Personalizado",perk7Home:"7 Homes",perkKitNabboVip:"Kit Nabbo + VIP",perk10Home:"10 Homes",perkKitAll:"Kit Nabbo + VIP + Duck",badgePopular:"POPULAR",badgeTop:"TOP",badgeBestValue:"MEJOR PRECIO",badgeBonus:"+10% BONUS",payPaypal:"Pagar con PayPal",addCart:"Añadir al Carrito",bankTransfer:"Transferencia Bancaria",shardsTitle:"💎 Comprar Shards 💎",shardsSub:"Obtén moneda al instante",unbanTitle:"🛡️ Solicitar Unban 🛡️",unbanSub:"Vuelve a jugar",unbanProduct:"UNBAN COMPLETO",perkUnban1:"Eliminación de ban permanente",perkUnban2:"Acceso inmediato",perkUnban3:"Soporte Discord",discountBtn:"Código de Descuento",discountTitle:"Código de Descuento",discountSub:"Ingresa tu código.",applyCode:"Aplicar Código",cartTitle:"Tu Carrito",subtotal:"Subtotal:",discount20:"Descuento (20%):",total:"TOTAL:",payCart:"Pagar Carrito",cartEmpty:"Tu carrito está vacío 🛒",bankTitle:"Detalles de Transferencia",bankInstruction:"Realiza la transferencia a este IBAN:",bankNote:"Envía el recibo en Discord.",close:"Cerrar",paypalTitle:"Confirmar Compra",paypalSub:"Estás a punto de comprar:",product:"Producto:",recipient:"Destinatario:",discountLabel:"Descuento:",goPaypal:"Ir a PayPal",paypalNote:"Serás redirigido a PayPal.",addedToCart:"¡añadido al carrito!",loginRequired:"¡Debes iniciar sesión!",welcomeBack:"Bienvenido",buyNow:"Ahora puedes proceder.",invalidCode:"✗ Código inválido.",validCode:"✓ ¡Código aplicado! 20% descuento activo.",discountApplied:"Descuento -20% Activo",shard1k:"1.000",shard5k:"5.000",shard10k:"10.000",shard25k:"25.000",shard50k:"50.000",shard100k:"100.000",
-  rulesTitle:"📜 Reglamento 📜",rulesSub:"Lee atentamente para no recibir sanciones",rule1Title:"No Alt Account",rule1Desc:"Está severamente prohibido usar cuentas alternativas para evadir bans, mutes, restricciones u obtener ventajas ilegítimas.",rule1Penalty:"Ban permanente en todas las cuentas vinculadas",rule2Title:"No Flooding (Agua/Lava)",rule2Desc:"Está prohibido inundar zonas con cubos de agua o lava, tanto por griefing como para ralentizar el servidor.",rule2Penalty:"Ban temporal 7 días + rollback de los cambios",rule3Title:"No Lag Machine",rule3Desc:"Está prohibido construir lag machines, relojes de redstone infinitos, chunk loaders abusivos.",rule3Penalty:"Ban permanente + eliminación inmediata de la estructura",rule4Title:"No Cheat / Hack / Mod",rule4Desc:"Está prohibido usar X-Ray, KillAura, Fly, Speed, AutoClicker, Reach, ESP o cualquier modificación del cliente no autorizada.",rule4Penalty:"Ban permanente sin apelación",rule5Title:"Respeto y Buena Educación",rule5Desc:"Está prohibido insultar, amenazar, acosar o discriminar a otros jugadores en chat, voz o privado.",rule5Penalty:"Mute 24h → Ban progresivo",rule6Title:"No Spam / Publicidad",rule6Desc:"Está prohibido hacer spam en el chat, repetir el mismo mensaje o publicitar otros servidores sin autorización.",rule6Penalty:"Mute 24h → Ban 7 días",rule7Title:"No Griefing",rule7Desc:"Está prohibido destruir, robar o modificar las builds de otros, incluso fuera de zonas protegidas.",rule7Penalty:"Ban 7 días + rollback obligatorio",rule8Title:"No Dupe / Bug Abuse",rule8Desc:"Está prohibido duplicar items (dupe) o explotar bugs del juego/servidor para obtener ventajas.",rule8Penalty:"Ban permanente + eliminación de items duplicados",rule9Title:"No Scam",rule9Desc:"Está prohibido estafar a otros jugadores durante intercambios, subastas o acuerdos.",rule9Penalty:"Ban 30 días + devolución forzada",rule10Title:"Respeto al Staff",rule10Desc:"Las decisiones del staff son definitivas. Está prohibido contestar públicamente, hacerse pasar por miembros del staff.",rule10Penalty:"Evaluación caso por caso — hasta ban permanente",rulesWarningTitle:"⚠️ ATENCIÓN",rulesWarningDesc:"El desconocimiento del reglamento no justifica la violación. El staff se reserva el derecho de aplicar sanciones a su discreción según la gravedad del comportamiento."},
-  fr: {currency:"DEVISE",language:"LANGUE",cart:"PANIER",playersOnline:"45 Joueurs en ligne",discordServer:"Serveur Discord",membersOnline:"163 Membres en ligne",banner:"DUCK VANILLA STORE — HALLOWEEN EDITION",navHome:"Accueil",navRanks:"Rangs",navShards:"Shards",navUnban:"UNBAN",navRules:"Règles",welcome:"Bienvenue",welcomeSub:"Entrez votre pseudo Minecraft",usernamePlaceholder:"Pseudo Minecraft",welcomeHelp:"Votre skin apparaîtra automatiquement.",continue:"Continuer",ranksTitle:"🎃 Acheter un Rang 👻",ranksSub:"Choisissez le rang parfait",perk5Home:"5 Homes",perkKitVip:"Kit VIP",perkCustomRank:"Rang Personnalisé",perk7Home:"7 Homes",perkKitNabboVip:"Kit Nabbo + VIP",perk10Home:"10 Homes",perkKitAll:"Kit Nabbo + VIP + Duck",badgePopular:"POPULAIRE",badgeTop:"TOP",badgeBestValue:"MEILLEUR PRIX",badgeBonus:"+10% BONUS",payPaypal:"Payer avec PayPal",addCart:"Ajouter au Panier",bankTransfer:"Virement Bancaire",shardsTitle:"💎 Acheter des Shards 💎",shardsSub:"Obtenez la monnaie instantanément",unbanTitle:"🛡️ Demander Unban 🛡️",unbanSub:"Rejouez sur le réseau",unbanProduct:"UNBAN COMPLET",perkUnban1:"Suppression du ban permanent",perkUnban2:"Accès immédiat",perkUnban3:"Support Discord",discountBtn:"Code Promo",discountTitle:"Code Promo",discountSub:"Entrez votre code.",applyCode:"Appliquer",cartTitle:"Votre Panier",subtotal:"Sous-total :",discount20:"Réduction (20%) :",total:"TOTAL :",payCart:"Payer le Panier",cartEmpty:"Votre panier est vide 🛒",bankTitle:"Détails du Virement",bankInstruction:"Effectuez le virement à cet IBAN :",bankNote:"Envoyez le reçu sur Discord.",close:"Fermer",paypalTitle:"Confirmer l'Achat",paypalSub:"Vous allez acheter :",product:"Produit :",recipient:"Destinataire :",discountLabel:"Réduction :",goPaypal:"Aller sur PayPal",paypalNote:"Vous serez redirigé vers PayPal.",addedToCart:"ajouté au panier !",loginRequired:"Vous devez d'abord vous connecter !",welcomeBack:"Bienvenue",buyNow:"Vous pouvez maintenant effectuer vos achats.",invalidCode:"✗ Code invalide.",validCode:"✓ Code appliqué ! Réduction 20% active.",discountApplied:"Réduction -20% Active",shard1k:"1 000",shard5k:"5 000",shard10k:"10 000",shard25k:"25 000",shard50k:"50 000",shard100k:"100 000",
-  rulesTitle:"📜 Règlement 📜",rulesSub:"Lisez attentivement pour éviter les sanctions",rule1Title:"No Alt Account",rule1Desc:"Il est strictement interdit d'utiliser des comptes alternatifs pour contourner les bans, mutes, restrictions.",rule1Penalty:"Ban permanent sur tous les comptes liés",rule2Title:"No Flooding (Eau/Lave)",rule2Desc:"Il est interdit d'inonder les zones avec des seaux d'eau ou de lave.",rule2Penalty:"Ban temporaire 7 jours + rollback des modifications",rule3Title:"No Lag Machine",rule3Desc:"Il est interdit de construire des lag machines, des horloges redstone infinies.",rule3Penalty:"Ban permanent + suppression immédiate de la structure",rule4Title:"No Cheat / Hack / Mod",rule4Desc:"Il est interdit d'utiliser X-Ray, KillAura, Fly, Speed, AutoClicker, Reach, ESP.",rule4Penalty:"Ban permanent sans appel",rule5Title:"Respect et Bonne Éducation",rule5Desc:"Il est interdit d'insulter, menacer, harceler ou discriminer d'autres joueurs.",rule5Penalty:"Mute 24h → Ban progressif",rule6Title:"No Spam / Publicité",rule6Desc:"Il est interdit de spammer le chat ou faire de la publicité pour d'autres serveurs sans autorisation.",rule6Penalty:"Mute 24h → Ban 7 jours",rule7Title:"No Griefing",rule7Desc:"Il est interdit de détruire, voler ou modifier les builds des autres.",rule7Penalty:"Ban 7 jours + rollback obligatoire",rule8Title:"No Dupe / Bug Abuse",rule8Desc:"Il est interdit de dupliquer des items (dupe) ou d'exploiter des bugs.",rule8Penalty:"Ban permanent + suppression des items dupliqués",rule9Title:"No Scam",rule9Desc:"Il est interdit d'escroquer d'autres joueurs lors d'échanges.",rule9Penalty:"Ban 30 jours + restitution forcée",rule10Title:"Respect du Staff",rule10Desc:"Les décisions du staff sont définitives. Il est interdit de contester publiquement.",rule10Penalty:"Évaluation au cas par cas — jusqu'au ban permanent",rulesWarningTitle:"⚠️ ATTENTION",rulesWarningDesc:"L'ignorance du règlement ne justifie pas la violation. Le staff se réserve le droit d'appliquer des sanctions à sa discrétion."},
-  de: {currency:"WÄHRUNG",language:"SPRACHE",cart:"WARENKORB",playersOnline:"45 Spieler online",discordServer:"Discord Server",membersOnline:"163 Mitglieder online",banner:"DUCK VANILLA STORE — HALLOWEEN EDITION",navHome:"Start",navRanks:"Ränge",navShards:"Shards",navUnban:"UNBAN",navRules:"Regeln",welcome:"Willkommen",welcomeSub:"Gib deinen Minecraft-Namen ein",usernamePlaceholder:"Minecraft Benutzername",welcomeHelp:"Dein Skin erscheint automatisch.",continue:"Weiter",ranksTitle:"🎃 Einen Rang kaufen 👻",ranksSub:"Wähle den perfekten Rang",perk5Home:"5 Homes",perkKitVip:"VIP Kit",perkCustomRank:"Eigener Rang",perk7Home:"7 Homes",perkKitNabboVip:"Nabbo + VIP Kit",perk10Home:"10 Homes",perkKitAll:"Nabbo + VIP + Duck Kit",badgePopular:"BELIEBT",badgeTop:"TOP",badgeBestValue:"BESTER PREIS",badgeBonus:"+10% BONUS",payPaypal:"Mit PayPal bezahlen",addCart:"Zum Warenkorb",bankTransfer:"Banküberweisung",shardsTitle:"💎 Shards kaufen 💎",shardsSub:"Erhalte In-Game-Währung sofort",unbanTitle:"🛡️ Unban anfordern 🛡️",unbanSub:"Spiele sofort wieder",unbanProduct:"KOMPLETTER UNBAN",perkUnban1:"Permanente Bann-Entfernung",perkUnban2:"Sofortiger Zugang",perkUnban3:"Discord-Support",discountBtn:"Rabattcode",discountTitle:"Rabattcode",discountSub:"Gib deinen Rabattcode ein.",applyCode:"Code anwenden",cartTitle:"Dein Warenkorb",subtotal:"Zwischensumme:",discount20:"Rabatt (20%):",total:"GESAMT:",payCart:"Warenkorb bezahlen",cartEmpty:"Dein Warenkorb ist leer 🛒",bankTitle:"Banküberweisung Details",bankInstruction:"Überweise auf diese IBAN:",bankNote:"Sende die Quittung auf Discord.",close:"Schließen",paypalTitle:"Kauf bestätigen",paypalSub:"Du kaufst gleich:",product:"Produkt:",recipient:"Empfänger:",discountLabel:"Rabatt:",goPaypal:"Zu PayPal",paypalNote:"Du wirst zu PayPal weitergeleitet.",addedToCart:"zum Warenkorb hinzugefügt!",loginRequired:"Du musst dich zuerst einloggen!",welcomeBack:"Willkommen",buyNow:"Du kannst jetzt einkaufen.",invalidCode:"✗ Ungültiger Code.",validCode:"✓ Code angewendet! 20% Rabatt aktiv.",discountApplied:"-20% Rabatt Aktiv",shard1k:"1.000",shard5k:"5.000",shard10k:"10.000",shard25k:"25.000",shard50k:"50.000",shard100k:"100.000",
-  rulesTitle:"📜 Regeln 📜",rulesSub:"Lies sorgfältig, um Sanktionen zu vermeiden",rule1Title:"Kein Alt-Account",rule1Desc:"Die Verwendung alternativer Accounts zur Umgehung von Bans ist streng verboten.",rule1Penalty:"Permanenter Bann auf allen verknüpften Accounts",rule2Title:"Kein Flooding (Wasser/Lava)",rule2Desc:"Das Überfluten von Bereichen mit Wasser- oder Lavaeimern ist verboten.",rule2Penalty:"7 Tage temporärer Bann + Rollback der Änderungen",rule3Title:"Keine Lag-Machine",rule3Desc:"Der Bau von Lag-Machines oder unendlichen Redstone-Clocks ist verboten.",rule3Penalty:"Permanenter Bann + sofortige Entfernung der Struktur",rule4Title:"Keine Cheats / Hacks / Mods",rule4Desc:"Die Verwendung von X-Ray, KillAura, Fly, Speed, AutoClicker, Reach, ESP ist verboten.",rule4Penalty:"Permanenter Bann ohne Einspruch",rule5Title:"Respekt und gute Manieren",rule5Desc:"Das Beleidigen, Bedrohen, Belästigen oder Diskriminieren anderer Spieler ist verboten.",rule5Penalty:"24h Mute → progressiver Bann",rule6Title:"Kein Spam / Werbung",rule6Desc:"Spam im Chat oder Werbung für andere Server ohne Genehmigung ist verboten.",rule6Penalty:"24h Mute → 7 Tage Bann",rule7Title:"Kein Griefing",rule7Desc:"Das Zerstören, Stehlen oder Verändern der Builds anderer ist verboten.",rule7Penalty:"7 Tage Bann + obligatorischer Rollback",rule8Title:"Kein Dupe / Bug Abuse",rule8Desc:"Das Duplizieren von Items oder das Ausnutzen von Bugs ist verboten.",rule8Penalty:"Permanenter Bann + Entfernung duplizierter Items",rule9Title:"Kein Scam",rule9Desc:"Das Betrügen anderer Spieler bei Trades ist verboten.",rule9Penalty:"30 Tage Bann + erzwungene Rückgabe",rule10Title:"Respekt vor dem Staff",rule10Desc:"Die Entscheidungen des Staffs sind endgültig.",rule10Penalty:"Einzelfallbewertung — bis zu permanentem Bann",rulesWarningTitle:"⚠️ ACHTUNG",rulesWarningDesc:"Unkenntnis der Regeln rechtfertigt keinen Verstoß. Der Staff behält sich das Recht vor, Sanktionen nach eigenem Ermessen zu verhängen."}
-};
-
-const langFlags = {it:'🇮🇹', en:'🇬🇧', es:'🇪🇸', fr:'🇫🇷', de:'🇩🇪'};
-const langNames = {it:'ITALIAN', en:'ENGLISH', es:'ESPAÑOL', fr:'FRANÇAIS', de:'DEUTSCH'};
-
-const shardsProducts = [
-  { name:"1.000 Shards", amount:"shard1k", price:3, color:"shard-sky", icon:"7dd3fc" },
-  { name:"5.000 Shards", amount:"shard5k", price:12, color:"shard-blue", icon:"60a5fa" },
-  { name:"10.000 Shards", amount:"shard10k", price:22, color:"shard-purple", icon:"a855f7", badge:"badgeBestValue" },
-  { name:"25.000 Shards", amount:"shard25k", price:45, color:"shard-orange", icon:"f59e0b" },
-  { name:"50.000 Shards", amount:"shard50k", price:80, color:"shard-red", icon:"ef4444" },
-  { name:"100.000 Shards", amount:"shard100k", price:150, color:"shard-gold", icon:"fbbf24", badge:"badgeBonus" }
-];
-
-function t(key){ return (translations[currentLang] && translations[currentLang][key]) || translations.it[key] || key; }
-
-function renderShards(){
-  const grid = document.getElementById('shardsGrid');
-  if(!grid) return;
-  grid.innerHTML = '';
-  shardsProducts.forEach(function(p){
-    const card = document.createElement('div');
-    card.className = 'product-card ' + p.color;
-    let html = '';
-    if(p.badge) html += '<span class="badge" data-i18n="' + p.badge + '">' + t(p.badge) + '</span>';
-    html += '<img class="rank-image" src="https://i.pinimg.com/1200x/89/d4/52/89d452a2257b95abfb798111d7b65fef.jpg" alt="Shards" onerror="this.src=\'https://placehold.co/90x90/' + p.icon + '/000?text=' + p.amount + '\'">';
-    html += '<h3>' + p.amount.toUpperCase() + '</h3>';
-    html += '<p class="price" data-price="' + p.price + '"><span class="new" data-base="' + p.price + '"></span></p>';
-    html += '<button class="buy-btn" onclick="openPaypal(\'' + p.name + '\', ' + p.price + ')"><i class="fa-brands fa-paypal"></i> ' + t('payPaypal') + '</button>';
-    html += '<button class="revolut-btn" onclick="openRevolut(\'' + p.name + '\', ' + p.price + ')"><i class="fa-solid fa-r"></i> Paga con Revolut</button>';
-    html += '<button class="cart-btn" onclick="addToCart(\'' + p.name + '\', ' + p.price + ')"><i class="fa-solid fa-cart-plus"></i> ' + t('addCart') + '</button>';
-    html += '<div class="revtag-box">oppure paga tramite il mio Revtag! <a href="' + REVOLUT_LINK + '" target="_blank">' + REVTAG + '</a></div>';
-    card.innerHTML = html;
-    grid.appendChild(card);
-  });
+function showSection(id, btn){
+  document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+  const target = document.getElementById('section-' + id);
+  if(target) target.classList.add('active');
+  document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+  if(btn) btn.classList.add('active');
 }
 
-function applyTranslations(){
-  document.querySelectorAll('[data-i18n]').forEach(function(el){
-    const key = el.getAttribute('data-i18n');
-    if(translations[currentLang] && translations[currentLang][key]) el.textContent = translations[currentLang][key];
-  });
-  document.querySelectorAll('[data-i18n-ph]').forEach(function(el){
-    const key = el.getAttribute('data-i18n-ph');
-    if(translations[currentLang] && translations[currentLang][key]) el.placeholder = translations[currentLang][key];
-  });
-  const flagEl = document.getElementById('langFlag');
-  const labelEl = document.getElementById('langLabel');
-  if(flagEl) flagEl.textContent = langFlags[currentLang];
-  if(labelEl) labelEl.textContent = langNames[currentLang];
-  renderShards();
-  refreshPrices();
-  updateCartUI();
-  if(cart.length > 0) renderCart();
-}
-
-function formatPrice(eurPrice){
-  const converted = eurPrice * currentCurrency.rate;
-  const formatted = converted.toFixed(2).replace('.', ',');
-  if(currentCurrency.code === 'CHF') return currentCurrency.symbol + ' ' + formatted;
-  if(currentCurrency.code === 'PLN') return formatted + ' ' + currentCurrency.symbol;
-  return currentCurrency.symbol + ' ' + formatted;
-}
-function refreshPrices(){
-  document.querySelectorAll('.price').forEach(function(el){
-    const base = parseFloat(el.dataset.price);
-    const newSpan = el.querySelector('.new');
-    if(!newSpan) return;
-    if(discountApplied){
-      const discounted = base * (1 - DISCOUNT_PERCENT/100);
-      newSpan.innerHTML = '<span class="old">' + formatPrice(base) + '</span>' + formatPrice(discounted);
-    } else {
-      newSpan.innerHTML = formatPrice(base);
-    }
-  });
-}
-
-function showSection(sectionId, btnElement){
-  document.querySelectorAll('.section').forEach(function(sec){ sec.classList.add('hidden'); sec.classList.remove('active-section'); });
-  const active = document.getElementById(sectionId);
-  if(active){ active.classList.remove('hidden'); active.classList.add('active-section'); }
-  document.querySelectorAll('.nav-btn').forEach(function(btn){ btn.classList.remove('active'); });
-  if(btnElement) btnElement.classList.add('active');
-}
-
-function updateFace(){
-  const name = document.getElementById('username').value.trim();
-  const face = document.getElementById('facePreview');
-  if(name.length >= 1) face.src = 'https://minotar.net/helm/' + encodeURIComponent(name) + '/36.png';
-  else face.src = 'https://minotar.net/helm/Steve/36.png';
-}
-
-function login(){
-  const username = document.getElementById('username').value.trim();
-  if(username === ""){ alert(t('loginRequired')); return; }
-  document.getElementById('topFace').src = 'https://minotar.net/helm/' + encodeURIComponent(username) + '/22.png';
-  document.getElementById('topName').textContent = username.toUpperCase();
-  const heroCenter = document.getElementById('heroCenter');
-  const userHero = document.getElementById('userHero');
-  const userAvatarBig = document.getElementById('userAvatarBig');
-  const userNameBig = document.getElementById('userNameBig');
-  if(heroCenter && userHero && userAvatarBig && userNameBig){
-    userAvatarBig.src = 'https://minotar.net/helm/' + encodeURIComponent(username) + '/110.png';
-    userNameBig.textContent = username;
-    userHero.classList.add('visible');
-    heroCenter.classList.add('user-logged');
+function saveUsername(){
+  const input = document.getElementById('usernameInput');
+  const value = input.value.trim();
+  if(!value){
+    showToast('Inserisci un username');
+    return;
   }
-  try { localStorage.setItem('dv_username', username); } catch(e) {}
-  alert(t('welcomeBack') + ' ' + username + '! ' + t('buyNow'));
-  showSection('ranks', document.querySelectorAll('.nav-btn')[1]);
+  username = value;
+  document.getElementById('topUser').textContent = value;
+  showToast('Benvenuto, ' + value);
 }
 
-function openDiscount(){
-  document.getElementById('discountModal').style.display = 'flex';
-  document.getElementById('discountMsg').textContent = '';
-  document.getElementById('discountInput').value = '';
-}
-function applyDiscount(){
-  const code = document.getElementById('discountInput').value.trim().toUpperCase();
-  const msg = document.getElementById('discountMsg');
-  if(code === DISCOUNT_CODE){
-    discountApplied = true;
-    msg.style.color = '#4ade80';
-    msg.textContent = t('validCode');
-    document.getElementById('discountBtn').classList.add('applied');
-    const dLabel = document.getElementById('discountLabel');
-    dLabel.textContent = t('discountApplied');
-    dLabel.removeAttribute('data-i18n');
-    refreshPrices();
-    updateCartUI();
-    setTimeout(function(){ closeModal('discountModal'); }, 1500);
-  } else {
-    msg.style.color = 'var(--blood-bright)';
-    msg.textContent = t('invalidCode');
-  }
+function copyIP(){
+  const ip = 'play.orbysmc.it';
+  navigator.clipboard.writeText(ip).then(() => {
+    showToast('IP copiato: ' + ip);
+  }).catch(() => {
+    showToast('IP: ' + ip);
+  });
 }
 
 function addToCart(name, price){
-  const finalPrice = discountApplied ? price * (1 - DISCOUNT_PERCENT/100) : price;
-  const existing = cart.find(function(item){ return item.name === name; });
-  if(existing){ existing.qty += 1; existing.price = finalPrice; }
-  else cart.push({name: name, basePrice: price, price: finalPrice, qty: 1});
-  updateCartUI();
-  showToast('✓ ' + name + ' ' + t('addedToCart'));
+  const existing = cart.find(item => item.name === name);
+  if(existing){
+    existing.qty += 1;
+  } else {
+    cart.push({name, price, qty: 1});
+  }
+  updateCart();
+  showToast(name + ' aggiunto');
 }
-function removeFromCart(index){ cart.splice(index, 1); updateCartUI(); renderCart(); }
-function updateCartUI(){
-  const totalQty = cart.reduce(function(sum, item){ return sum + item.qty; }, 0);
-  const badge = document.getElementById('cartBadge');
-  if(totalQty > 0){ badge.style.display = 'inline-block'; badge.textContent = totalQty; }
-  else badge.style.display = 'none';
-  updateCartSummary();
+
+function updateCart(){
+  const count = cart.reduce((sum, item) => sum + item.qty, 0);
+  const badge = document.getElementById('cartCount');
+  if(count > 0){
+    badge.style.display = 'inline-block';
+    badge.textContent = count;
+  } else {
+    badge.style.display = 'none';
+  }
+  renderCart();
 }
-function updateCartSummary(){
-  const subtotal = cart.reduce(function(sum, item){ return sum + (item.basePrice * item.qty); }, 0);
-  const total = cart.reduce(function(sum, item){ return sum + (item.price * item.qty); }, 0);
-  const discount = subtotal - total;
-  document.getElementById('cartSubtotal').textContent = formatPrice(subtotal);
-  if(discount > 0){
-    document.getElementById('cartDiscountRow').style.display = 'flex';
-    document.getElementById('cartDiscount').textContent = '- ' + formatPrice(discount);
-  } else document.getElementById('cartDiscountRow').style.display = 'none';
-  document.getElementById('cartTotal').textContent = formatPrice(total);
-}
+
 function renderCart(){
   const list = document.getElementById('cartList');
+  const summary = document.getElementById('cartSummary');
+  const checkoutBtn = document.getElementById('checkoutBtn');
   if(cart.length === 0){
-    list.innerHTML = '<li class="cart-empty">' + t('cartEmpty') + '</li>';
-    document.getElementById('cartSummary').style.display = 'none';
-    document.getElementById('checkoutBtn').style.display = 'none';
+    list.innerHTML = '<li class="cart-empty">Il carrello è vuoto</li>';
+    summary.style.display = 'none';
+    checkoutBtn.style.display = 'none';
     return;
   }
   list.innerHTML = '';
-  cart.forEach(function(item, index){
+  cart.forEach((item, index) => {
     const li = document.createElement('li');
-    li.innerHTML = '<div><div class="cart-item-name">' + item.name + (item.qty > 1 ? ' x' + item.qty : '') + '</div><div class="cart-item-price">' + formatPrice(item.price * item.qty) + '</div></div><button class="remove-item" onclick="removeFromCart(' + index + ')">×</button>';
+    li.className = 'cart-item';
+    li.innerHTML = `
+      <div class="cart-item-info">
+        <div class="cart-item-name">${item.name}${item.qty > 1 ? ' x' + item.qty : ''}</div>
+        <div class="cart-item-price">${(item.price * item.qty).toFixed(2).replace('.', ',')} €</div>
+      </div>
+      <button class="remove-btn" onclick="removeFromCart(${index})">
+        <i class="fa-solid fa-times"></i>
+      </button>
+    `;
     list.appendChild(li);
   });
-  document.getElementById('cartSummary').style.display = 'block';
-  document.getElementById('checkoutBtn').style.display = 'flex';
-  updateCartSummary();
-}
-function openCart(){ renderCart(); document.getElementById('cartModal').style.display = 'flex'; }
-function checkoutCart(){
-  if(cart.length === 0) return;
-  const total = cart.reduce(function(sum, item){ return sum + (item.price * item.qty); }, 0);
-  let listaProdotti = cart.map(function(item){ return item.name + (item.qty > 1 ? ' x' + item.qty : ''); }).join(', ');
-  inviaNotificaDiscord(listaProdotti, total, 'Carrello Multiplo');
-  window.open('https://www.paypal.com/paypalme/mrducky99/' + total.toFixed(2) + 'EUR', '_blank');
-  closeModal('cartModal');
+  const total = cart.reduce((sum, item) => sum + item.price * item.qty, 0);
+  document.getElementById('cartTotal').textContent = total.toFixed(2).replace('.', ',') + ' €';
+  summary.style.display = 'block';
+  checkoutBtn.style.display = 'flex';
 }
 
-function inviaNotificaDiscord(prodotto, prezzo, metodo){
-  let utente = 'Ospite';
-  try { const s = localStorage.getItem('dv_username'); if(s) utente = s; } catch(e) {}
-  fetch('webhook.php', {
-    method: 'POST',
-    headers: {'Content-Type': 'application/json'},
-    body: JSON.stringify({prodotto: prodotto, prezzo: prezzo, utente: utente, metodo: metodo})
-  }).catch(function(e){ console.log('Errore webhook:', e); });
+function removeFromCart(index){
+  cart.splice(index, 1);
+  updateCart();
+}
+
+function openCart(){
+  renderCart();
+  document.getElementById('cartModal').classList.add('open');
+}
+
+function closeCart(){
+  document.getElementById('cartModal').classList.remove('open');
+}
+
+function checkout(){
+  if(cart.length === 0) return;
+  showToast('Reindirizzamento al pagamento...');
 }
 
 function showToast(msg){
+  const existing = document.querySelector('.toast');
+  if(existing) existing.remove();
   const toast = document.createElement('div');
   toast.className = 'toast';
-  toast.style.cssText = 'position:fixed;bottom:100px;right:25px;background:linear-gradient(135deg,var(--pumpkin),var(--blood));color:#fff;padding:14px 22px;border-radius:10px;font-weight:800;font-size:13px;z-index:200;box-shadow:0 8px 25px rgba(255,117,24,.5);';
   toast.textContent = msg;
   document.body.appendChild(toast);
-  setTimeout(function(){ toast.style.opacity = '0'; toast.style.transition = 'opacity .3s'; setTimeout(function(){ toast.remove(); }, 300); }, 2000);
+  setTimeout(() => toast.remove(), 2500);
 }
 
-function openPaypal(name, price){
-  const finalPrice = discountApplied ? price * (1 - DISCOUNT_PERCENT/100) : price;
-  currentProduct = { name: name, price: finalPrice, originalPrice: price };
-  document.getElementById('ppName').textContent = name;
-  document.getElementById('ppPrice').textContent = formatPrice(finalPrice);
-  if(discountApplied){
-    document.getElementById('ppDiscountRow').style.display = 'flex';
-    document.getElementById('ppDiscount').textContent = '- ' + formatPrice(price - finalPrice);
-  } else document.getElementById('ppDiscountRow').style.display = 'none';
-  document.getElementById('paypalModal').style.display = 'flex';
-}
-function confirmPaypal(){
-  inviaNotificaDiscord(currentProduct.name, currentProduct.price, 'PayPal');
-  window.open('https://www.paypal.com/paypalme/mrducky99/' + currentProduct.price.toFixed(2) + 'EUR', '_blank');
-  closeModal('paypalModal');
-}
-
-function openRevolut(name, price){
-  const finalPrice = discountApplied ? price * (1 - DISCOUNT_PERCENT/100) : price;
-  inviaNotificaDiscord(name, finalPrice, 'Revolut');
-  window.open("https://revolut.me/apioli", "_blank");
-  showToast('💙 Invia ' + formatPrice(finalPrice) + ' su Revolut — causale: "' + name + '"');
-}
-
-function closeModal(id){ document.getElementById(id).style.display = 'none'; }
-
-function openAdmin(){
-  document.getElementById('adminPanel').classList.add('open');
-  document.body.style.overflow = 'hidden';
-}
-function closeAdmin(){
-  document.getElementById('adminPanel').classList.remove('open');
-  document.body.style.overflow = '';
-}
-function doAdminLogin(){
-  const pass = document.getElementById('adminPassword').value;
-  const errEl = document.getElementById('adminLoginError');
-  if(pass === ADMIN_PASSWORD){
-    adminLoggedIn = true;
-    document.getElementById('adminLogin').style.display = 'none';
-    document.getElementById('adminContent').style.display = 'block';
-    logAdmin("Login effettuato con successo", "ok");
-  } else {
-    errEl.style.display = 'block';
-    errEl.textContent = '✗ Password errata';
-    logAdmin("Tentativo di login fallito", "error");
-  }
-}
-function logAdmin(msg, type){
-  const log = document.getElementById('adminLog');
-  const time = new Date().toLocaleTimeString('it-IT');
-  const cls = 'log-' + (type || 'info');
-  const div = document.createElement('div');
-  div.innerHTML = '<span class="log-time">[' + time + ']</span><span class="' + cls + '">' + msg + '</span>';
-  log.appendChild(div);
-  log.scrollTop = log.scrollHeight;
-}
-
-async function sendAdminAction(action, data){
-  if(!adminLoggedIn){ alert('Devi prima effettuare il login'); return; }
-  data = data || {};
-  data.action = action;
-  data.password = ADMIN_PASSWORD;
-  try {
-    const res = await fetch('admin.php', {
-      method: 'POST',
-      headers: {'Content-Type': 'application/json'},
-      body: JSON.stringify(data)
-    });
-    const json = await res.json();
-    if(json.success){
-      logAdmin(json.message || ('Azione ' + action + ' eseguita'), 'ok');
-      return json;
-    } else {
-      logAdmin('Errore: ' + (json.error || 'sconosciuto'), 'error');
-      return json;
-    }
-  } catch(e) {
-    logAdmin('Errore di rete: ' + e.message, 'error');
-    return {success:false, error:e.message};
-  }
-}
-
-function sendBroadcast(){
-  const msg = document.getElementById('broadcastMsg').value.trim();
-  if(!msg){ alert('Inserisci un messaggio'); return; }
-  sendAdminAction('broadcast', {message: msg});
-  document.getElementById('broadcastMsg').value = '';
-}
-
-async function loadPlayers(){
-  const json = await sendAdminAction('list_players');
-  if(json && json.success){
-    document.getElementById('playersList').innerHTML = '<div style="background:#0a0508;padding:12px;border-radius:8px;font-family:monospace;">' + (json.response || 'Nessun dato') + '</div>';
-  }
-}
-
-function giveawayShards(){
-  const amount = parseInt(document.getElementById('giveawayAmount').value) || 100;
-  sendAdminAction('custom_command', {command: 'shards give @a ' + amount});
-  logAdmin("Giveaway di " + amount + " shards a tutti!", "event");
-}
-
-function playerAction(action){
-  const player = document.getElementById('actionPlayer').value.trim();
-  if(!player){ alert('Inserisci il nome del giocatore'); return; }
-  if(action === 'kick') sendAdminAction('kick', {player: player, reason: 'Kicked by admin'});
-  else if(action === 'ban') sendAdminAction('ban', {player: player, reason: 'Banned by admin'});
-  else if(action === 'unban') sendAdminAction('unban', {player: player});
-  else if(action === 'gamemode') sendAdminAction('custom_command', {command: 'gamemode creative ' + player});
-}
-
-function executeCustomCmd(){
-  const cmd = document.getElementById('customCmd').value.trim();
-  if(!cmd){ alert('Inserisci un comando'); return; }
-  sendAdminAction('custom_command', {command: cmd});
-  document.getElementById('customCmd').value = '';
-}
-
-function triggerEvent(type){
-  const overlay = document.getElementById('duckEventOverlay');
-  const title = document.getElementById('duckEventTitle');
-  const subtitle = document.getElementById('duckEventSubtitle');
-
-  if(type === 'duck_rain'){
-    title.textContent = '🦆 PIOGGIA DI PAPERE 🦆';
-    subtitle.textContent = 'Le papere stanno invadendo il server!';
-    sendAdminAction('custom_command', {command: 'say §e§l🦆 EVENTO PAPERA ATTIVO! Guarda il cielo!'});
-    spawnDuckRain();
-    playDuckSound();
-  } else if(type === 'shard_bonus'){
-    title.textContent = '💎 SHARD BONUS 💎';
-    subtitle.textContent = 'Shards gratis per tutti i giocatori!';
-    sendAdminAction('custom_command', {command: 'say §b§l💎 SHARD BONUS! Tutti ricevono 100 shards!'});
-    sendAdminAction('custom_command', {command: 'shards give @a 100'});
-  } else if(type === 'double_xp'){
-    title.textContent = '⚡ DOUBLE XP ⚡';
-    subtitle.textContent = 'XP doppi per i prossimi 30 minuti!';
-    sendAdminAction('custom_command', {command: 'say §a§l⚡ DOUBLE XP ATTIVO PER 30 MINUTI!'});
-  } else if(type === 'treasure_hunt'){
-    title.textContent = '🏆 CACCIA AL TESORO 🏆';
-    subtitle.textContent = 'Un tesoro è stato nascosto nel mondo!';
-    sendAdminAction('custom_command', {command: 'say §6§l🏆 CACCIA AL TESORO! Chi trova il bottino vince!'});
-  }
-
-  overlay.classList.add('active');
-  logAdmin('Evento attivato: ' + type, 'event');
-  setTimeout(function(){ overlay.classList.remove('active'); }, 4000);
-}
-
-function spawnDuckRain(){
-  const emojis = ['🦆','🦆','🦆','🐤','🦆','🎃','👻','🦇'];
-  for(let i = 0; i < 40; i++){
-    setTimeout(function(){
-      const duck = document.createElement('div');
-      duck.className = 'duck-flyer';
-      duck.textContent = emojis[Math.floor(Math.random() * emojis.length)];
-      duck.style.top = (Math.random() * 80) + 'vh';
-      duck.style.left = '-100px';
-      duck.style.fontSize = (40 + Math.random() * 60) + 'px';
-      duck.style.animationDuration = (3 + Math.random() * 3) + 's';
-      document.body.appendChild(duck);
-      setTimeout(function(){ duck.remove(); }, 6000);
-    }, i * 120);
-  }
-}
-
-function playDuckSound(){
-  try {
-    const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-    const notes = [
-      {freq: 800, time: 0},{freq: 1000, time: 0.15},{freq: 1200, time: 0.3},
-      {freq: 900, time: 0.5},{freq: 700, time: 0.7}
-    ];
-    notes.forEach(function(n){
-      const osc = audioCtx.createOscillator();
-      const gain = audioCtx.createGain();
-      osc.type = 'sawtooth';
-      osc.frequency.value = n.freq;
-      osc.connect(gain);
-      gain.connect(audioCtx.destination);
-      gain.gain.setValueAtTime(0.08, audioCtx.currentTime + n.time);
-      gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + n.time + 0.12);
-      osc.start(audioCtx.currentTime + n.time);
-      osc.stop(audioCtx.currentTime + n.time + 0.12);
-    });
-  } catch(e) { console.log('Audio non disponibile:', e); }
-}
-
-// Pipistrelli volanti Halloween
-setInterval(function(){
-  const bat = document.createElement('div');
-  bat.className = 'flying-bat';
-  bat.textContent = Math.random() > 0.5 ? '🦇' : '👻';
-  bat.style.top = (Math.random() * 70) + 'vh';
-  bat.style.left = '-100px';
-  bat.style.animationDuration = (6 + Math.random() * 5) + 's';
-  bat.style.animationName = 'flyBat';
-  bat.style.animationTimingFunction = 'linear';
-  bat.style.animationFillMode = 'forwards';
-  document.body.appendChild(bat);
-  setTimeout(function(){ bat.remove(); }, 12000);
-}, 4000);
-
-document.addEventListener('keydown', function(e){
-  if(e.ctrlKey && (e.key === 'A' || e.key === 'a')){
-    e.preventDefault();
-    const toggle = document.getElementById('adminToggle');
-    toggle.classList.toggle('visible');
-    if(toggle.classList.contains('visible')){
-      showToast('🎃 Admin panel sbloccato!');
-    }
+document.addEventListener('click', e => {
+  const langBtn = document.getElementById('langBtn');
+  const dropdown = document.getElementById('langDropdown');
+  if(langBtn && dropdown && !langBtn.contains(e.target)){
+    dropdown.classList.remove('open');
   }
 });
 
-document.addEventListener('DOMContentLoaded', function(){
-  const userInput = document.getElementById('username');
-  const group = document.getElementById('userInputGroup');
-  if(userInput && group){
-    userInput.addEventListener('focus', function(){ group.classList.add('focused'); });
-    userInput.addEventListener('blur', function(){ group.classList.remove('focused'); });
-  }
+document.getElementById('langBtn').addEventListener('click', e => {
+  e.stopPropagation();
+  document.getElementById('langDropdown').classList.toggle('open');
+});
 
-  try {
-    const savedUser = localStorage.getItem('dv_username');
-    if(savedUser){
-      document.getElementById('username').value = savedUser;
-      document.getElementById('facePreview').src = 'https://minotar.net/helm/' + encodeURIComponent(savedUser) + '/36.png';
-      document.getElementById('topFace').src = 'https://minotar.net/helm/' + encodeURIComponent(savedUser) + '/22.png';
-      document.getElementById('topName').textContent = savedUser.toUpperCase();
-      document.getElementById('userAvatarBig').src = 'https://minotar.net/helm/' + encodeURIComponent(savedUser) + '/110.png';
-      document.getElementById('userNameBig').textContent = savedUser;
-      document.getElementById('userHero').classList.add('visible');
-      document.getElementById('heroCenter').classList.add('user-logged');
-    }
-  } catch(e) {}
-
-  const currencyBtn = document.getElementById('currencyBtn');
-  const currencyDropdown = document.getElementById('currencyDropdown');
-  const langBtn = document.getElementById('langBtn');
-  const langDropdown = document.getElementById('langDropdown');
-
-  if(currencyBtn && currencyDropdown){
-    currencyBtn.addEventListener('click', function(e){
-      e.stopPropagation();
-      const isOpen = currencyDropdown.classList.contains('open');
-      currencyDropdown.classList.remove('open');
-      if(langDropdown) langDropdown.classList.remove('open');
-      if(!isOpen) currencyDropdown.classList.add('open');
-    });
-    currencyDropdown.querySelectorAll('.dropdown-item').forEach(function(item){
-      item.addEventListener('click', function(e){
-        e.stopPropagation();
-        currencyDropdown.querySelectorAll('.dropdown-item').forEach(function(i){ i.classList.remove('active'); });
-        item.classList.add('active');
-        currentCurrency = { code: item.dataset.currency, symbol: item.dataset.symbol, rate: parseFloat(item.dataset.rate) };
-        document.getElementById('currencyLabel').textContent = currentCurrency.code + ' ' + currentCurrency.symbol;
-        currencyDropdown.classList.remove('open');
-        refreshPrices();
-        updateCartUI();
-        if(cart.length > 0) renderCart();
-      });
-    });
-  }
-
-  if(langBtn && langDropdown){
-    langBtn.addEventListener('click', function(e){
-      e.stopPropagation();
-      const isOpen = langDropdown.classList.contains('open');
-      langDropdown.classList.remove('open');
-      if(currencyDropdown) currencyDropdown.classList.remove('open');
-      if(!isOpen) langDropdown.classList.add('open');
-    });
-    langDropdown.querySelectorAll('.dropdown-item').forEach(function(item){
-      item.addEventListener('click', function(e){
-        e.stopPropagation();
-        langDropdown.querySelectorAll('.dropdown-item').forEach(function(i){ i.classList.remove('active'); });
-        item.classList.add('active');
-        currentLang = item.dataset.lang;
-        langDropdown.classList.remove('open');
-        applyTranslations();
-      });
-    });
-  }
-
-  document.addEventListener('click', function(e){
-    if(currencyDropdown && !e.target.closest('#currencyBtn')) currencyDropdown.classList.remove('open');
-    if(langDropdown && !e.target.closest('#langBtn')) langDropdown.classList.remove('open');
+document.querySelectorAll('.dropdown-item').forEach(item => {
+  item.addEventListener('click', function(){
+    document.querySelectorAll('.dropdown-item').forEach(i => i.classList.remove('active'));
+    this.classList.add('active');
+    document.getElementById('langLabel').textContent = this.dataset.lang.toUpperCase();
+    document.getElementById('langDropdown').classList.remove('open');
   });
+});
 
-  document.querySelectorAll('.modal').forEach(function(modal){
-    modal.addEventListener('click', function(e){ if(e.target === modal) modal.style.display = 'none'; });
-  });
-
-  document.addEventListener('keydown', function(e){
-    if(e.key === 'Escape'){
-      document.querySelectorAll('.modal').forEach(function(m){ m.style.display = 'none'; });
-      if(currencyDropdown) currencyDropdown.classList.remove('open');
-      if(langDropdown) langDropdown.classList.remove('open');
-    }
-  });
-
-  applyTranslations();
-  refreshPrices();
+document.getElementById('cartModal').addEventListener('click', e => {
+  if(e.target.id === 'cartModal') closeCart();
 });
 </script>
+
 </body>
 </html>
