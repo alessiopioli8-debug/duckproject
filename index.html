@@ -27,7 +27,6 @@
     -webkit-font-smoothing: antialiased;
   }
 
-  /* NAVBAR */
   nav {
     position: sticky;
     top: 0;
@@ -51,7 +50,6 @@
     font-size: 20px;
     font-weight: 700;
     color: var(--text);
-    text-decoration: none;
     letter-spacing: -0.5px;
     cursor: pointer;
   }
@@ -76,11 +74,9 @@
   .nav-links button:hover { color: var(--text); background: var(--accent-light); }
   .nav-links button.active { color: var(--accent); background: var(--accent-light); }
 
-  /* PAGES */
   .page { display: none; }
   .page.active { display: block; }
 
-  /* HERO */
   .hero {
     max-width: 900px;
     margin: 0 auto;
@@ -146,7 +142,6 @@
   .btn-outline { background: transparent; color: var(--text); border-color: var(--border); }
   .btn-outline:hover { border-color: var(--text); }
 
-  /* SECTIONS */
   section {
     max-width: 900px;
     margin: 0 auto;
@@ -170,7 +165,6 @@
     margin-bottom: 32px;
   }
 
-  /* GRID */
   .grid-3 {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
@@ -202,7 +196,6 @@
   .card h3 { font-size: 16px; font-weight: 700; margin-bottom: 8px; }
   .card p { font-size: 14px; color: var(--text-muted); line-height: 1.6; }
 
-  /* PROJECTS */
   .project {
     display: grid;
     grid-template-columns: 1fr 1.5fr;
@@ -258,7 +251,6 @@
 
   .project-link:hover { text-decoration: underline; }
 
-  /* BLOG */
   .post {
     display: block;
     padding: 28px 0;
@@ -295,7 +287,6 @@
 
   .post-tags { display: flex; gap: 6px; flex-wrap: wrap; }
 
-  /* CONTACT */
   .contact-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -359,7 +350,6 @@
 
   .contact-form textarea { min-height: 120px; }
 
-  /* FOOTER */
   footer {
     border-top: 1px solid var(--border);
     margin-top: 60px;
@@ -424,9 +414,9 @@
 <div class="page active" id="page-home">
 
   <section class="hero">
-    <span class="hero-tag">👋 Disponibile per progetti</span>
-    <h1>Sviluppo siti web<br>con <em>cura artigianale</em>.</h1>
-    <p>Mi chiamo Marco, sono uno sviluppatore web freelance. Creo siti veloci, accessibili e piacevoli da usare — senza template preconfezionati.</p>
+    <span class="hero-tag">Portfolio personale</span>
+    <h1>Appunti, esperimenti<br>e <em>cose che costruisco</em>.</h1>
+    <p>Mi chiamo Marco. Questo è il mio angolo digitale: raccolgo qui i progetti a cui lavoro, le cose che imparo e qualche riflessione sul web.</p>
     <div class="hero-buttons">
       <button class="btn btn-primary" onclick="showPage('progetti')">
         <i class="fa-solid fa-arrow-right"></i> Vedi i progetti
@@ -438,23 +428,23 @@
   </section>
 
   <section>
-    <div class="section-label">Cosa faccio</div>
-    <h2>Servizi</h2>
+    <div class="section-label">Cosa mi interessa</div>
+    <h2>Aree di interesse</h2>
     <div class="grid-3">
       <div class="card">
         <div class="card-icon"><i class="fa-solid fa-code"></i></div>
-        <h3>Sviluppo Frontend</h3>
-        <p>Siti statici e applicazioni web con HTML, CSS e JavaScript. Codice pulito e performante.</p>
+        <h3>Frontend</h3>
+        <p>Siti statici e piccole web app con HTML, CSS e JavaScript. Mi piace scrivere codice pulito e capire cosa succede sotto il cofano.</p>
       </div>
       <div class="card">
         <div class="card-icon"><i class="fa-solid fa-mobile-screen"></i></div>
-        <h3>Design Responsive</h3>
-        <p>Layout che funzionano su ogni dispositivo, dal telefono al desktop, senza compromessi.</p>
+        <h3>Design responsive</h3>
+        <p>Layout che funzionano su ogni schermo, dal telefono al desktop. Il web è mobile-first, e mi piace progettarlo così.</p>
       </div>
       <div class="card">
         <div class="card-icon"><i class="fa-solid fa-gauge-high"></i></div>
-        <h3>Ottimizzazione</h3>
-        <p>Velocità di caricamento, SEO di base, accessibilità. Un sito veloce converte di più.</p>
+        <h3>Performance</h3>
+        <p>Un sito veloce è un sito rispettoso. Passo tempo a ottimizzare immagini, font e script, anche quando nessuno se ne accorge.</p>
       </div>
     </div>
   </section>
@@ -466,51 +456,37 @@
 
   <section style="padding-top: 80px;">
     <div class="section-label">Portfolio</div>
-    <h2>Progetti recenti</h2>
+    <h2>Progetti</h2>
     <p style="color: var(--text-muted); font-size: 17px; max-width: 560px; margin-bottom: 20px;">
-      Una selezione di lavori sviluppati da zero, su misura per le esigenze del cliente.
+      Una selezione di cose che ho costruito. Alcune per passione, altre per imparare qualcosa di nuovo.
     </p>
 
     <article class="project">
-      <div class="project-thumb">🌿</div>
+      <div class="project-thumb">🛒</div>
       <div class="project-info">
-        <h2>Verde Studio</h2>
-        <p>Sito vetrina per uno studio di architettura del paesaggio. Design minimalista, galleria progetti, sezione blog e form contatti.</p>
-        <div class="project-tags">
-          <span class="tag">HTML</span>
-          <span class="tag">CSS</span>
-          <span class="tag">JavaScript</span>
-        </div>
-        <a href="#" class="project-link">Visita il sito <i class="fa-solid fa-arrow-right"></i></a>
-      </div>
-    </article>
-
-    <article class="project">
-      <div class="project-thumb">📚</div>
-      <div class="project-info">
-        <h2>Libreria Aurora</h2>
-        <p>E-commerce per una libreria indipendente. Catalogo con ricerca, carrello, sistema di pagamento e area admin per gestire gli ordini.</p>
+        <h2>E-commerce demo</h2>
+        <p>Un sito di vendita completo realizzato per mettere in pratica le mie competenze frontend: carrello funzionante, sistema di pagamento simulato e design responsive.</p>
         <div class="project-tags">
           <span class="tag">HTML</span>
           <span class="tag">CSS</span>
           <span class="tag">JavaScript</span>
           <span class="tag">Firebase</span>
         </div>
-        <a href="#" class="project-link">Visita il sito <i class="fa-solid fa-arrow-right"></i></a>
+        <a href="#" class="project-link">Guarda il progetto <i class="fa-solid fa-arrow-right"></i></a>
       </div>
     </article>
 
     <article class="project">
-      <div class="project-thumb">🎵</div>
+      <div class="project-thumb">🌿</div>
       <div class="project-info">
-        <h2>SoundWave</h2>
-        <p>Landing page per una band emergente. Player audio integrato, date tour, iscrizione newsletter e link a Spotify e YouTube.</p>
+        <h2>Studio verde</h2>
+        <p>Sito vetrina per uno studio di architettura del paesaggio. Design minimalista, galleria progetti e sezione blog.</p>
         <div class="project-tags">
           <span class="tag">HTML</span>
           <span class="tag">CSS</span>
-          <span class="tag">Audio API</span>
+          <span class="tag">JavaScript</span>
         </div>
-        <a href="#" class="project-link">Visita il sito <i class="fa-solid fa-arrow-right"></i></a>
+        <a href="#" class="project-link">Guarda il progetto <i class="fa-solid fa-arrow-right"></i></a>
       </div>
     </article>
 
@@ -518,13 +494,27 @@
       <div class="project-thumb">⚡</div>
       <div class="project-info">
         <h2>FitTrack</h2>
-        <p>Web app per il monitoraggio degli allenamenti. Registrazione utente, salvataggio progressi, grafici con Chart.js e design mobile-first.</p>
+        <p>Web app per il monitoraggio degli allenamenti. Registrazione, salvataggio progressi e grafici con Chart.js.</p>
         <div class="project-tags">
           <span class="tag">JavaScript</span>
           <span class="tag">Chart.js</span>
           <span class="tag">LocalStorage</span>
         </div>
-        <a href="#" class="project-link">Visita il sito <i class="fa-solid fa-arrow-right"></i></a>
+        <a href="#" class="project-link">Guarda il progetto <i class="fa-solid fa-arrow-right"></i></a>
+      </div>
+    </article>
+
+    <article class="project">
+      <div class="project-thumb">🎵</div>
+      <div class="project-info">
+        <h2>SoundWave</h2>
+        <p>Landing page per una band emergente, con player audio integrato, date tour e iscrizione newsletter.</p>
+        <div class="project-tags">
+          <span class="tag">HTML</span>
+          <span class="tag">CSS</span>
+          <span class="tag">Audio API</span>
+        </div>
+        <a href="#" class="project-link">Guarda il progetto <i class="fa-solid fa-arrow-right"></i></a>
       </div>
     </article>
   </section>
@@ -538,7 +528,7 @@
     <div class="section-label">Scritti</div>
     <h2>Blog</h2>
     <p style="color: var(--text-muted); font-size: 17px; max-width: 560px; margin-bottom: 20px;">
-      Appunti, tutorial e riflessioni sullo sviluppo web. Scrivo quando ho qualcosa di utile da dire.
+      Appunti e riflessioni. Scrivo quando ho qualcosa di utile da dire — niente post riempitivi.
     </p>
 
     <div class="post">
@@ -554,7 +544,7 @@
     <div class="post">
       <div class="post-date">28 Febbraio 2026</div>
       <h2>Accessibilità: non è un optional</h2>
-      <p>Il 15% delle persone ha una disabilità. Se il tuo sito non è accessibile, stai escludendo potenzialmente milioni di utenti. Ecco da dove iniziare.</p>
+      <p>Il 15% delle persone ha una disabilità. Se il tuo sito non è accessibile, stai escludendo potenzialmente milioni di utenti.</p>
       <div class="post-tags">
         <span class="tag">Accessibilità</span>
         <span class="tag">HTML</span>
@@ -564,7 +554,7 @@
     <div class="post">
       <div class="post-date">5 Febbraio 2026</div>
       <h2>Come ho ottimizzato il mio sito da 4s a 0.8s</h2>
-      <p>La velocità di caricamento è una feature. Ho passato un weekend a ottimizzare immagini, font e JavaScript. Questo è quello che ha funzionato davvero.</p>
+      <p>La velocità di caricamento è una feature. Ho passato un weekend a ottimizzare immagini, font e JavaScript.</p>
       <div class="post-tags">
         <span class="tag">Performance</span>
         <span class="tag">Ottimizzazione</span>
@@ -572,19 +562,9 @@
     </div>
 
     <div class="post">
-      <div class="post-date">20 Gennaio 2026</div>
-      <h2>Freelance: cosa ho imparato in 3 anni</h2>
-      <p>Tre anni fa ho lasciato il lavoro in agenzia per mettermi in proprio. Non è stato facile. Ecco gli errori che ho fatto e cosa farei diversamente.</p>
-      <div class="post-tags">
-        <span class="tag">Freelance</span>
-        <span class="tag">Business</span>
-      </div>
-    </div>
-
-    <div class="post">
       <div class="post-date">8 Gennaio 2026</div>
       <h2>JavaScript moderno: le 5 cose che uso ogni giorno</h2>
-      <p>Non serve sapere tutto. Ci sono 5 funzionalità di ES2020+ che uso praticamente ogni giorno e che mi hanno reso il codice molto più pulito.</p>
+      <p>Non serve sapere tutto. Ci sono 5 funzionalità di ES2020+ che uso praticamente ogni giorno e che mi hanno reso il codice più pulito.</p>
       <div class="post-tags">
         <span class="tag">JavaScript</span>
         <span class="tag">Tips</span>
@@ -599,12 +579,12 @@
 
   <section style="padding-top: 80px;">
     <div class="section-label">Parliamone</div>
-    <h2>Contattami</h2>
+    <h2>Contatti</h2>
 
     <div class="contact-grid">
       <div class="contact-info">
-        <h3>Hai un progetto in mente?</h3>
-        <p>Scrivimi due righe su cosa ti serve. Rispondo entro 24 ore, di solito molto prima.</p>
+        <h3>Due chiacchiere?</h3>
+        <p>Se vuoi parlare di un progetto, scambiare un'opinione o semplicemente salutarmi, scrivimi. Rispondo appena posso.</p>
 
         <ul class="contact-list">
           <li>
@@ -629,9 +609,9 @@
       <form class="contact-form" onsubmit="event.preventDefault(); alert('Messaggio inviato! Ti risponderò presto.'); this.reset();">
         <input type="text" placeholder="Il tuo nome" required>
         <input type="email" placeholder="La tua email" required>
-        <textarea placeholder="Raccontami il tuo progetto..." required></textarea>
+        <textarea placeholder="Scrivi qui..." required></textarea>
         <button type="submit" class="btn btn-primary" style="justify-content: center;">
-          <i class="fa-solid fa-paper-plane"></i> Invia messaggio
+          <i class="fa-solid fa-paper-plane"></i> Invia
         </button>
       </form>
     </div>
@@ -641,7 +621,7 @@
 
 <footer>
   <div class="footer-inner">
-    <span>© 2026 Marco Rossi — P.IVA 0123456789</span>
+    <span>© 2026 Marco Rossi</span>
     <div class="footer-social">
       <a href="#" title="GitHub"><i class="fa-brands fa-github"></i></a>
       <a href="#" title="Twitter"><i class="fa-brands fa-x-twitter"></i></a>
@@ -653,25 +633,18 @@
 
 <script>
   function showPage(page) {
-    // Hide all pages
     document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
-    // Show selected
     const el = document.getElementById('page-' + page);
     if (el) el.classList.add('active');
 
-    // Update nav buttons
     document.querySelectorAll('.nav-links button').forEach(b => {
       b.classList.toggle('active', b.dataset.page === page);
     });
 
-    // Scroll to top
     window.scrollTo({ top: 0, behavior: 'smooth' });
-
-    // Update URL hash
     history.replaceState(null, '', '#' + page);
   }
 
-  // On load, read hash
   window.addEventListener('DOMContentLoaded', () => {
     const hash = window.location.hash.replace('#', '');
     if (hash && document.getElementById('page-' + hash)) {
