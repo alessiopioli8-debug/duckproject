@@ -1,1375 +1,1072 @@
 <!DOCTYPE html>
-<html lang="it">
+<html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>OrbysMC</title>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap" rel="stylesheet">
-<style>
-:root{
-  --blue:#3b82f6;
-  --blue-dark:#1e40af;
-  --blue-light:#60a5fa;
-  --blue-soft:#1e3a5f;
-  --bg:#0a1628;
-  --bg-2:#0f1f35;
-  --surface:#132a45;
-  --surface-2:#1a3352;
-  --text:#f1f5f9;
-  --text-muted:#94a3b8;
-  --border:#1e3a5f;
-  --border-strong:#2d4a6f;
-  --success:#10b981;
-  --warning:#f59e0b;
-  --danger:#ef4444;
-}
-*{margin:0;padding:0;box-sizing:border-box;image-rendering:pixelated;}
-body{
-  font-family:'VT323','Courier New',monospace;
-  font-size:18px;
-  background:var(--bg);
-  color:var(--text);
-  line-height:1.5;
-  overflow-x:hidden;
-  background-image:
-    linear-gradient(rgba(10,22,40,0.5), rgba(10,22,40,0.5)),
-    url('https://i.imgur.com/iEtgMaA.jpeg');
-  background-size:auto, cover;
-  background-position:0 0, center;
-  background-attachment:fixed, fixed;
-  background-repeat:repeat, no-repeat;
-}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Petal Client - Premium</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&display=swap');
 
-.top-bar{
-  background:rgba(15,31,53,0.92);
-  border-bottom:3px solid var(--border-strong);
-  padding:14px 32px;
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  position:sticky;
-  top:0;
-  z-index:50;
-  flex-wrap:wrap;
-  gap:12px;
-  box-shadow:0 4px 0 rgba(0,0,0,0.4);
-}
-.top-left{display:flex;align-items:center;gap:12px;}
-.brand-logo-img{
-  height:48px;
-  width:auto;
-  display:block;
-  object-fit:contain;
-}
-.brand-name{
-  font-family:'Press Start 2P',monospace;
-  font-size:12px;
-  font-weight:700;
-  letter-spacing:0.5px;
-  color:var(--text);
-  text-shadow:2px 2px 0 #000;
-}
-.brand-name span{color:var(--blue-light);}
-.top-right{display:flex;align-items:center;gap:8px;flex-wrap:wrap;}
-.top-chip{
-  display:flex;align-items:center;gap:8px;
-  padding:8px 14px;
-  background:var(--surface);
-  border:3px solid var(--border-strong);
-  font-size:14px;
-  font-weight:600;
-  color:var(--text-muted);
-  cursor:pointer;
-  transition:all .1s;
-  position:relative;
-  box-shadow:3px 3px 0 rgba(0,0,0,0.4);
-}
-.top-chip:hover{
-  border-color:var(--blue);
-  color:var(--blue-light);
-  transform:translate(-1px,-1px);
-  box-shadow:4px 4px 0 rgba(0,0,0,0.4);
-}
-.top-chip strong{color:var(--text);font-weight:700;}
-.top-chip .cart-count{
-  background:var(--blue);
-  color:#fff;
-  font-size:11px;
-  font-weight:800;
-  padding:1px 6px;
-  min-width:18px;
-  text-align:center;
-  display:none;
-  border:2px solid #000;
-}
-.top-chip .dot{
-  width:8px;height:8px;
-  background:var(--success);
-  border:2px solid #000;
-}
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Montserrat', sans-serif;
+        }
 
-.dropdown{
-  position:absolute;
-  top:calc(100% + 8px);
-  left:0;
-  background:var(--surface-2);
-  border:3px solid var(--border-strong);
-  padding:6px;
-  min-width:170px;
-  box-shadow:4px 4px 0 rgba(0,0,0,0.5);
-  display:none;
-  z-index:100;
-}
-.dropdown.open{display:block;}
-.dropdown-item{
-  display:flex;align-items:center;gap:10px;
-  padding:8px 12px;
-  cursor:pointer;
-  font-size:14px;
-  font-weight:600;
-  color:var(--text-muted);
-  transition:all .1s;
-  border:2px solid transparent;
-}
-.dropdown-item:hover{background:var(--blue-soft);color:var(--blue-light);}
-.dropdown-item.active{background:var(--blue);color:#fff;border-color:#000;}
+        body {
+            background-color: #0d040d;
+            color: #fff;
+            overflow-x: hidden;
+            background-image: url('https://i.pinimg.com/1200x/62/93/0c/62930cd78a4698d91428a45116245597.jpg'); 
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            user-select: none;
+            -webkit-user-select: none;
+            position: relative;
+        }
 
-.hero{
-  background:rgba(15,31,53,0.6);
-  padding:70px 32px 60px;
-  border-bottom:3px solid var(--border-strong);
-  position:relative;
-  overflow:hidden;
-}
-.hero-inner{max-width:1200px;margin:0 auto;text-align:center;position:relative;z-index:1;}
-.hero-logo{
-  height:180px;
-  width:auto;
-  max-width:100%;
-  display:block;
-  margin:0 auto 24px;
-  object-fit:contain;
-  filter:drop-shadow(0 6px 0 rgba(0,0,0,0.5));
-}
-.hero-status{
-  display:inline-flex;
-  align-items:center;
-  gap:8px;
-  padding:8px 16px;
-  background:var(--surface);
-  border:3px solid var(--border-strong);
-  font-size:14px;
-  font-weight:600;
-  color:var(--text-muted);
-  margin-bottom:20px;
-  box-shadow:3px 3px 0 rgba(0,0,0,0.4);
-}
-.hero-status .dot{
-  width:10px;height:10px;
-  background:var(--success);
-  border:2px solid #000;
-}
-.hero h1{
-  font-family:'Press Start 2P',monospace;
-  font-size:28px;
-  font-weight:700;
-  line-height:1.4;
-  letter-spacing:1px;
-  margin-bottom:20px;
-  text-shadow:3px 3px 0 #000;
-}
-.hero h1 em{font-style:normal;color:var(--blue-light);}
-.hero p{
-  font-size:18px;
-  color:var(--text-muted);
-  max-width:600px;
-  margin:0 auto 26px;
-  line-height:1.5;
-}
-.hero-ip{
-  display:inline-flex;
-  align-items:center;
-  gap:12px;
-  padding:14px 22px;
-  background:var(--surface);
-  border:3px solid var(--border-strong);
-  font-family:'Press Start 2P',monospace;
-  font-size:12px;
-  font-weight:600;
-  cursor:pointer;
-  transition:all .1s;
-  color:var(--text);
-  box-shadow:4px 4px 0 rgba(0,0,0,0.4);
-}
-.hero-ip:hover{
-  border-color:var(--blue);
-  color:var(--blue-light);
-  transform:translate(-2px,-2px);
-  box-shadow:6px 6px 0 rgba(0,0,0,0.4);
-}
-.hero-ip i{color:var(--blue-light);}
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(0, 0, 0, 0.2); 
+            z-index: -1;
+        }
 
-.container{max-width:1200px;margin:0 auto;padding:40px 32px;}
-.layout{display:flex;gap:28px;align-items:flex-start;}
+        /* --- ANIMAZIONE PETALI CHE CADONO --- */
+        #petals-container {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            pointer-events: none;
+            z-index: 1;
+            overflow: hidden;
+        }
 
-.sidebar{width:220px;flex-shrink:0;display:flex;flex-direction:column;gap:8px;position:sticky;top:110px;}
-.nav-btn{
-  background:var(--surface);
-  border:3px solid var(--border-strong);
-  color:var(--text-muted);
-  padding:14px 16px;
-  text-align:left;
-  font-family:'Press Start 2P',monospace;
-  font-size:9px;
-  font-weight:600;
-  cursor:pointer;
-  display:flex;
-  align-items:center;
-  gap:12px;
-  transition:all .1s;
-  box-shadow:4px 4px 0 rgba(0,0,0,0.4);
-}
-.nav-btn i{
-  width:28px;height:28px;
-  display:grid;place-items:center;
-  background:var(--blue-soft);
-  color:var(--blue-light);
-  font-size:14px;
-  flex-shrink:0;
-  border:2px solid var(--border-strong);
-}
-.nav-btn:hover{
-  color:var(--text);
-  transform:translate(-2px,-2px);
-  box-shadow:6px 6px 0 rgba(0,0,0,0.4);
-}
-.nav-btn.active{
-  border-color:var(--blue);
-  color:var(--blue-light);
-  background:var(--surface-2);
-}
-.nav-btn.active i{background:var(--blue);color:#fff;}
+        .petal {
+            position: absolute;
+            background-color: #ff99cc;
+            border-radius: 15px 0 15px 0; 
+            opacity: 0.7;
+            box-shadow: 0 0 10px rgba(255, 153, 204, 0.5);
+            animation: fall linear infinite;
+        }
 
-.content{
-  flex:1;
-  min-width:0;
-  background:rgba(19,42,69,0.9);
-  border:3px solid var(--border-strong);
-  padding:36px;
-  box-shadow:6px 6px 0 rgba(0,0,0,0.4);
-}
+        @keyframes fall {
+            0% { transform: translateY(-10vh) rotate(0deg); opacity: 0; }
+            10% { opacity: 0.8; }
+            90% { opacity: 0.8; }
+            100% { transform: translateY(110vh) rotate(360deg); opacity: 0; }
+        }
 
-.section{display:none;}
-.section.active{display:block;}
+        /* --- WARNING ANTI-ISPEZIONE --- */
+        #devtools-warning {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.95);
+            color: #ff3333;
+            z-index: 99999;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            font-weight: bold;
+            text-align: center;
+        }
+        #devtools-warning p { margin-bottom: 10px; }
+        #devtools-warning span { color: #fff; font-size: 16px; margin-top: 20px;}
 
-.section-header{margin-bottom:28px;}
-.section-label{
-  font-family:'Press Start 2P',monospace;
-  font-size:9px;
-  font-weight:700;
-  letter-spacing:1px;
-  text-transform:uppercase;
-  color:var(--blue-light);
-  margin-bottom:12px;
-  text-shadow:2px 2px 0 #000;
-}
-.section-title{
-  font-family:'Press Start 2P',monospace;
-  font-size:16px;
-  font-weight:700;
-  line-height:1.4;
-  margin-bottom:12px;
-  color:var(--text);
-  text-shadow:3px 3px 0 #000;
-}
-.section-sub{font-size:18px;color:var(--text-muted);}
+        /* --- BANNER ANNUNCIO GLOBALE --- */
+        #global-announcement {
+            display: none;
+            background: #ff66b2;
+            color: #fff;
+            text-align: center;
+            padding: 10px;
+            font-weight: bold;
+            font-size: 16px;
+            z-index: 2000;
+            position: relative;
+        }
 
-.welcome-box{
-  background:rgba(15,31,53,0.9);
-  border:3px solid var(--border-strong);
-  padding:28px;
-  margin-bottom:24px;
-  box-shadow:4px 4px 0 rgba(0,0,0,0.4);
-}
-.welcome-box h3{
-  font-family:'Press Start 2P',monospace;
-  font-size:12px;
-  font-weight:700;
-  margin-bottom:16px;
-  color:var(--text);
-  text-shadow:2px 2px 0 #000;
-}
-.welcome-box p{color:var(--text-muted);font-size:18px;margin-bottom:16px;}
-.input-row{display:flex;gap:10px;flex-wrap:wrap;}
-.input-field{
-  flex:1;
-  min-width:200px;
-  padding:14px 16px;
-  border:3px solid var(--border-strong);
-  font-family:'VT323',monospace;
-  font-size:18px;
-  outline:none;
-  transition:all .1s;
-  background:var(--surface-2);
-  color:var(--text);
-  box-shadow:inset 3px 3px 0 rgba(0,0,0,0.3);
-}
-.input-field:focus{border-color:var(--blue);}
-.input-field::placeholder{color:var(--text-muted);}
-.btn{
-  display:inline-flex;
-  align-items:center;
-  justify-content:center;
-  gap:10px;
-  padding:14px 22px;
-  font-family:'Press Start 2P',monospace;
-  font-size:10px;
-  font-weight:600;
-  cursor:pointer;
-  border:3px solid #000;
-  transition:all .1s;
-  text-decoration:none;
-  white-space:nowrap;
-  box-shadow:4px 4px 0 rgba(0,0,0,0.5);
-}
-.btn-primary{
-  background:var(--blue);
-  color:#fff;
-  text-shadow:2px 2px 0 rgba(0,0,0,0.4);
-}
-.btn-primary:hover{
-  background:var(--blue-dark);
-  transform:translate(-2px,-2px);
-  box-shadow:6px 6px 0 rgba(0,0,0,0.5);
-}
-.btn-block{width:100%;}
+        .icon-img { width: 24px; height: 24px; object-fit: contain; display: inline-block; vertical-align: middle; }
 
-.home-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;}
-.home-card{
-  background:rgba(15,31,53,0.9);
-  border:3px solid var(--border-strong);
-  padding:24px;
-  transition:all .1s;
-  box-shadow:4px 4px 0 rgba(0,0,0,0.4);
-}
-.home-card:hover{
-  border-color:var(--blue);
-  transform:translate(-2px,-2px);
-  box-shadow:6px 6px 0 rgba(0,0,0,0.4);
-}
-.home-card i{
-  width:48px;height:48px;
-  background:var(--blue-soft);
-  color:var(--blue-light);
-  display:grid;place-items:center;
-  font-size:22px;
-  margin-bottom:16px;
-  border:3px solid var(--border-strong);
-}
-.home-card h4{
-  font-family:'Press Start 2P',monospace;
-  font-size:11px;
-  font-weight:700;
-  margin-bottom:10px;
-  color:var(--text);
-  text-shadow:2px 2px 0 #000;
-}
-.home-card p{font-size:17px;color:var(--text-muted);}
+        /* --- HEADER --- */
+        header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 15px 40px;
+            position: relative;
+            z-index: 10;
+            background: rgba(10, 5, 10, 0.85);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(5px);
+        }
 
-.product-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:20px;}
-.product-card{
-  background:rgba(15,31,53,0.9);
-  border:3px solid var(--border-strong);
-  padding:24px 20px;
-  text-align:center;
-  position:relative;
-  transition:all .1s;
-  box-shadow:5px 5px 0 rgba(0,0,0,0.4);
-}
-.product-card:hover{
-  border-color:var(--blue);
-  transform:translate(-2px,-2px);
-  box-shadow:7px 7px 0 rgba(0,0,0,0.4);
-}
-.product-card .badge{
-  position:absolute;
-  top:10px;
-  right:10px;
-  font-family:'Press Start 2P',monospace;
-  font-size:8px;
-  font-weight:700;
-  text-transform:uppercase;
-  padding:6px 10px;
-  background:var(--blue);
-  color:#fff;
-  border:2px solid #000;
-  text-shadow:1px 1px 0 rgba(0,0,0,0.4);
-}
-.product-card .badge.popular{background:var(--warning);}
-.product-card .badge.best{background:var(--success);}
-.product-icon{
-  width:96px;
-  height:96px;
-  margin:0 auto 16px;
-  background:var(--blue-soft);
-  display:grid;
-  place-items:center;
-  overflow:hidden;
-  border:3px solid var(--border-strong);
-  box-shadow:3px 3px 0 rgba(0,0,0,0.4);
-}
-.product-icon img{width:100%;height:100%;object-fit:cover;}
-.product-card h3{
-  font-family:'Press Start 2P',monospace;
-  font-size:11px;
-  font-weight:700;
-  margin-bottom:10px;
-  color:var(--text);
-  text-shadow:2px 2px 0 #000;
-}
-.product-card .price{
-  font-family:'Press Start 2P',monospace;
-  font-size:16px;
-  font-weight:700;
-  color:var(--blue-light);
-  margin:12px 0 18px;
-  text-shadow:2px 2px 0 #000;
-}
-.product-card .price small{font-size:11px;color:var(--text-muted);font-weight:500;}
-.perk-list{
-  list-style:none;
-  text-align:left;
-  padding:14px 0;
-  margin-bottom:18px;
-  border-top:2px solid var(--border);
-  border-bottom:2px solid var(--border);
-}
-.perk-list li{
-  font-size:16px;
-  color:var(--text-muted);
-  padding:6px 0;
-  display:flex;
-  align-items:center;
-  gap:10px;
-}
-.perk-list li i{color:var(--blue-light);font-size:12px;}
-.product-btn{
-  width:100%;
-  padding:14px;
-  background:var(--blue);
-  color:#fff;
-  border:3px solid #000;
-  font-family:'Press Start 2P',monospace;
-  font-size:9px;
-  font-weight:700;
-  cursor:pointer;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  gap:10px;
-  transition:all .1s;
-  box-shadow:4px 4px 0 rgba(0,0,0,0.5);
-  text-shadow:2px 2px 0 rgba(0,0,0,0.4);
-}
-.product-btn:hover{
-  background:var(--blue-dark);
-  transform:translate(-2px,-2px);
-  box-shadow:6px 6px 0 rgba(0,0,0,0.5);
-}
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            cursor: pointer;
+        }
 
-.maintenance{
-  text-align:center;
-  padding:60px 20px;
-  background:rgba(15,31,53,0.9);
-  border:3px dashed var(--border-strong);
-  box-shadow:5px 5px 0 rgba(0,0,0,0.4);
-}
-.maintenance i{
-  font-size:56px;
-  color:var(--blue-light);
-  margin-bottom:20px;
-  display:block;
-  text-shadow:3px 3px 0 #000;
-}
-.maintenance h3{
-  font-family:'Press Start 2P',monospace;
-  font-size:14px;
-  font-weight:700;
-  margin-bottom:14px;
-  color:var(--text);
-  text-shadow:2px 2px 0 #000;
-}
-.maintenance p{color:var(--text-muted);font-size:18px;}
+        .logo-img {
+            height: 50px;
+            width: auto;
+            object-fit: contain;
+            filter: drop-shadow(0 0 10px rgba(255, 153, 204, 0.4));
+            mix-blend-mode: screen;
+        }
 
-.staff-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:20px;}
-.staff-card{
-  background:rgba(15,31,53,0.9);
-  border:3px solid var(--border-strong);
-  padding:28px 22px;
-  text-align:center;
-  transition:all .1s;
-  box-shadow:5px 5px 0 rgba(0,0,0,0.4);
-}
-.staff-card:hover{
-  border-color:var(--blue);
-  transform:translate(-2px,-2px);
-  box-shadow:7px 7px 0 rgba(0,0,0,0.4);
-}
-.staff-avatar{
-  width:96px;
-  height:96px;
-  background:var(--blue-soft);
-  display:grid;
-  place-items:center;
-  margin:0 auto 18px;
-  font-size:40px;
-  color:var(--blue-light);
-  border:4px solid var(--border-strong);
-  overflow:hidden;
-  box-shadow:4px 4px 0 rgba(0,0,0,0.4);
-}
-.staff-avatar img{width:100%;height:100%;object-fit:cover;image-rendering:pixelated;}
-.staff-role{
-  display:inline-block;
-  padding:6px 14px;
-  font-family:'Press Start 2P',monospace;
-  font-size:9px;
-  font-weight:700;
-  text-transform:uppercase;
-  letter-spacing:0.5px;
-  margin-bottom:12px;
-  border:2px solid #000;
-  text-shadow:1px 1px 0 rgba(0,0,0,0.4);
-}
-.staff-role.owner{background:var(--blue);color:#fff;}
-.staff-role.co-owner{background:var(--blue-soft);color:var(--blue-light);}
-.staff-name{
-  font-family:'Press Start 2P',monospace;
-  font-size:12px;
-  font-weight:700;
-  margin-bottom:10px;
-  color:var(--text);
-  text-shadow:2px 2px 0 #000;
-}
-.staff-desc{font-size:17px;color:var(--text-muted);margin-bottom:14px;}
-.staff-link{
-  display:inline-flex;
-  align-items:center;
-  gap:8px;
-  padding:8px 16px;
-  background:var(--surface);
-  border:3px solid var(--border-strong);
-  color:var(--blue-light);
-  text-decoration:none;
-  font-family:'Press Start 2P',monospace;
-  font-size:9px;
-  font-weight:600;
-  transition:all .1s;
-  box-shadow:3px 3px 0 rgba(0,0,0,0.4);
-}
-.staff-link:hover{
-  background:var(--blue);
-  color:#fff;
-  border-color:#000;
-  transform:translate(-2px,-2px);
-  box-shadow:5px 5px 0 rgba(0,0,0,0.4);
-}
+        .logo-text {
+            font-size: 24px;
+            font-weight: 900;
+            letter-spacing: 1.5px;
+            color: #ff99cc;
+            text-shadow: 0 0 10px rgba(255, 153, 204, 0.5);
+        }
 
-.cart-list{list-style:none;margin:20px 0;}
-.cart-item{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  padding:14px;
-  background:var(--bg-2);
-  border:2px solid var(--border);
-  margin-bottom:8px;
-}
-.cart-item-info{flex:1;}
-.cart-item-name{font-weight:600;font-size:17px;color:var(--text);}
-.cart-item-price{font-size:16px;color:var(--blue-light);font-weight:700;margin-top:2px;}
-.remove-btn{
-  width:32px;height:32px;
-  background:var(--surface-2);
-  border:3px solid var(--border-strong);
-  color:var(--danger);
-  cursor:pointer;
-  display:grid;
-  place-items:center;
-  transition:all .1s;
-  font-size:16px;
-  box-shadow:2px 2px 0 rgba(0,0,0,0.4);
-}
-.remove-btn:hover{
-  background:var(--danger);
-  color:#fff;
-  border-color:#000;
-}
-.cart-empty{text-align:center;color:var(--text-muted);font-style:italic;padding:30px;}
+        /* --- MENU BUTTON --- */
+        .menu-btn-container {
+            position: relative;
+        }
 
-.modal{
-  display:none;
-  position:fixed;
-  inset:0;
-  background:rgba(0,0,0,0.8);
-  z-index:200;
-  justify-content:center;
-  align-items:center;
-  padding:20px;
-}
-.modal.open{display:flex;}
-.modal-content{
-  background:var(--surface);
-  border:4px solid var(--blue);
-  padding:32px;
-  max-width:520px;
-  width:100%;
-  max-height:85vh;
-  overflow-y:auto;
-  box-shadow:8px 8px 0 rgba(0,0,0,0.6);
-}
-.modal-header{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  margin-bottom:22px;
-}
-.modal-header h3{
-  font-family:'Press Start 2P',monospace;
-  font-size:12px;
-  font-weight:700;
-  color:var(--text);
-  text-shadow:2px 2px 0 #000;
-}
-.modal-close{
-  width:36px;height:36px;
-  background:var(--bg-2);
-  border:3px solid var(--border-strong);
-  cursor:pointer;
-  font-size:18px;
-  color:var(--text-muted);
-  transition:all .1s;
-  font-family:'Press Start 2P',monospace;
-}
-.modal-close:hover{background:var(--danger);color:#fff;border-color:#000;}
-.summary-box{
-  background:var(--bg-2);
-  border:2px solid var(--border);
-  padding:16px;
-  margin:16px 0;
-}
-.summary-row{
-  display:flex;
-  justify-content:space-between;
-  padding:8px 0;
-  font-size:16px;
-  color:var(--text);
-}
-.summary-row.total{
-  border-top:2px solid var(--border);
-  margin-top:8px;
-  padding-top:14px;
-  font-family:'Press Start 2P',monospace;
-  font-size:11px;
-  font-weight:700;
-  color:var(--blue-light);
-  text-shadow:2px 2px 0 #000;
-}
+        .menu-btn {
+            background: #ff99cc;
+            color: #000;
+            padding: 12px 30px;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 900;
+            cursor: pointer;
+            border: none;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transition: 0.2s;
+            box-shadow: 0 4px 15px rgba(255, 153, 204, 0.4);
+        }
 
-footer{
-  border-top:3px solid var(--border-strong);
-  background:rgba(15,31,53,0.95);
-  padding:32px;
-  margin-top:40px;
-  box-shadow:0 -4px 0 rgba(0,0,0,0.4);
-}
-.footer-inner{
-  max-width:1200px;
-  margin:0 auto;
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  flex-wrap:wrap;
-  gap:16px;
-  font-size:16px;
-  color:var(--text-muted);
-}
-.footer-credit{
-  font-size:14px;
-  color:var(--text-muted);
-  opacity:0.85;
-}
-.footer-credit a{
-  color:var(--blue-light);
-  text-decoration:none;
-  transition:color .15s;
-}
-.footer-credit a:hover{
-  color:#fff;
-  text-decoration:underline;
-}
-.footer-social{display:flex;gap:10px;}
-.footer-social a{
-  width:44px;height:44px;
-  background:var(--surface);
-  border:3px solid var(--border-strong);
-  display:grid;
-  place-items:center;
-  color:var(--text-muted);
-  text-decoration:none;
-  transition:all .1s;
-  font-size:18px;
-  box-shadow:3px 3px 0 rgba(0,0,0,0.4);
-}
-.footer-social a:hover{
-  color:var(--blue-light);
-  border-color:var(--blue);
-  transform:translate(-2px,-2px);
-  box-shadow:5px 5px 0 rgba(0,0,0,0.4);
-}
+        .menu-btn:hover {
+            background: #ff80bf;
+            transform: translateY(-2px);
+        }
 
-.toast{
-  position:fixed;
-  bottom:30px;
-  right:30px;
-  background:var(--surface-2);
-  color:var(--text);
-  border:3px solid var(--blue);
-  padding:14px 22px;
-  font-family:'Press Start 2P',monospace;
-  font-size:9px;
-  font-weight:600;
-  z-index:300;
-  box-shadow:4px 4px 0 rgba(0,0,0,0.5);
-}
+        .dropdown-menu {
+            display: none;
+            position: absolute;
+            top: 110%;
+            right: 0;
+            background: rgba(20, 10, 20, 0.95);
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 153, 204, 0.3);
+            border-radius: 10px;
+            padding: 10px;
+            min-width: 200px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.8);
+            z-index: 100;
+        }
 
-@media (max-width:900px){
-  .layout{flex-direction:column;}
-  .sidebar{
-    width:100%;
-    position:static;
-    flex-direction:row;
-    flex-wrap:wrap;
-  }
-  .nav-btn{flex:1;min-width:130px;justify-content:center;font-size:8px;}
-  .nav-btn i{display:none;}
-  .hero h1{font-size:18px;}
-  .hero-logo{height:120px;}
-  .brand-logo-img{height:36px;}
-  .content{padding:24px;}
-  .top-bar{padding:12px 16px;}
-  .container{padding:24px 16px;}
-  .hero{padding:50px 16px;}
-  .brand-name{font-size:10px;}
-}
-@media (max-width:600px){
-  .section-title{font-size:12px;}
-  .top-chip{padding:6px 10px;font-size:12px;}
-  .top-chip strong{display:none;}
-  .hero-ip{font-size:9px;padding:10px 14px;}
-}
-</style>
+        .dropdown-menu.active {
+            display: block;
+        }
+
+        .dropdown-menu a {
+            display: block;
+            color: #fff;
+            text-decoration: none;
+            padding: 12px 20px;
+            font-size: 14px;
+            font-weight: 700;
+            text-transform: uppercase;
+            transition: 0.2s;
+            border-radius: 5px;
+        }
+
+        .dropdown-menu a:hover {
+            background: rgba(255, 153, 204, 0.2);
+            color: #ff99cc;
+            padding-left: 25px;
+        }
+
+        /* --- BARRA ORIZZONTALE DI NAVIGAZIONE --- */
+        .sub-menu {
+            display: flex; 
+            justify-content: center; 
+            gap: 40px; 
+            padding: 15px 0; 
+            font-size: 12px; 
+            font-weight: 700;
+            letter-spacing: 1px; 
+            text-transform: uppercase; 
+            position: relative; 
+            z-index: 10; 
+            background: rgba(20, 10, 20, 0.4);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .sub-menu a { 
+            color: rgba(255, 255, 255, 0.7); 
+            text-decoration: none; 
+            transition: 0.2s; 
+            cursor: pointer;
+        }
+        
+        .sub-menu a:hover, .sub-menu a.active { 
+            color: #ff99cc; 
+            text-shadow: 0 0 10px rgba(255,153,204,0.5); 
+        }
+
+        /* --- SEZIONI DELLA PAGINA --- */
+        .page-section {
+            display: none;
+            position: relative;
+            z-index: 10;
+            animation: fadeIn 0.4s ease-in-out;
+        }
+        .page-section.active {
+            display: block;
+        }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+        /* --- HERO SECTION --- */
+        .hero {
+            position: relative; height: 85vh; display: flex; flex-direction: column; align-items: center; justify-content: center;
+            text-align: center; padding: 20px;
+        }
+        
+        /* Animazione di "respiro" per il personaggio 3D */
+        #3d-container { 
+            width: 250px; height: 350px; margin-bottom: -30px; 
+            filter: drop-shadow(0 0 20px rgba(0, 0, 0, 0.8)); 
+            animation: breathe 3s ease-in-out infinite;
+        }
+
+        @keyframes breathe {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-15px); }
+        }
+
+        .hero-title { 
+            font-size: 72px; font-weight: 900; letter-spacing: 2px; 
+            color: #ff99cc;
+            text-shadow: 0 0 20px rgba(255, 153, 204, 0.6), 0 4px 15px rgba(0,0,0,0.8); 
+        }
+        .hero-description { font-size: 20px; color: rgba(255,255,255,0.9); max-width: 600px; line-height: 1.6; margin-bottom: 20px; text-shadow: 0 2px 5px rgba(0,0,0,0.8); }
+        .hero-actions { display: flex; gap: 20px; }
+        
+        .btn-hero {
+            background: #ff99cc; color: #000; padding: 15px 40px; border-radius: 8px; border: none;
+            font-size: 18px; font-weight: 900; cursor: pointer; display: flex; align-items: center; gap: 10px; transition: 0.2s;
+        }
+        .btn-hero:hover { background: #ff80bf; transform: translateY(-2px); box-shadow: 0 5px 20px rgba(255, 153, 204, 0.4); }
+
+        /* --- STILI GENERALI SEZIONI --- */
+        .section-container { padding: 80px 10%; text-align: center; }
+        .section-title { font-size: 36px; color: #ff99cc; margin-bottom: 40px; font-weight: 900; text-shadow: 0 2px 10px rgba(0,0,0,0.5); }
+
+        /* --- BRIEF FEATURES --- */
+        .brief-features { display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; }
+        .brief-feature-card { background: rgba(0, 0, 0, 0.6); border: 1px solid rgba(255, 153, 204, 0.3); padding: 30px; border-radius: 15px; width: 300px; transition: 0.3s; backdrop-filter: blur(5px); }
+        .brief-feature-card:hover { transform: translateY(-5px); border-color: #ff99cc; box-shadow: 0 10px 30px rgba(255,153,204,0.2); }
+        .brief-feature-card h3 { font-size: 20px; color: #fff; margin-bottom: 10px; }
+        .brief-feature-card p { font-size: 14px; color: #bbb; }
+        .btn-more { margin-top: 30px; background: transparent; border: 1px solid #ff99cc; color: #ff99cc; padding: 12px 30px; border-radius: 8px; font-weight: bold; cursor: pointer; transition: 0.2s; }
+        .btn-more:hover { background: #ff99cc; color: #000; }
+
+        /* --- BRIEF STAFF --- */
+        .brief-staff { display: flex; justify-content: center; gap: 50px; flex-wrap: wrap; }
+        .brief-staff-member { display: flex; flex-direction: column; align-items: center; gap: 10px; }
+        .brief-staff-member img { width: 100px; image-rendering: pixelated; filter: drop-shadow(0 10px 10px rgba(0,0,0,0.5)); }
+        .brief-staff-member span { font-size: 16px; font-weight: 700; }
+
+        /* --- PAGINE INTERNE --- */
+        .content-page { 
+            max-width: 900px; 
+            margin: 60px auto; 
+            background: transparent;
+            padding: 40px; 
+            border-radius: 20px; 
+        }
+        
+        .content-page h1 { 
+            color: #ff99cc; 
+            font-size: 36px; 
+            margin-bottom: 30px; 
+            border-bottom: 2px solid rgba(255, 153, 204, 0.4); 
+            padding-bottom: 15px; 
+            text-shadow: 0 2px 10px rgba(0,0,0,0.8); 
+            text-align: center; 
+        }
+
+        .timeline { border-left: 3px solid #ff99cc; padding-left: 20px; margin-left: 10px; }
+        .timeline-item { 
+            margin-bottom: 30px; 
+            position: relative; 
+            background: rgba(0, 0, 0, 0.5); 
+            backdrop-filter: blur(5px);
+            padding: 20px; 
+            border-radius: 8px; 
+            border: 1px solid rgba(255, 255, 255, 0.1); 
+        }
+        .timeline-item::before { content: ''; position: absolute; left: -28px; top: 25px; width: 14px; height: 14px; background: #ff99cc; border-radius: 50%; box-shadow: 0 0 10px #ff99cc; }
+        .timeline-date { font-size: 12px; color: #ff99cc; font-weight: bold; text-transform: uppercase; margin-bottom: 5px; display: block; }
+        .timeline-title { font-size: 20px; font-weight: 700; margin-bottom: 10px; color: #fff; }
+        .timeline-desc { color: #ddd; line-height: 1.6; font-size: 15px; }
+        .maintenance-tag { font-size: 11px; background: rgba(255, 153, 204, 0.2); color: #ff99cc; padding: 3px 8px; border-radius: 5px; margin-left: 10px; vertical-align: middle; border: 1px solid rgba(255, 153, 204, 0.5); }
+
+        /* --- STILI PAGINA RANKS --- */
+        .ranks-section {
+            padding: 80px 10%; display: flex; justify-content: space-between; align-items: flex-start;
+            flex-wrap: wrap; gap: 50px; position: relative; z-index: 10;
+        }
+        .rank-left { flex: 1; min-width: 300px; }
+        .rank-left h2 { font-size: 48px; font-weight: 700; line-height: 1.2; margin-bottom: 20px; text-shadow: 0 2px 10px rgba(0,0,0,0.5); }
+        .rank-left h2 span { color: #ff99cc; font-weight: 900; text-shadow: 0 0 15px rgba(255, 153, 204, 0.5); }
+        .rank-price { font-size: 16px; color: #aaa; margin-bottom: 30px; }
+        .rank-price strong { font-size: 24px; color: #fff; }
+        .rank-buttons { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 20px; }
+        .rank-btn-option {
+            background: rgba(0,0,0,0.6); border: 1px solid #333; color: #aaa; padding: 15px; border-radius: 8px; text-align: center;
+            cursor: pointer; font-weight: 700; transition: 0.2s; display: flex; align-items: center; justify-content: center; gap: 10px;
+        }
+        .rank-btn-option:hover { background: rgba(255,255,255,0.1); }
+        .rank-btn-option.active { border-color: #ff99cc; color: #fff; background: rgba(255, 153, 204, 0.2); }
+        .rank-btn-buy {
+            background: #4a154b; color: #ff99cc; border: none; padding: 15px; border-radius: 8px; font-weight: 700;
+            font-size: 16px; cursor: pointer; width: 100%; display: flex; justify-content: center; align-items: center; gap: 10px; transition: 0.2s;
+        }
+        .rank-btn-buy:hover { background: #5a1a5b; color: #fff; }
+        .rank-right { flex: 1.5; min-width: 400px; display: grid; grid-template-columns: 1fr 1fr; gap: 40px; }
+        .feature-item { display: flex; flex-direction: column; gap: 10px; }
+        .feature-title { font-size: 16px; font-weight: 700; display: flex; align-items: center; gap: 10px; }
+        .feature-desc { font-size: 14px; color: #bbb; line-height: 1.5; }
+
+        /* --- STILI PAGINA STAFF --- */
+        .staff-list { display: flex; flex-direction: column; gap: 40px; }
+        .staff-role-group { text-align: center; }
+        .staff-role-title { font-size: 24px; color: #ff99cc; margin-bottom: 20px; text-transform: uppercase; letter-spacing: 2px; font-weight: 900; text-shadow: 0 2px 5px rgba(0,0,0,0.8); }
+        .staff-members-container { display: flex; justify-content: center; flex-wrap: wrap; gap: 40px; }
+        .staff-member-card { display: flex; flex-direction: column; align-items: center; gap: 15px; }
+        .staff-member-card img { width: 120px; image-rendering: pixelated; filter: drop-shadow(0 10px 10px rgba(0,0,0,0.5)); transition: transform 0.3s; }
+        .staff-member-card img:hover { transform: translateY(-5px) scale(1.1); }
+        .staff-member-card span { font-size: 18px; font-weight: 700; color: #fff; text-shadow: 0 2px 5px rgba(0,0,0,0.8); }
+
+        /* --- STILI PAGINA DOWNLOAD --- */
+        .download-page-container { display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 50px 20px; }
+        .download-page-container h1 { font-size: 48px; color: #ff99cc; margin-bottom: 20px; text-shadow: 0 2px 10px rgba(0,0,0,0.8); }
+        .download-page-container p { font-size: 18px; color: #ddd; margin-bottom: 40px; text-shadow: 0 2px 5px rgba(0,0,0,0.8); }
+        .btn-download-huge { background: #ff99cc; color: #000; padding: 25px 80px; border-radius: 15px; font-size: 24px; font-weight: 900; cursor: pointer; border: none; transition: 0.3s; box-shadow: 0 10px 30px rgba(255, 153, 204, 0.4); }
+        .btn-download-huge:hover { background: #ff80bf; transform: scale(1.05); box-shadow: 0 15px 40px rgba(255, 153, 204, 0.6); }
+
+        /* --- PLAYER MUSICALE --- */
+        .music-player { position: fixed; bottom: 30px; left: 30px; background: rgba(0, 0, 0, 0.85); border-radius: 25px; padding: 15px; display: flex; align-items: center; gap: 15px; z-index: 100; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5); }
+        .music-cover { width: 60px; height: 60px; border-radius: 15px; background-image: url('https://i.pinimg.com/1200x/73/77/59/7377596eccdd9158ead5d2ffa96b2fb5.jpg'); background-size: cover; background-position: center; }
+        .music-info { display: flex; flex-direction: column; }
+        .music-title { font-size: 15px; font-weight: 700; }
+        .music-artist { font-size: 13px; color: rgba(255,255,255,0.6); }
+        .play-btn { background: rgba(255, 255, 255, 0.1); border: 1px solid rgba(255,255,255,0.3); color: white; width: 45px; height: 45px; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: 0.2s; font-size: 18px; }
+        .play-btn:hover { background: rgba(255, 255, 255, 0.2); }
+
+        /* --- BOTTONE DISCORD FISSO --- */
+        .discord-btn { position: fixed; bottom: 30px; right: 30px; background: #5865F2; border: none; color: white; padding: 12px 25px; border-radius: 50px; font-size: 16px; font-weight: 700; cursor: pointer; display: flex; align-items: center; gap: 10px; z-index: 100; text-decoration: none; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3); transition: 0.2s; }
+        .discord-btn:hover { background: #4752C4; transform: translateY(-5px); }
+        .icon-discord-img { width: 28px; height: 28px; object-fit: contain; }
+
+        /* --- PANNELLO DEV TOOLS --- */
+        #dev-panel { display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); background: rgba(15, 15, 15, 0.98); border: 2px solid #ff99cc; border-radius: 15px; padding: 25px; z-index: 10000; color: white; box-shadow: 0 10px 50px rgba(0,0,0,0.9), 0 0 20px rgba(255, 153, 204, 0.3); width: 450px; max-height: 90vh; overflow-y: auto; }
+        #dev-panel h2 { color: #ff99cc; margin-bottom: 20px; font-size: 22px; text-transform: uppercase; text-align: center; border-bottom: 1px solid #333; padding-bottom: 10px;}
+        #dev-panel input[type="password"], #dev-panel input[type="text"] { width: 100%; padding: 12px; margin-bottom: 15px; border-radius: 5px; border: 1px solid #555; background: #111; color: white; font-size: 14px; text-align: center; }
+        #dev-panel button { background: #333; color: white; border: 1px solid #555; padding: 10px 15px; border-radius: 5px; cursor: pointer; font-weight: bold; width: 100%; font-size: 14px; margin-bottom: 10px; transition: 0.2s; }
+        #dev-panel button:hover { background: #555; border-color: #888; }
+        #dev-panel button.primary { background: #ff99cc; border-color: #ff99cc; color: #000; }
+        #dev-panel button.primary:hover { background: #ff80bf; }
+        #dev-panel button.danger { background: #cc0000; border-color: #cc0000; }
+        #dev-panel button.danger:hover { background: #990000; }
+        .dev-tools { display: none; flex-direction: column; gap: 15px; margin-top: 15px; }
+        .dev-section { background: #1a1a1a; padding: 15px; border-radius: 8px; border: 1px solid #333; }
+        .dev-section h3 { font-size: 14px; color: #aaa; margin-bottom: 10px; text-transform: uppercase; letter-spacing: 1px; }
+        .dev-log { background: #000; color: #00ff00; font-family: monospace; font-size: 12px; padding: 10px; border-radius: 5px; height: 80px; overflow-y: auto; border: 1px solid #333; }
+        .dev-log p { margin-bottom: 3px; }
+
+    </style>
 </head>
 <body>
 
-<header class="top-bar">
-  <div class="top-left">
-    <img src="https://i.imgur.com/cclMcy5.png" alt="OrbysMC" class="brand-logo-img">
-    <div class="brand-name">Orbys<span>MC</span></div>
-  </div>
-  <div class="top-right">
-    <div class="top-chip" id="langBtn">
-      <i class="fa-solid fa-globe"></i>
-      <span id="langLabel">IT</span>
-      <div class="dropdown" id="langDropdown">
-        <div class="dropdown-item active" data-lang="it"><i class="fa-solid fa-flag"></i> Italiano</div>
-        <div class="dropdown-item" data-lang="en"><i class="fa-solid fa-flag-usa"></i> English</div>
-      </div>
+    <div id="petals-container"></div>
+
+    <div id="devtools-warning">
+        <p>ACCESSO NEGATO.</p>
+        <p>L'ispezione non è consentita.</p>
+        <span>Se sei un membro dello staff, utilizza Ctrl+Alt+D per accedere.</span>
     </div>
-    <div class="top-chip" onclick="openCart()">
-      <i class="fa-solid fa-cart-shopping"></i>
-      <strong>Carrello</strong>
-      <span class="cart-count" id="cartCount">0</span>
+
+    <div id="global-announcement">Annuncio Staff: Benvenuti su Petal Client!</div>
+
+    <header>
+        <div class="logo-container" onclick="navigateTo('home')">
+            <img src="https://cdn.corenexis.com/f/J3wKgA7j31h.png" class="logo-img" alt="Petal Logo">
+            <div class="logo-text">PETAL CLIENT</div>
+        </div>
+
+        <!-- MENU BUTTON IN ALTO A DESTRA -->
+        <div class="menu-btn-container">
+            <button class="menu-btn" onclick="toggleMenu()">☰ MENU</button>
+            
+            <div class="dropdown-menu" id="dropdown-menu">
+                <a onclick="navigateTo('home'); toggleMenu()">HOME</a>
+                <a onclick="navigateTo('news'); toggleMenu()">NEWS</a>
+                <a onclick="navigateTo('changelog'); toggleMenu()">CHANGELOG</a>
+                <a onclick="navigateTo('features'); toggleMenu()">FEATURES</a>
+                <a onclick="navigateTo('ranks'); toggleMenu()">RANKS</a>
+                <a onclick="navigateTo('staff'); toggleMenu()">STAFF</a>
+                <a onclick="navigateTo('store'); toggleMenu()">STORE</a>
+                <a onclick="navigateTo('download'); toggleMenu()">DOWNLOAD</a>
+                <a onclick="navigateTo('support'); toggleMenu()">SUPPORT</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- BARRA ORIZZONTALE DI NAVIGAZIONE -->
+    <nav class="sub-menu">
+        <a onclick="navigateTo('news')" id="nav-news">NEWS</a>
+        <a onclick="navigateTo('changelog')" id="nav-changelog">CHANGELOG</a>
+        <a onclick="navigateTo('features')" id="nav-features">FEATURES</a>
+        <a onclick="navigateTo('ranks')" id="nav-ranks">RANKS</a>
+        <a onclick="navigateTo('staff')" id="nav-staff">STAFF</a>
+        <a onclick="navigateTo('support')" id="nav-support">SUPPORT</a>
+        <a onclick="navigateTo('store')">STORE</a>
+    </nav>
+
+    <div id="download-alert">Download is not available yet.</div>
+
+    <!-- ================= PAGINA HOME ================= -->
+    <div id="page-home" class="page-section active">
+        
+        <!-- HERO -->
+        <section class="hero">
+            <div id="3d-container"></div>
+            <h1 class="hero-title">PETAL CLIENT</h1>
+            <p class="hero-description">
+                Extreme optimization for Minecraft.<br>
+                <strong>CPVP Performance + FPS - Delay.</strong><br>
+                Dominate every fight without lag.
+            </p>
+
+            <div class="hero-actions">
+                <button class="btn-hero" onclick="navigateTo('download')">
+                    DOWNLOAD NOW
+                </button>
+                <button class="btn-hero" onclick="navigateTo('store')">
+                    STORE
+                </button>
+            </div>
+        </section>
+
+        <!-- BRIEF FEATURES -->
+        <section class="section-container">
+            <h2 class="section-title">Why choose Petal?</h2>
+            <div class="brief-features">
+                <div class="brief-feature-card">
+                    <h3>Extreme Performance</h3>
+                    <p>Boost your FPS and reduce stuttering drastically.</p>
+                </div>
+                <div class="brief-feature-card">
+                    <h3>CPVP Optimized</h3>
+                    <p>Zero delay hit registration and optimized rendering.</p>
+                </div>
+                <div class="brief-feature-card">
+                    <h3>Custom GUI</h3>
+                    <p>Manage your settings without leaving the game.</p>
+                </div>
+            </div>
+            <button class="btn-more" onclick="navigateTo('features')">VIEW ALL FEATURES</button>
+        </section>
+
+        <!-- BRIEF STAFF -->
+        <section class="section-container">
+            <h2 class="section-title">Our Team</h2>
+            <div class="brief-staff">
+                <div class="brief-staff-member">
+                    <img src="https://mc-heads.net/body/Axydevv/150" alt="Axydevv">
+                    <span>Axydevv (Owner)</span>
+                </div>
+                <div class="brief-staff-member">
+                    <img src="https://mc-heads.net/body/MrDuckyzx/150" alt="MrDuckyzx">
+                    <span>MrDuckyzx (Manager)</span>
+                </div>
+                <div class="brief-staff-member">
+                    <img src="https://mc-heads.net/body/SGNabbocath_/150" alt="SGNabbocath_">
+                    <span>SGNabbocath_ (Dev)</span>
+                </div>
+            </div>
+            <button class="btn-more" onclick="navigateTo('staff')">VIEW FULL STAFF</button>
+        </section>
+
     </div>
-    <div class="top-chip">
-      <span class="dot"></span>
-      <strong id="topUser">Ospite</strong>
+
+    <!-- ================= PAGINA NEWS ================= -->
+    <div id="page-news" class="page-section">
+        <div class="content-page">
+            <h1>Latest News</h1>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <span class="timeline-date">System Update</span>
+                    <div class="timeline-title" id="news-title">Client Status</div>
+                    <div class="timeline-desc" id="news-desc">The client is currently under maintenance. Release date: TBA.</div>
+                </div>
+                <div class="timeline-item">
+                    <span class="timeline-date">Welcome</span>
+                    <div class="timeline-title">Welcome to Petal Client</div>
+                    <div class="timeline-desc">We are working hard to bring you the best Minecraft experience. Stay tuned for more updates and announcements!</div>
+                </div>
+            </div>
+        </div>
     </div>
-  </div>
-</header>
 
-<section class="hero">
-  <div class="hero-inner">
-    <img src="https://i.imgur.com/cclMcy5.png" alt="OrbysMC" class="hero-logo">
-    <div class="hero-status">
-      <span class="dot"></span>
-      <span>Server Manutenzione</span>
+    <!-- ================= PAGINA CHANGELOG ================= -->
+    <div id="page-changelog" class="page-section">
+        <div class="content-page">
+            <h1>Changelog</h1>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <span class="timeline-date">October 2026</span>
+                    <div class="timeline-title">v2.7.9 - Major Update</div>
+                    <div class="timeline-desc">- Implemented new CPVP hit registration system.<br>- Added the Petal+ subscription with exclusive cosmetics.<br>- Optimized the UI and added the new in-game menu (Beta).<br>- Fixed various bugs and improved stability.</div>
+                </div>
+                <div class="timeline-item">
+                    <span class="timeline-date">September 2026</span>
+                    <div class="timeline-title">v0.9.0 - Beta Phase</div>
+                    <div class="timeline-desc">- Fixed major lag spikes.<br>- Improved CPVP hit registration.<br>- Testing phase for the in-game mod menu.</div>
+                </div>
+            </div>
+        </div>
     </div>
-    <h1>Lo store ufficiale di <em>OrbysMC</em>.</h1>
-    <p>Acquista rank, key e gemme per il server. Pagamenti sicuri tramite PayPal e Revolut, consegna immediata in-game.</p>
-    <div class="hero-ip" onclick="copyIP()">
-      <i class="fa-solid fa-server"></i>
-      <span>play.orbysmc.it</span>
-      <i class="fa-solid fa-copy"></i>
+
+    <!-- ================= PAGINA FEATURES ================= -->
+    <div id="page-features" class="page-section">
+        <div class="content-page">
+            <h1>Features</h1>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <span class="timeline-date">Optimization</span>
+                    <div class="timeline-title">Extreme Performance</div>
+                    <div class="timeline-desc">Optimized rendering engine that drastically increases your FPS and reduces stuttering, even on low-end PCs. Experience Minecraft like never before.</div>
+                </div>
+                
+                <div class="timeline-item">
+                    <span class="timeline-date">Combat</span>
+                    <div class="timeline-title">CPVP Optimizations</div>
+                    <div class="timeline-desc">Zero delay hit registration, optimized particle rendering, and dynamic entity culling for the ultimate PvP advantage. Never miss a hit again.</div>
+                </div>
+                
+                <div class="timeline-item">
+                    <span class="timeline-date">Interface</span>
+                    <div class="timeline-title">In-Game GUI <span class="maintenance-tag">IN MAINTENANCE</span></div>
+                    <div class="timeline-desc">Fully customizable in-game interface. Adjust your settings, toggle mods, and manage cosmetics without leaving the game. Currently under development for the next major update.</div>
+                </div>
+
+                <div class="timeline-item">
+                    <span class="timeline-date">Customization</span>
+                    <div class="timeline-title">Cosmetics</div>
+                    <div class="timeline-desc">Stand out with exclusive cloaks, animated wings, and particle trails available for Petal+ users. Make your character truly unique.</div>
+                </div>
+            </div>
+        </div>
     </div>
-  </div>
-</section>
 
-<div class="container">
-  <div class="layout">
+    <!-- ================= PAGINA RANKS ================= -->
+    <div id="page-ranks" class="page-section">
+        <section class="ranks-section">
+            <div class="rank-left">
+                <h2>Unlock features and<br>exclusive benefits with<br><span>Petal +</span></h2>
+                <p class="rank-price">Starting from <strong>€6.28</strong></p>
+                
+                <div class="rank-price" style="margin-bottom: 10px; font-weight: bold; color: #fff;">
+                    €6.28 per month <span style="float:right; font-weight: normal; color:#aaa; font-size: 14px;">💳 Switch to one-time payment</span>
+                </div>
 
-    <aside class="sidebar">
-      <button class="nav-btn active" data-section="home" onclick="showSection('home', this)">
-        <i class="fa-solid fa-house"></i>
-        <span>Home</span>
-      </button>
-      <button class="nav-btn" data-section="ranks" onclick="showSection('ranks', this)">
-        <i class="fa-solid fa-crown"></i>
-        <span>Rank</span>
-      </button>
-      <button class="nav-btn" data-section="keys" onclick="showSection('keys', this)">
-        <i class="fa-solid fa-key"></i>
-        <span>Key</span>
-      </button>
-      <button class="nav-btn" data-section="gems" onclick="showSection('gems', this)">
-        <i class="fa-solid fa-gem"></i>
-        <span>Gemme</span>
-      </button>
-      <button class="nav-btn" data-section="money" onclick="showSection('money', this)">
-        <i class="fa-solid fa-coins"></i>
-        <span>Soldi</span>
-      </button>
-      <button class="nav-btn" data-section="staff" onclick="showSection('staff', this)">
-        <i class="fa-solid fa-users-gear"></i>
-        <span>Staff</span>
-      </button>
-    </aside>
+                <div class="rank-buttons">
+                    <div class="rank-btn-option active">
+                        <img src="https://media.discordapp.net/attachments/1558148359754223637/1564987507005718688/icons8-calendario-48.png?ex=6ae343b1&is=6ae1f231&hm=a986a5a5ce6d33acdf193e88d418a4dd2fe69ec135e1c077ded7135cecff3a7f&=&format=webp&quality=lossless" class="icon-img" alt="Calendar"> Monthly
+                    </div>
+                    <div class="rank-btn-option">
+                        <img src="https://media.discordapp.net/attachments/1558148359754223637/1564987507005718688/icons8-calendario-48.png?ex=6ae343b1&is=6ae1f231&hm=a986a5a5ce6d33acdf193e88d418a4dd2fe69ec135e1c077ded7135cecff3a7f&=&format=webp&quality=lossless" class="icon-img" alt="Calendar"> Quarterly
+                    </div>
+                    <div class="rank-btn-option">
+                        <img src="https://media.discordapp.net/attachments/1558148359754223637/1564987507005718688/icons8-calendario-48.png?ex=6ae343b1&is=6ae1f231&hm=a986a5a5ce6d33acdf193e88d418a4dd2fe69ec135e1c077ded7135cecff3a7f&=&format=webp&quality=lossless" class="icon-img" alt="Calendar"> Semi-Annual
+                    </div>
+                    <div class="rank-btn-option">
+                        <img src="https://media.discordapp.net/attachments/1558148359754223637/1564987507005718688/icons8-calendario-48.png?ex=6ae343b1&is=6ae1f231&hm=a986a5a5ce6d33acdf193e88d418a4dd2fe69ec135e1c077ded7135cecff3a7f&=&format=webp&quality=lossless" class="icon-img" alt="Calendar"> Annual
+                    </div>
+                </div>
 
-    <main class="content">
-
-      <section class="section active" id="section-home">
-        <div class="section-header">
-          <div class="section-label">Benvenuto</div>
-          <h2 class="section-title">Inserisci il tuo nome</h2>
-          <p class="section-sub">Il tuo avatar apparirà automaticamente. Nessuna registrazione richiesta.</p>
-        </div>
-
-        <div class="welcome-box">
-          <h3>Inizia lo shopping</h3>
-          <p>Inserisci il tuo username Minecraft per associare gli acquisti al tuo account.</p>
-          <div class="input-row">
-            <input type="text" class="input-field" id="usernameInput" placeholder="Il tuo username Minecraft" maxlength="16">
-            <button class="btn btn-primary" onclick="saveUsername()">
-              <i class="fa-solid fa-check"></i> Conferma
-            </button>
-          </div>
-        </div>
-
-        <div class="home-grid">
-          <div class="home-card">
-            <i class="fa-solid fa-crown"></i>
-            <h4>Rank</h4>
-            <p>Potenzia la tua esperienza con privilegi esclusivi e comandi speciali.</p>
-          </div>
-          <div class="home-card">
-            <i class="fa-solid fa-key"></i>
-            <h4>Key</h4>
-            <p>Casse misteriose con premi rari, armi e oggetti esclusivi.</p>
-          </div>
-          <div class="home-card">
-            <i class="fa-solid fa-gem"></i>
-            <h4>Gemme</h4>
-            <p>Valuta premium per acquistare oggetti esclusivi in-game.</p>
-          </div>
-          <div class="home-card">
-            <i class="fa-solid fa-coins"></i>
-            <h4>Soldi</h4>
-            <p>Valuta in-game per il mercato e gli scambi tra giocatori.</p>
-          </div>
-        </div>
-      </section>
-
-      <section class="section" id="section-ranks">
-        <div class="section-header">
-          <div class="section-label">Store</div>
-          <h2 class="section-title">Rank disponibili</h2>
-          <p class="section-sub">Scegli il rank perfetto per il tuo stile di gioco.</p>
-        </div>
-
-        <div class="product-grid">
-          <div class="product-card">
-            <div class="product-icon">
-              <img src="https://i.imgur.com/f32oyML.jpeg" alt="Rank BRONZE">
+                <button class="rank-btn-buy">
+                    <img src="https://cdn.discordapp.com/attachments/1558148359754223637/1564990454842396682/Screenshot_2026-10-28_141223-removebg-preview.png?ex=6ae34670&is=6ae1f4f0&hm=61743b23296224bd09bb35dfe102684965e5ec91fd5a0587188c1f1dfd6b3d21&" class="icon-img" style="width: 30px; height: 30px;" alt="Petal+"> Subscribe to Petal+
+                </button>
             </div>
-            <h3>BRONZE</h3>
-            <div class="price">3<small>€</small></div>
-            <ul class="perk-list">
-              <li><i class="fa-solid fa-check"></i> 3 home</li>
-              <li><i class="fa-solid fa-check"></i> Kit Bronze</li>
-              <li><i class="fa-solid fa-check"></i> Prefisso [BRONZE]</li>
-            </ul>
-            <button class="product-btn" onclick="addToCart('Rank BRONZE', 3)">
-              <i class="fa-solid fa-cart-plus"></i> Aggiungi
-            </button>
-          </div>
 
-          <div class="product-card">
-            <div class="product-icon">
-              <img src="https://i.imgur.com/f32oyML.jpeg" alt="Rank IRON">
+            <div class="rank-right">
+                <div class="feature-item">
+                    <div class="feature-title"><img src="https://transparent.craiyon.com/2026-10-28/ggz9tZSGRkGtaQ_JVEoXvA.webp" class="icon-img" alt="Bow"> Exclusive Pink Icon</div>
+                    <div class="feature-desc">An exclusive pink logo for Petal Client, with an elegant green plus to stand out from the rest.</div>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-title"><img src="https://media.discordapp.net/attachments/1558148359754223637/1564987507475615895/icons8-regalo-48.png?ex=6ae343b1&is=6ae1f231&hm=9923a81d9fb3901c9942ed265a2e083985cef0df964a4c2340d8ffb3e9e2414f&=&format=webp&quality=lossless" class="icon-img" alt="Gift"> Exclusive Cosmetics</div>
+                    <div class="feature-desc">Access a wide range of exclusive cosmetics reserved for Petal+ users.</div>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-title"><img src="https://media.discordapp.net/attachments/1558148359754223637/1564986177474531409/icons8-borsa-48.png?ex=6ae34274&is=6ae1f0f4&hm=ea36b23da11bfae425fe96a43f9ba4412220072978871bb9eca4f451d8d6c245&=&format=webp&quality=lossless" class="icon-img" alt="Bag"> Store Discounts</div>
+                    <div class="feature-desc">Get a 10% discount on store products for the entire duration of your subscription.</div>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-title"><img src="https://cdn.discordapp.com/attachments/1558148359754223637/1564986177965133955/icons8-discordia-48.png?ex=6ae34274&is=6ae1f0f4&hm=60d1461da81e131a1d62c38cdc1b31f0c0e567f5ba42e9a6174eed2c8b1b3c10&" class="icon-img" alt="Discord"> Discord Perks</div>
+                    <div class="feature-desc">Receive a role in our Discord with access to exclusive chats, role icon, level boost, and much more.</div>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-title"><img src="https://transparent.craiyon.com/2026-10-28/ggz9tZSGRkGtaQ_JVEoXvA.webp" class="icon-img" alt="Bow"> Show Cloth Cloaks</div>
+                    <div class="feature-desc">Apply an effect to all your cloaks, adding more realistic physics as you move in-game.</div>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-title"><img src="https://media.discordapp.net/attachments/1558148359754223637/1564987507005718688/icons8-calendario-48.png?ex=6ae343b1&is=6ae1f231&hm=a986a5a5ce6d33acdf193e88d418a4dd2fe69ec135e1c077ded7135cecff3a7f&=&format=webp&quality=lossless" class="icon-img" alt="Calendar"> Monthly Emote</div>
+                    <div class="feature-desc">Receive a random emote at the beginning of each month, so your character can dance uniquely.</div>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-title"><img src="https://media.discordapp.net/attachments/1558148359754223637/1564986178468446268/icons8-folla-48.png?ex=6ae34274&is=6ae1f0f4&hm=b1567e28d974a107492ae95702a0aaad4098a7dc1a931ab07ca83ede73579a3f&=&format=webp&quality=lossless" class="icon-img" alt="Friends"> Unlimited Friends</div>
+                    <div class="feature-desc">Too many friends? No problem! With Petal+ this limit is removed.</div>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-title"><img src="https://media.discordapp.net/attachments/1558148359754223637/1564986178468446268/icons8-folla-48.png?ex=6ae34274&is=6ae1f0f4&hm=b1567e28d974a107492ae95702a0aaad4098a7dc1a931ab07ca83ede73579a3f&=&format=webp&quality=lossless" class="icon-img" alt="Chat"> Larger Group Chats</div>
+                    <div class="feature-desc">Create group chats with up to 24 members and talk with your friends in real-time.</div>
+                </div>
             </div>
-            <h3>IRON</h3>
-            <div class="price">5<small>€</small></div>
-            <ul class="perk-list">
-              <li><i class="fa-solid fa-check"></i> 5 home</li>
-              <li><i class="fa-solid fa-check"></i> Kit Iron + Bronze</li>
-              <li><i class="fa-solid fa-check"></i> Prefisso [IRON]</li>
-            </ul>
-            <button class="product-btn" onclick="addToCart('Rank IRON', 5)">
-              <i class="fa-solid fa-cart-plus"></i> Aggiungi
-            </button>
-          </div>
-
-          <div class="product-card">
-            <div class="badge popular">Popolare</div>
-            <div class="product-icon">
-              <img src="https://i.imgur.com/f32oyML.jpeg" alt="Rank VIP">
-            </div>
-            <h3>VIP</h3>
-            <div class="price">10<small>€</small></div>
-            <ul class="perk-list">
-              <li><i class="fa-solid fa-check"></i> 7 home</li>
-              <li><i class="fa-solid fa-check"></i> Kit VIP + precedenti</li>
-              <li><i class="fa-solid fa-check"></i> Volo in lobby</li>
-            </ul>
-            <button class="product-btn" onclick="addToCart('Rank VIP', 10)">
-              <i class="fa-solid fa-cart-plus"></i> Aggiungi
-            </button>
-          </div>
-
-          <div class="product-card">
-            <div class="badge">Best seller</div>
-            <div class="product-icon">
-              <img src="https://i.imgur.com/f32oyML.jpeg" alt="Rank MVP">
-            </div>
-            <h3>MVP</h3>
-            <div class="price">15<small>€</small></div>
-            <ul class="perk-list">
-              <li><i class="fa-solid fa-check"></i> 10 home</li>
-              <li><i class="fa-solid fa-check"></i> Kit MVP + precedenti</li>
-              <li><i class="fa-solid fa-check"></i> Comandi premium</li>
-            </ul>
-            <button class="product-btn" onclick="addToCart('Rank MVP', 15)">
-              <i class="fa-solid fa-cart-plus"></i> Aggiungi
-            </button>
-          </div>
-
-          <div class="product-card">
-            <div class="badge best">Top</div>
-            <div class="product-icon">
-              <img src="https://i.imgur.com/f32oyML.jpeg" alt="Rank ORBYS">
-            </div>
-            <h3>ORBYS</h3>
-            <div class="price">25<small>€</small></div>
-            <ul class="perk-list">
-              <li><i class="fa-solid fa-check"></i> 20 home</li>
-              <li><i class="fa-solid fa-check"></i> Tutti i kit precedenti</li>
-              <li><i class="fa-solid fa-check"></i> Prefisso [ORBYS] animato</li>
-              <li><i class="fa-solid fa-check"></i> Accesso a tutti i comandi</li>
-            </ul>
-            <button class="product-btn" onclick="addToCart('Rank ORBYS', 25)">
-              <i class="fa-solid fa-cart-plus"></i> Aggiungi
-            </button>
-          </div>
-        </div>
-      </section>
-
-      <section class="section" id="section-keys">
-        <div class="section-header">
-          <div class="section-label">Store</div>
-          <h2 class="section-title">Key disponibili</h2>
-          <p class="section-sub">Apri casse misteriose per ottenere premi esclusivi.</p>
-        </div>
-
-        <div class="product-grid">
-          <div class="product-card">
-            <div class="product-icon">
-              <img src="https://i.imgur.com/uoignzf.jpeg" alt="Vote Crate">
-            </div>
-            <h3>Vote Crate</h3>
-            <div class="price">1<small>€</small></div>
-            <ul class="perk-list">
-              <li><i class="fa-solid fa-check"></i> 1 Vote Crate</li>
-              <li><i class="fa-solid fa-check"></i> Premi base</li>
-            </ul>
-            <button class="product-btn" onclick="addToCart('Vote Crate', 1)">
-              <i class="fa-solid fa-cart-plus"></i> Aggiungi
-            </button>
-          </div>
-
-          <div class="product-card">
-            <div class="product-icon">
-              <img src="https://i.imgur.com/uoignzf.jpeg" alt="Common Crate">
-            </div>
-            <h3>Common Crate</h3>
-            <div class="price">2<small>€</small></div>
-            <ul class="perk-list">
-              <li><i class="fa-solid fa-check"></i> 1 Common Crate</li>
-              <li><i class="fa-solid fa-check"></i> Premi comuni</li>
-            </ul>
-            <button class="product-btn" onclick="addToCart('Common Crate', 2)">
-              <i class="fa-solid fa-cart-plus"></i> Aggiungi
-            </button>
-          </div>
-
-          <div class="product-card">
-            <div class="badge popular">Popolare</div>
-            <div class="product-icon">
-              <img src="https://i.imgur.com/uoignzf.jpeg" alt="Rare Crate">
-            </div>
-            <h3>Rare Crate</h3>
-            <div class="price">5<small>€</small></div>
-            <ul class="perk-list">
-              <li><i class="fa-solid fa-check"></i> 1 Rare Crate</li>
-              <li><i class="fa-solid fa-check"></i> Premi rari</li>
-            </ul>
-            <button class="product-btn" onclick="addToCart('Rare Crate', 5)">
-              <i class="fa-solid fa-cart-plus"></i> Aggiungi
-            </button>
-          </div>
-
-          <div class="product-card">
-            <div class="badge best">Top</div>
-            <div class="product-icon">
-              <img src="https://i.imgur.com/uoignzf.jpeg" alt="Epic Crate">
-            </div>
-            <h3>Epic Crate</h3>
-            <div class="price">10<small>€</small></div>
-            <ul class="perk-list">
-              <li><i class="fa-solid fa-check"></i> 1 Epic Crate</li>
-              <li><i class="fa-solid fa-check"></i> Premi epici</li>
-            </ul>
-            <button class="product-btn" onclick="addToCart('Epic Crate', 10)">
-              <i class="fa-solid fa-cart-plus"></i> Aggiungi
-            </button>
-          </div>
-
-          <div class="product-card">
-            <div class="badge best">Esclusiva</div>
-            <div class="product-icon">
-              <img src="https://i.imgur.com/uoignzf.jpeg" alt="Orbys Crate">
-            </div>
-            <h3>Orbys Crate</h3>
-            <div class="price">20<small>€</small></div>
-            <ul class="perk-list">
-              <li><i class="fa-solid fa-check"></i> 1 Orbys Crate</li>
-              <li><i class="fa-solid fa-check"></i> Premi esclusivi Orbys</li>
-            </ul>
-            <button class="product-btn" onclick="addToCart('Orbys Crate', 20)">
-              <i class="fa-solid fa-cart-plus"></i> Aggiungi
-            </button>
-          </div>
-
-          <div class="product-card">
-            <div class="badge best">Esclusiva</div>
-            <div class="product-icon">
-              <img src="https://i.imgur.com/uoignzf.jpeg" alt="Spawner Crate">
-            </div>
-            <h3>Spawner Crate</h3>
-            <div class="price">15<small>€</small></div>
-            <ul class="perk-list">
-              <li><i class="fa-solid fa-check"></i> 1 Spawner Crate</li>
-              <li><i class="fa-solid fa-check"></i> Spawner casuale</li>
-            </ul>
-            <button class="product-btn" onclick="addToCart('Spawner Crate', 15)">
-              <i class="fa-solid fa-cart-plus"></i> Aggiungi
-            </button>
-          </div>
-        </div>
-      </section>
-
-      <section class="section" id="section-gems">
-        <div class="section-header">
-          <div class="section-label">Store</div>
-          <h2 class="section-title">Gemme</h2>
-          <p class="section-sub">Valuta premium per oggetti esclusivi in-game.</p>
-        </div>
-
-        <div class="product-grid">
-          <div class="product-card">
-            <div class="product-icon">
-              <img src="https://i.imgur.com/MZUGSRJ.jpeg" alt="1.000 Gemme">
-            </div>
-            <h3>1.000 Gemme</h3>
-            <div class="price">3<small>€</small></div>
-            <ul class="perk-list">
-              <li><i class="fa-solid fa-check"></i> 1.000 gemme</li>
-              <li><i class="fa-solid fa-check"></i> Consegna immediata</li>
-            </ul>
-            <button class="product-btn" onclick="addToCart('1.000 Gemme', 3)">
-              <i class="fa-solid fa-cart-plus"></i> Aggiungi
-            </button>
-          </div>
-
-          <div class="product-card">
-            <div class="badge popular">Popolare</div>
-            <div class="product-icon">
-              <img src="https://i.imgur.com/MZUGSRJ.jpeg" alt="5.000 Gemme">
-            </div>
-            <h3>5.000 Gemme</h3>
-            <div class="price">12<small>€</small></div>
-            <ul class="perk-list">
-              <li><i class="fa-solid fa-check"></i> 5.000 gemme</li>
-              <li><i class="fa-solid fa-check"></i> Bonus +5%</li>
-            </ul>
-            <button class="product-btn" onclick="addToCart('5.000 Gemme', 12)">
-              <i class="fa-solid fa-cart-plus"></i> Aggiungi
-            </button>
-          </div>
-
-          <div class="product-card">
-            <div class="badge best">Top</div>
-            <div class="product-icon">
-              <img src="https://i.imgur.com/MZUGSRJ.jpeg" alt="10.000 Gemme">
-            </div>
-            <h3>10.000 Gemme</h3>
-            <div class="price">22<small>€</small></div>
-            <ul class="perk-list">
-              <li><i class="fa-solid fa-check"></i> 10.000 gemme</li>
-              <li><i class="fa-solid fa-check"></i> Bonus +10%</li>
-            </ul>
-            <button class="product-btn" onclick="addToCart('10.000 Gemme', 22)">
-              <i class="fa-solid fa-cart-plus"></i> Aggiungi
-            </button>
-          </div>
-        </div>
-      </section>
-
-      <section class="section" id="section-money">
-        <div class="section-header">
-          <div class="section-label">Store</div>
-          <h2 class="section-title">Soldi</h2>
-          <p class="section-sub">Questa categoria è temporaneamente chiusa.</p>
-        </div>
-
-        <div class="maintenance">
-          <i class="fa-solid fa-screwdriver-wrench"></i>
-          <h3>In manutenzione</h3>
-          <p>La categoria Soldi sarà disponibile a breve. Torna a trovarci tra qualche giorno.</p>
-        </div>
-      </section>
-
-      <section class="section" id="section-staff">
-        <div class="section-header">
-          <div class="section-label">Team</div>
-          <h2 class="section-title">Staff di OrbysMC</h2>
-          <p class="section-sub">Le persone che gestiscono il server.</p>
-        </div>
-
-        <div class="staff-grid">
-          <div class="staff-card">
-            <div class="staff-avatar">
-              <img src="https://minotar.net/helm/Nyoxmc_/96.png" alt="Nyoxmc_">
-            </div>
-            <div class="staff-role owner">Owner</div>
-            <div class="staff-name">Nyoxmc_</div>
-            <p class="staff-desc">Fondatore e amministratore del server.</p>
-            <a href="https://www.instagram.com/nyoxmc_" target="_blank" class="staff-link">
-              <i class="fa-brands fa-instagram"></i> @nyoxmc_
-            </a>
-          </div>
-          <div class="staff-card">
-            <div class="staff-avatar">
-              <img src="https://minotar.net/helm/Steve/96.png" alt="Steve">
-            </div>
-            <div class="staff-role co-owner">Co-Owner</div>
-            <div class="staff-name">Steve</div>
-            <p class="staff-desc">Co-amministratore, gestisce lo staff e lo sviluppo.</p>
-          </div>
-        </div>
-      </section>
-
-    </main>
-  </div>
-</div>
-
-<footer>
-  <div class="footer-inner">
-    <span>© 2026 OrbysMC — Tutti i diritti riservati</span>
-    <div class="footer-social">
-      <a href="https://www.tiktok.com/@saskymc.it" target="_blank" title="TikTok"><i class="fa-brands fa-tiktok"></i></a>
-      <a href="https://discord.gg/YJs82xaTa" target="_blank" title="Discord"><i class="fa-brands fa-discord"></i></a>
+        </section>
     </div>
-  </div>
-  <div class="footer-inner" style="margin-top:16px;justify-content:center;">
-    <span class="footer-credit">
-      Creato da <strong style="color:var(--blue-light);">duckstudio</strong> —
-      <a href="https://portfolio.duckvanilla.store/" target="_blank">portfolio.duckvanilla.store</a>
-    </span>
-  </div>
-</footer>
 
-<div class="modal" id="cartModal">
-  <div class="modal-content">
-    <div class="modal-header">
-      <h3>Il tuo carrello</h3>
-      <button class="modal-close" onclick="closeCart()">×</button>
+    <!-- ================= PAGINA STAFF ================= -->
+    <div id="page-staff" class="page-section">
+        <div class="content-page">
+            <h1>Staff Team</h1>
+            <div class="staff-list">
+                
+                <div class="staff-role-group">
+                    <div class="staff-role-title">Owner</div>
+                    <div class="staff-members-container">
+                        <div class="staff-member-card">
+                            <img src="https://mc-heads.net/body/Axydevv/150" alt="Axydevv">
+                            <span>Axydevv</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="staff-role-group">
+                    <div class="staff-role-title">Manager</div>
+                    <div class="staff-members-container">
+                        <div class="staff-member-card">
+                            <img src="https://mc-heads.net/body/MrDuckyzx/150" alt="MrDuckyzx">
+                            <span>MrDuckyzx</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="staff-role-group">
+                    <div class="staff-role-title">Developer</div>
+                    <div class="staff-members-container">
+                        <div class="staff-member-card">
+                            <img src="https://mc-heads.net/body/SGNabbocath_/150" alt="SGNabbocath_">
+                            <span>SGNabbocath_</span>
+                        </div>
+                        <div class="staff-member-card">
+                            <img src="https://mc-heads.net/body/Axydevv/150" alt="Axydevv">
+                            <span>Axydevv</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="staff-role-group">
+                    <div class="staff-role-title">Discord Manager</div>
+                    <div class="staff-members-container">
+                        <div class="staff-member-card">
+                            <img src="https://mc-heads.net/body/Santos_Lukas/150" alt="Santos_Lukas">
+                            <span>Santos_Lukas</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
     </div>
-    <ul class="cart-list" id="cartList"></ul>
-    <div class="summary-box" id="cartSummary" style="display:none;">
-      <div class="summary-row total">
-        <span>Totale</span>
-        <span id="cartTotal">0,00 €</span>
-      </div>
+
+    <!-- ================= PAGINA DOWNLOAD ================= -->
+    <div id="page-download" class="page-section">
+        <div class="content-page download-page-container">
+            <h1>Download Petal Client</h1>
+            <p>Get the ultimate performance boost for Minecraft.</p>
+            
+            <button class="btn-download-huge" onclick="showDownloadAlert()">DOWNLOAD NOW</button>
+            
+            <p style="margin-top: 20px; font-size: 14px; color: #888;">Available for Windows 10/11.</p>
+        </div>
     </div>
-    <button class="btn btn-primary btn-block" onclick="checkout()" id="checkoutBtn" style="display:none;">
-      <i class="fa-solid fa-credit-card"></i> Vai al pagamento
-    </button>
-  </div>
-</div>
 
-<script>
-let cart = [];
-let username = '';
+    <!-- ================= PAGINA SUPPORT ================= -->
+    <div id="page-support" class="page-section">
+        <div class="content-page">
+            <h1>Support</h1>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <span class="timeline-date">Contact Us</span>
+                    <div class="timeline-title">Discord Support</div>
+                    <div class="timeline-desc">
+                        Need help with the client, billing, or have a general question? Join our official Discord server and open a ticket! Our staff team is always ready to help you.
+                        <br><br>
+                        <a href="https://discord.gg/zEjwg5an7" target="_blank" class="support-btn" style="display:inline-block; background:#5865F2; color:#fff; padding:10px 20px; border-radius:5px; text-decoration:none; font-weight:bold;">Join Our Discord</a>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <span class="timeline-date">Documentation</span>
+                    <div class="timeline-title">Knowledge Base</div>
+                    <div class="timeline-desc">Before opening a ticket, make sure to read our FAQ and documentation. You might find the answer to your question instantly.</div>
+                </div>
+            </div>
+        </div>
+    </div>
 
-function showSection(id, btn){
-  document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
-  const target = document.getElementById('section-' + id);
-  if(target) target.classList.add('active');
-  document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
-  if(btn) btn.classList.add('active');
-}
+    <div class="music-player">
+        <div class="music-cover"></div>
+        <div class="music-info">
+            <div class="music-title">Sweden</div>
+            <div class="music-artist">C418</div>
+        </div>
+        <div class="music-controls">
+            <button class="play-btn" id="music-toggle" onclick="toggleMusic()">▶</button>
+        </div>
+        <audio id="bg-music" loop>
+            <source src="https://ia800504.us.archive.org/15/items/MinecraftVolumeAlpha/18Sweden.mp3" type="audio/mpeg">
+        </audio>
+    </div>
 
-function saveUsername(){
-  const input = document.getElementById('usernameInput');
-  const value = input.value.trim();
-  if(!value){
-    showToast('Inserisci un username');
-    return;
-  }
-  username = value;
-  document.getElementById('topUser').textContent = value;
-  showToast('Benvenuto, ' + value);
-}
+    <a href="https://discord.gg/zEjwg5an7" target="_blank" class="discord-btn">
+        <img src="https://cdn.discordapp.com/attachments/1558148359754223637/1564986177965133955/icons8-discordia-48.png?ex=6ae34274&is=6ae1f0f4&hm=60d1461da81e131a1d62c38cdc1b31f0c0e567f5ba42e9a6174eed2c8b1b3c10&" class="icon-discord-img" alt="Discord">
+        Join Discord
+    </a>
 
-function copyIP(){
-  const ip = 'play.orbysmc.it';
-  navigator.clipboard.writeText(ip).then(() => {
-    showToast('IP copiato: ' + ip);
-  }).catch(() => {
-    showToast('IP: ' + ip);
-  });
-}
+    <!-- PANNELLO DEV POTENZIATO -->
+    <div id="dev-panel">
+        <h2>Staff Dashboard</h2>
+        
+        <div id="auth-section">
+            <p style="font-size: 12px; color: #aaa; margin-bottom: 10px; text-align: center;">Inserisci la password per accedere agli strumenti di gestione.</p>
+            <input type="password" id="dev-password" placeholder="Password...">
+            <button class="primary" onclick="checkPassword()">Login</button>
+        </div>
+        
+        <div id="tools-section" class="dev-tools">
+            
+            <div class="dev-section">
+                <h3>Stato Accesso</h3>
+                <p style="color: #00ff88; font-size: 14px;">✔ Autenticato come Staff.</p>
+            </div>
 
-function addToCart(name, price){
-  const existing = cart.find(item => item.name === name);
-  if(existing){
-    existing.qty += 1;
-  } else {
-    cart.push({name, price, qty: 1});
-  }
-  updateCart();
-  showToast(name + ' aggiunto');
-}
+            <div class="dev-section">
+                <h3>Sicurezza</h3>
+                <button onclick="toggleAntiInspect()" id="toggle-btn">Disabilita Anti-Ispezione</button>
+            </div>
 
-function updateCart(){
-  const count = cart.reduce((sum, item) => sum + item.qty, 0);
-  const badge = document.getElementById('cartCount');
-  if(count > 0){
-    badge.style.display = 'inline-block';
-    badge.textContent = count;
-  } else {
-    badge.style.display = 'none';
-  }
-  renderCart();
-}
+            <div class="dev-section">
+                <h3>Gestione Contenuti</h3>
+                <button onclick="toggleMaintenance()" id="btn-maintenance">Termina Manutenzione (Sito Online)</button>
+                <button onclick="changeBackground()">Cambia Sfondo</button>
+            </div>
 
-function renderCart(){
-  const list = document.getElementById('cartList');
-  const summary = document.getElementById('cartSummary');
-  const checkoutBtn = document.getElementById('checkoutBtn');
-  if(cart.length === 0){
-    list.innerHTML = '<li class="cart-empty">Il carrello è vuoto</li>';
-    summary.style.display = 'none';
-    checkoutBtn.style.display = 'none';
-    return;
-  }
-  list.innerHTML = '';
-  cart.forEach((item, index) => {
-    const li = document.createElement('li');
-    li.className = 'cart-item';
-    li.innerHTML = `
-      <div class="cart-item-info">
-        <div class="cart-item-name">${item.name}${item.qty > 1 ? ' x' + item.qty : ''}</div>
-        <div class="cart-item-price">${(item.price * item.qty).toFixed(2).replace('.', ',')} €</div>
-      </div>
-      <button class="remove-btn" onclick="removeFromCart(${index})">
-        <i class="fa-solid fa-times"></i>
-      </button>
-    `;
-    list.appendChild(li);
-  });
-  const total = cart.reduce((sum, item) => sum + item.price * item.qty, 0);
-  document.getElementById('cartTotal').textContent = total.toFixed(2).replace('.', ',') + ' €';
-  summary.style.display = 'block';
-  checkoutBtn.style.display = 'flex';
-}
+            <div class="dev-section">
+                <h3>Gestione Download</h3>
+                <button onclick="toggleDownload()" id="btn-download-status" style="background: #cc0000;">Attiva Download</button>
+            </div>
 
-function removeFromCart(index){
-  cart.splice(index, 1);
-  updateCart();
-}
+            <div class="dev-section">
+                <h3>Annuncio Globale</h3>
+                <input type="text" id="announcement-text" placeholder="Scrivi un annuncio qui...">
+                <button onclick="publishAnnouncement()">Pubblica Annuncio</button>
+                <button onclick="removeAnnouncement()" class="danger">Rimuovi Annuncio</button>
+            </div>
 
-function openCart(){
-  renderCart();
-  document.getElementById('cartModal').classList.add('open');
-}
+            <div class="dev-section">
+                <h3>Log di Sessione</h3>
+                <div class="dev-log" id="dev-log-container">
+                    <p>[SYS] Pannello inizializzato.</p>
+                </div>
+            </div>
 
-function closeCart(){
-  document.getElementById('cartModal').classList.remove('open');
-}
+            <button onclick="closeDevPanel()" class="danger">Chiudi Pannello</button>
+        </div>
+    </div>
 
-function checkout(){
-  if(cart.length === 0) return;
-  showToast('Reindirizzamento al pagamento...');
-}
+    <script type="module">
+        import { SkinViewer } from 'https://cdn.jsdelivr.net/npm/skinview3d@3.0.0/bundles/skinview3d.bundle.js';
+        const viewer = new SkinViewer({
+            width: 250, height: 350,
+            skin: 'https://textures.minecraft.net/texture/20d6e48b1b1b8015f9950822041c99f3cb3b069cb76c34efe96b7ba9fc8b8dc1'
+        });
+        document.getElementById('3d-container').appendChild(viewer.canvas);
+        viewer.autoRotate = true;
+        viewer.autoRotateSpeed = 1.5;
+        viewer.camera.position.y = 10;
+        viewer.camera.position.z = 45;
+    </script>
 
-function showToast(msg){
-  const existing = document.querySelector('.toast');
-  if(existing) existing.remove();
-  const toast = document.createElement('div');
-  toast.className = 'toast';
-  toast.textContent = msg;
-  document.body.appendChild(toast);
-  setTimeout(() => toast.remove(), 2500);
-}
+    <script>
+        const audio = document.getElementById('bg-music');
+        const btn = document.getElementById('music-toggle');
+        let isPlaying = false;
 
-document.addEventListener('click', e => {
-  const langBtn = document.getElementById('langBtn');
-  const dropdown = document.getElementById('langDropdown');
-  if(langBtn && dropdown && !langBtn.contains(e.target)){
-    dropdown.classList.remove('open');
-  }
-});
+        function toggleMusic() {
+            if (isPlaying) {
+                audio.pause();
+                btn.innerHTML = '▶';
+            } else {
+                audio.play().catch(e => console.log("Riproduzione bloccata."));
+                btn.innerHTML = '⏸';
+            }
+            isPlaying = !isPlaying;
+        }
 
-document.getElementById('langBtn').addEventListener('click', e => {
-  e.stopPropagation();
-  document.getElementById('langDropdown').classList.toggle('open');
-});
+        let isDownloadAvailable = false; 
+        function showDownloadAlert() {
+            if (isDownloadAvailable) {
+                alert("Download in fase di avvio...");
+            } else {
+                const alertBox = document.getElementById('download-alert');
+                alertBox.style.display = 'block';
+                setTimeout(() => {
+                    alertBox.style.display = 'none';
+                }, 3000);
+            }
+        }
 
-document.querySelectorAll('.dropdown-item').forEach(item => {
-  item.addEventListener('click', function(){
-    document.querySelectorAll('.dropdown-item').forEach(i => i.classList.remove('active'));
-    this.classList.add('active');
-    document.getElementById('langLabel').textContent = this.dataset.lang.toUpperCase();
-    document.getElementById('langDropdown').classList.remove('open');
-  });
-});
+        // --- GESTIONE MENU DROPDOWN ---
+        function toggleMenu() {
+            const menu = document.getElementById('dropdown-menu');
+            menu.classList.toggle('active');
+        }
 
-document.getElementById('cartModal').addEventListener('click', e => {
-  if(e.target.id === 'cartModal') closeCart();
-});
-</script>
+        // Chiudi il menu se si clicca fuori
+        window.onclick = function(event) {
+            if (!event.target.matches('.menu-btn')) {
+                const dropdowns = document.getElementsByClassName("dropdown-menu");
+                for (let i = 0; i < dropdowns.length; i++) {
+                    let openDropdown = dropdowns[i];
+                    if (openDropdown.classList.contains('active')) {
+                        openDropdown.classList.remove('active');
+                    }
+                }
+            }
+        }
 
+        function navigateTo(pageId) {
+            document.querySelectorAll('.page-section').forEach(page => {
+                page.classList.remove('active');
+            });
+            
+            const targetPage = document.getElementById(`page-${pageId}`);
+            if (targetPage) {
+                targetPage.classList.add('active');
+            }
+
+            // Aggiorna la barra orizzontale
+            document.querySelectorAll('.sub-menu a').forEach(link => {
+                link.classList.remove('active');
+            });
+            const activeNav = document.getElementById(`nav-${pageId}`);
+            if (activeNav) {
+                activeNav.classList.add('active');
+            }
+
+            if (pageId === 'news') {
+                const title = document.getElementById('news-title');
+                const desc = document.getElementById('news-desc');
+                if (isUnderMaintenance) {
+                    title.innerText = "Client Status";
+                    desc.innerText = "The client is currently under maintenance. Release date: TBA.";
+                } else {
+                    title.innerText = "Client Online!";
+                    desc.innerText = "The client is now available for everyone. Join the adventure now!";
+                }
+            }
+        }
+
+        const petalsContainer = document.getElementById('petals-container');
+        function createPetal() {
+            const petal = document.createElement('div');
+            petal.classList.add('petal');
+            const size = Math.random() * 15 + 10;
+            petal.style.width = `${size}px`;
+            petal.style.height = `${size}px`;
+            petal.style.left = `${Math.random() * 100}vw`;
+            const duration = Math.random() * 7 + 5;
+            petal.style.animationDuration = `${duration}s`;
+            petal.style.animationDelay = `${Math.random() * 5}s`;
+            petal.style.transform = `rotate(${Math.random() * 360}deg)`;
+            petalsContainer.appendChild(petal);
+            setTimeout(() => {
+                petal.remove();
+            }, duration * 1000);
+        }
+        setInterval(createPetal, 300);
+
+        let antiInspectEnabled = true;
+        let isDevAuthenticated = false;
+        let isUnderMaintenance = true;
+
+        function logAction(msg) {
+            const logContainer = document.getElementById('dev-log-container');
+            const p = document.createElement('p');
+            const time = new Date().toLocaleTimeString();
+            p.innerText = `[${time}] ${msg}`;
+            logContainer.appendChild(p);
+            logContainer.scrollTop = logContainer.scrollHeight;
+        }
+
+        function blockAction(e) { if (antiInspectEnabled) { e.preventDefault(); return false; } }
+        document.addEventListener('contextmenu', blockAction);
+        document.addEventListener('keydown', function(e) {
+            if (antiInspectEnabled) {
+                if (e.key === 'F12' || e.keyCode === 123) { e.preventDefault(); return false; }
+                if (e.ctrlKey && e.shiftKey && (e.key === 'I' || e.key === 'i' || e.key === 'J' || e.key === 'j' || e.key === 'C' || e.key === 'c')) { e.preventDefault(); return false; }
+                if (e.ctrlKey && (e.key === 'U' || e.key === 'u')) { e.preventDefault(); return false; }
+            }
+        });
+
+        setInterval(function() {
+            if (antiInspectEnabled) {
+                const startTime = performance.now();
+                debugger; 
+                const endTime = performance.now();
+                if (endTime - startTime > 100) {
+                    if (!isDevAuthenticated) {
+                        document.getElementById('devtools-warning').style.display = 'flex';
+                    }
+                }
+            }
+        }, 1000);
+
+        document.addEventListener('keydown', function(e) {
+            if (e.ctrlKey && e.altKey && (e.key === 'D' || e.key === 'd')) {
+                e.preventDefault();
+                const panel = document.getElementById('dev-panel');
+                if (panel.style.display === 'none' || panel.style.display === '') {
+                    panel.style.display = 'block';
+                    if (!isDevAuthenticated) {
+                        document.getElementById('auth-section').style.display = 'block';
+                        document.getElementById('tools-section').style.display = 'none';
+                        document.getElementById('dev-password').value = '';
+                    }
+                } else {
+                    panel.style.display = 'none';
+                }
+            }
+        });
+
+        function checkPassword() {
+            const pass = document.getElementById('dev-password').value;
+            if (pass === 'kitti') {
+                document.getElementById('auth-section').style.display = 'none';
+                document.getElementById('tools-section').style.display = 'flex';
+                isDevAuthenticated = true;
+                document.getElementById('devtools-warning').style.display = 'none';
+                logAction("Login effettuato con successo.");
+            } else {
+                alert("Password Errata!");
+                logAction("Tentativo di login fallito.");
+            }
+        }
+
+        function closeDevPanel() {
+            document.getElementById('dev-panel').style.display = 'none';
+        }
+
+        function toggleAntiInspect() {
+            antiInspectEnabled = !antiInspectEnabled;
+            const btn = document.getElementById('toggle-btn');
+            if (antiInspectEnabled) {
+                btn.innerText = "Disabilita Anti-Ispezione";
+                btn.style.background = "#333";
+                logAction("Anti-Ispezione ATTIVATA.");
+            } else {
+                btn.innerText = "Abilita Anti-Ispezione";
+                btn.style.background = "#ff99cc";
+                logAction("Anti-Ispezione DISATTIVATA.");
+            }
+        }
+
+        function toggleMaintenance() {
+            isUnderMaintenance = !isUnderMaintenance;
+            const btn = document.getElementById('btn-maintenance');
+
+            if (isUnderMaintenance) {
+                btn.innerText = "Termina Manutenzione (Sito Online)";
+                btn.style.background = "#333";
+                logAction("Sito impostato in MANUTENZIONE.");
+            } else {
+                btn.innerText = "Metti in Manutenzione";
+                btn.style.background = "#00aa00";
+                logAction("Sito impostato ONLINE.");
+            }
+            
+            if (document.getElementById('page-news').classList.contains('active')) {
+                navigateTo('news');
+            }
+        }
+
+        function changeBackground() {
+            const bgImages = [
+                'https://i.pinimg.com/1200x/62/93/0c/62930cd78a4698d91428a45116245597.jpg',
+                'https://i.pinimg.com/736x/47/55/5e/47555e5428aa6f4006aaf459067b1f94.jpg',
+                'https://i.pinimg.com/736x/3f/1e/3a/3f1e3a8e6f1a9b3c5d7e9f1a3b5c7d9e.jpg'
+            ];
+            const randomBg = bgImages[Math.floor(Math.random() * bgImages.length)];
+            document.body.style.backgroundImage = `url('${randomBg}')`;
+            logAction("Sfondo del sito cambiato.");
+        }
+
+        function toggleDownload() {
+            isDownloadAvailable = !isDownloadAvailable;
+            const btn = document.getElementById('btn-download-status');
+            
+            if (isDownloadAvailable) {
+                btn.innerText = "Disattiva Download";
+                btn.style.background = "#333";
+                logAction("Download ATTIVATO.");
+            } else {
+                btn.innerText = "Attiva Download";
+                btn.style.background = "#cc0000";
+                logAction("Download DISATTIVATO.");
+            }
+        }
+
+        function publishAnnouncement() {
+            const text = document.getElementById('announcement-text').value;
+            if (text.trim() !== "") {
+                const banner = document.getElementById('global-announcement');
+                banner.innerText = `📢 ANNUNCIO: ${text}`;
+                banner.style.display = 'block';
+                logAction(`Annuncio pubblicato: "${text}"`);
+                document.getElementById('announcement-text').value = '';
+            } else {
+                alert("Inserisci un testo per l'annuncio!");
+            }
+        }
+
+        function removeAnnouncement() {
+            document.getElementById('global-announcement').style.display = 'none';
+            logAction("Annuncio rimosso.");
+        }
+    </script>
 </body>
 </html>
