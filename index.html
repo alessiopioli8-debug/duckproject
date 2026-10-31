@@ -241,32 +241,11 @@
             text-align: center; padding: 20px;
         }
         
-        /* Wrapper per il personaggio 3D e il nametag */
-        .character-wrapper {
-            position: relative;
-            width: 250px;
-            height: 350px;
-            margin-bottom: -30px;
+        /* Animazione di "respiro" per il personaggio 3D */
+        #3d-container { 
+            width: 250px; height: 350px; margin-bottom: -30px; 
             filter: drop-shadow(0 0 20px rgba(0, 0, 0, 0.8)); 
             animation: breathe 3s ease-in-out infinite;
-        }
-
-        #3d-container { 
-            width: 100%; 
-            height: 100%; 
-        }
-
-        /* Nametag preview sopra il personaggio */
-        .nametag-preview {
-            position: absolute;
-            top: 20px;
-            left: 50%;
-            transform: translateX(-50%);
-            max-width: 200px;
-            height: auto;
-            pointer-events: none;
-            z-index: 2;
-            filter: drop-shadow(0 0 5px rgba(0, 0, 0, 0.7));
         }
 
         @keyframes breathe {
@@ -472,17 +451,7 @@
         
         <!-- HERO -->
         <section class="hero">
-            <!-- Wrapper che contiene 3D e nametag -->
-            <div class="character-wrapper">
-                <div id="3d-container"></div>
-                <img 
-                    src="https://cdn.corenexis.com/f/q8BZEnkw.png" 
-                    alt="Nametag Preview" 
-                    class="nametag-preview"
-                    onerror="this.style.display='none'; console.warn('Immagine nametag non caricata');"
-                >
-            </div>
-            
+            <div id="3d-container"></div>
             <h1 class="hero-title">PETAL CLIENT</h1>
             <p class="hero-description">
                 Extreme optimization for Minecraft.<br>
@@ -844,7 +813,7 @@
         import { SkinViewer } from 'https://cdn.jsdelivr.net/npm/skinview3d@3.0.0/bundles/skinview3d.bundle.js';
         const viewer = new SkinViewer({
             width: 250, height: 350,
-            skin: 'https://mc-heads.net/skin/MrDuckyzx'
+            skin: 'https://textures.minecraft.net/texture/20d6e48b1b1b8015f9950822041c99f3cb3b069cb76c34efe96b7ba9fc8b8dc1'
         });
         document.getElementById('3d-container').appendChild(viewer.canvas);
         viewer.autoRotate = true;
