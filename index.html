@@ -187,7 +187,6 @@
             text-transform: uppercase;
             transition: 0.2s;
             border-radius: 5px;
-            cursor: pointer;
         }
 
         .dropdown-menu a:hover {
@@ -242,57 +241,11 @@
             text-align: center; padding: 20px;
         }
         
-        /* --- 3D SKIN VIEWER & NAMETAG --- */
-        .skin-display-container {
-            position: relative;
-            width: 250px;
-            height: 380px;
-            margin-bottom: -10px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: flex-end;
-        }
-
+        /* Animazione di "respiro" per il personaggio 3D */
         #3d-container { 
-            width: 250px; height: 350px; 
+            width: 250px; height: 350px; margin-bottom: -30px; 
             filter: drop-shadow(0 0 20px rgba(0, 0, 0, 0.8)); 
             animation: breathe 3s ease-in-out infinite;
-            position: relative;
-            z-index: 2;
-        }
-
-        /* Stile Nametag sopra la testa */
-        .nametag-container {
-            position: absolute;
-            top: 0;
-            z-index: 3;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: #2a1f2d; /* Sfondo scuro semi-trasparente tipico di Minecraft */
-            border: 2px solid #1a111a;
-            border-radius: 4px;
-            padding: 2px 8px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.5);
-            transform: scale(0.9);
-        }
-
-        .nametag-icon {
-            width: 20px;
-            height: 20px;
-            margin-right: 6px;
-            image-rendering: pixelated; /* Per mantenere lo stile pixel art */
-        }
-
-        .nametag-text {
-            font-family: 'Courier New', Courier, monospace; /* Font simil-pixel */
-            font-weight: bold;
-            font-size: 18px;
-            color: #ffffff;
-            letter-spacing: 1px;
-            text-shadow: 2px 2px 0px #000000;
-            image-rendering: pixelated;
         }
 
         @keyframes breathe {
@@ -441,13 +394,6 @@
         .dev-section h3 { font-size: 14px; color: #aaa; margin-bottom: 10px; text-transform: uppercase; letter-spacing: 1px; }
         .dev-log { background: #000; color: #00ff00; font-family: monospace; font-size: 12px; padding: 10px; border-radius: 5px; height: 80px; overflow-y: auto; border: 1px solid #333; }
         .dev-log p { margin-bottom: 3px; }
-        
-        /* Alert download */
-        #download-alert {
-            display: none; position: fixed; top: 20px; left: 50%; transform: translateX(-50%);
-            background: #cc0000; color: white; padding: 15px 30px; border-radius: 8px;
-            z-index: 9999; font-weight: bold; box-shadow: 0 4px 15px rgba(0,0,0,0.5);
-        }
 
     </style>
 </head>
@@ -505,16 +451,7 @@
         
         <!-- HERO -->
         <section class="hero">
-            <div class="skin-display-container">
-                <!-- Nametag sopra la testa -->
-                <div class="nametag-container">
-                    <img src="https://cdn.corenexis.com/f/J3wKgA7j31h.png" alt="Icon" class="nametag-icon" style="filter: hue-rotate(300deg) saturate(200%);">
-                    <span class="nametag-text">MrDuckyzx</span>
-                </div>
-                <!-- Container per la skin 3D -->
-                <div id="3d-container"></div>
-            </div>
-            
+            <div id="3d-container"></div>
             <h1 class="hero-title">PETAL CLIENT</h1>
             <p class="hero-description">
                 Extreme optimization for Minecraft.<br>
@@ -872,7 +809,6 @@
         </div>
     </div>
 
-    <!-- SKIN VIEWER 3D -->
     <script type="module">
         import { SkinViewer } from 'https://cdn.jsdelivr.net/npm/skinview3d@3.0.0/bundles/skinview3d.bundle.js';
         const viewer = new SkinViewer({
